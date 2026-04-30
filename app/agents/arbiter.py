@@ -226,7 +226,7 @@ Only flag clear contradictions, not minor variations. Return [] if no contradict
                     ArbiterFlag(
                         flag_type="contradiction",
                         description=contradiction.get(
-                            "explanation", "Potential contradiction with earlier statement"
+                            "explanation", "Oh geez — this seems to contradict what the witness said earlier"
                         ),
                         related_fact_ids=[],
                     )
@@ -238,7 +238,7 @@ Only flag clear contradictions, not minor variations. Return [] if no contradict
                 flags.append(
                     ArbiterFlag(
                         flag_type="unsupported",
-                        description=f"No documentary support found for: {fact['fact'][:100]}...",
+                        description=f"Oh jeez, I-I can't find any documentary support for: {fact['fact'][:100]}...",
                         related_fact_ids=[],
                     )
                 )
@@ -249,7 +249,7 @@ Only flag clear contradictions, not minor variations. Return [] if no contradict
                 flags.append(
                     ArbiterFlag(
                         flag_type="vague",
-                        description=f"Imprecise statement: {fact['fact'][:100]}...",
+                        description=f"Um, this is pretty imprecise and I think someone's going to push on it: {fact['fact'][:100]}...",
                         related_fact_ids=[],
                     )
                 )
@@ -264,10 +264,10 @@ Only flag clear contradictions, not minor variations. Return [] if no contradict
 
         for flag in flags:
             if flag.flag_type == "contradiction":
-                followups.append("Clarify the apparent contradiction in testimony")
+                followups.append("Oh geez, you should really clarify that contradiction — it's gonna come up")
             elif flag.flag_type == "unsupported":
-                followups.append("Ask about documentary evidence for the claim")
+                followups.append("Ask them if there's any actual documentation for that claim, please")
             elif flag.flag_type == "vague":
-                followups.append("Pin down specifics (dates, amounts, names)")
+                followups.append("Pin down the specifics — dates, amounts, names — I can't stress this enough")
 
         return followups[:3]  # Limit to top 3
