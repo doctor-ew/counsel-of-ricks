@@ -8,6 +8,25 @@
  * utility classes (scanline overlay, scrollbar suppression, font fallbacks).
  */
 
+/* Rick & Morty wordmark font — TTF at /public/fonts/rick-and-morty.ttf.
+   Used for the brand wordmark in AppHeader; loud and chunky on purpose. */
+@font-face {
+  font-family: 'RickAndMorty';
+  src: url('/fonts/rick-and-morty.ttf') format('truetype');
+  font-display: swap;
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* Schwifty — secondary R&M flavor font for accents (zone label, IN-SESSION). */
+@font-face {
+  font-family: 'GetSchwifty';
+  src: url('/fonts/get-schwifty.ttf') format('truetype');
+  font-display: swap;
+  font-weight: 400;
+  font-style: normal;
+}
+
 :root {
   --cit-vacuum:    #07090c;
   --cit-bg-1:      #0e1218;
@@ -61,6 +80,26 @@
   width: 180px; height: 180px; top: 40%; left: 55%;
   background: radial-gradient(circle, rgba(125, 241, 255, 0.35) 0%, rgba(125, 241, 255, 0.10) 40%, transparent 70%);
   animation-duration: 5s; animation-delay: -1s;
+}
+.cit-portal-d {
+  width: 220px; height: 220px; top: 70%; left: 12%;
+  background: radial-gradient(circle, rgba(255, 200, 87, 0.30) 0%, rgba(255, 200, 87, 0.10) 40%, transparent 70%);
+  animation-duration: 9s; animation-delay: -3s;
+}
+.cit-portal-e {
+  width: 140px; height: 140px; top: 18%; left: 78%;
+  background: radial-gradient(circle, rgba(93, 255, 175, 0.42) 0%, rgba(93, 255, 175, 0.12) 40%, transparent 70%);
+  animation-duration: 7s; animation-delay: -4s;
+}
+.cit-portal-f {
+  width: 100px; height: 100px; top: 8%; left: 42%;
+  background: radial-gradient(circle, rgba(255, 74, 215, 0.36) 0%, rgba(255, 74, 215, 0.10) 40%, transparent 70%);
+  animation-duration: 6s; animation-delay: -1.5s;
+}
+.cit-portal-g {
+  width: 280px; height: 280px; top: 55%; left: 80%;
+  background: radial-gradient(circle, rgba(125, 241, 255, 0.22) 0%, rgba(125, 241, 255, 0.08) 40%, transparent 70%);
+  animation-duration: 11s; animation-delay: -5s;
 }
 @keyframes cit-pulse {
   0%, 100% { transform: scale(1);    opacity: 0.55; }

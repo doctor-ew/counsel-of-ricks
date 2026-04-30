@@ -78,12 +78,16 @@ export default function AppHeader({
 
       <div className="relative flex flex-col leading-tight">
         <div
-          className="text-[14px] tracking-[0.15em]"
-          style={{ fontFamily: 'Audiowide, system-ui, sans-serif' }}
+          className="text-[20px] leading-none text-portal"
+          style={{
+            fontFamily: 'RickAndMorty, Audiowide, system-ui, sans-serif',
+            letterSpacing: '0.04em',
+            textShadow: '0 0 14px rgba(93,255,175,0.55)',
+          }}
         >
           COUNCEL OF RICKS
         </div>
-        <div className="text-[10px] tracking-[0.2em] text-cit-text-dim">
+        <div className="mt-0.5 text-[10px] tracking-[0.2em] text-cit-text-dim">
           INTERDIMENSIONAL TRIBUNAL · DEPOSITION SUITE
         </div>
       </div>

@@ -23,6 +23,11 @@ const GLYPHS = [
   '∮', 'Δ', 'Σ', 'Ω', 'Ψ', 'ƒ(x)', '∇²φ', 'eⁱπ+1=0', 'c²=a²+b²',
   '⊕', '⊗', 'BR-7Θ', '∂/∂t', 'τ', '⌬', 'ψ', '∫', 'λ', '½mv²',
   '⟨φ|ψ⟩', 'P=NP?', 'ξ', '∞', 'Θ-19', '⌖', '⟁', '∴', 'C-137',
+  // R&M flavor — multiverse coordinates, schwifty math, council numerics
+  'C-500A', 'J-19ζ7', 'Φ-9', '⌬⌬', '∮ψdτ', 'iℏ∂/∂t', '∂L/∂q̇',
+  'γμ∂μψ', '⟨0|T|0⟩', 'Λ-CDM', 'Σ ∞ n=1', '√(-1)', 'πr²h',
+  'P(A|B)', '∇×B=μ₀J', '🜍', '🜔', '🝛', 'WUBBA',
+  'GET·SCHWIFTY', 'MULTIVERSE-α', 'CITADEL-7', 'PORTAL-Δ', 'COUNCIL·∞',
 ];
 
 interface Item {
@@ -37,17 +42,25 @@ export default function CitadelBackdrop({ density = 1, opacity = 1, className = 
       const x = Math.sin(n) * 10000;
       return x - Math.floor(x);
     };
-    const n = Math.round(22 * density);
+    const n = Math.round(48 * density);
+    // Pick from 5 hues so the cloud reads as multidimensional, not monochrome.
+    const hues = [
+      'var(--cit-portal)',
+      'var(--cit-scan-cyan)',
+      'var(--cit-flare)',
+      'var(--cit-plasma)',
+      'var(--cit-portal)', // weight portal slightly heavier
+    ];
     return Array.from({ length: n }, (_, i) => ({
-      g: GLYPHS[i % GLYPHS.length],
+      g: GLYPHS[Math.floor(rand(i * 0.91) * GLYPHS.length)],
       top: rand(i * 1.3) * 100,
       left: rand(i * 2.7 + 9) * 100,
-      size: 11 + rand(i * 3.1) * 22,
-      dur: 18 + rand(i * 4.3) * 22,
-      delay: -rand(i * 5.7) * 30,
-      drift: 30 + rand(i * 6.9) * 60,
-      hue: rand(i * 7.7) > 0.5 ? 'var(--cit-portal)' : 'var(--cit-scan-cyan)',
-      o: 0.18 + rand(i * 8.1) * 0.32,
+      size: 10 + rand(i * 3.1) * 26,
+      dur: 14 + rand(i * 4.3) * 28,
+      delay: -rand(i * 5.7) * 40,
+      drift: 30 + rand(i * 6.9) * 90,
+      hue: hues[Math.floor(rand(i * 7.7) * hues.length)],
+      o: 0.16 + rand(i * 8.1) * 0.42,
     }));
   }, [density]);
 
@@ -56,6 +69,10 @@ export default function CitadelBackdrop({ density = 1, opacity = 1, className = 
       <span className="cit-portal-orb cit-portal-a" />
       <span className="cit-portal-orb cit-portal-b" />
       <span className="cit-portal-orb cit-portal-c" />
+      <span className="cit-portal-orb cit-portal-d" />
+      <span className="cit-portal-orb cit-portal-e" />
+      <span className="cit-portal-orb cit-portal-f" />
+      <span className="cit-portal-orb cit-portal-g" />
       <div className="cit-grid" />
       {items.map((it, i) => (
         <span

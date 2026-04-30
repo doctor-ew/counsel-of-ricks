@@ -120,12 +120,12 @@ export default function SessionPage() {
 
   return (
     <div
-      className="relative flex min-h-screen flex-col text-cit-text"
+      className="relative flex h-screen flex-col overflow-hidden text-cit-text"
       style={{ background: 'var(--cit-vacuum)' }}
     >
-      <CitadelBackdrop density={0.8} />
+      <CitadelBackdrop density={1.0} />
 
-      <div className="relative z-10 flex min-h-screen flex-col">
+      <div className="relative z-10 flex h-screen min-h-0 flex-col">
         <AppHeader agent={headerAgent} uptime={uptime} caseId={`CR-${(session.id ?? 'XXXXX').slice(0, 5).toUpperCase()}`} />
 
         {/* Sub-toolbar: nav + actions, citadel-styled */}
@@ -175,16 +175,24 @@ export default function SessionPage() {
         </div>
 
         {/* Main Content */}
-        <main className="mx-auto flex w-full max-w-7xl flex-1">
+        <main className="mx-auto flex w-full max-w-7xl flex-1 min-h-0">
           {/* Chat Panel */}
-          <div className="flex flex-1 flex-col">
-            {/* Truth-O-Meter — aggregated arbiter confidence for the latest agent message. */}
-            <div className="flex justify-center px-6 pt-4">
-              <TruthOMeter score={latestAgentScore} className="mb-4" />
+          <div className="flex flex-1 flex-col min-h-0">
+            {/* Truth-O-Meter — aggregated arbiter confidence for the latest agent message.
+                Sits above the scrollable message column so it stays pinned while messages scroll. */}
+            <div
+              className="flex flex-shrink-0 justify-center border-b px-6 pb-2 pt-4"
+              style={{
+                borderColor: 'var(--cit-hairline)',
+                background: 'rgba(7,9,12,0.55)',
+                backdropFilter: 'blur(6px)',
+              }}
+            >
+              <TruthOMeter score={latestAgentScore} />
             </div>
 
             {/* Messages */}
-            <div className="chat-scroll flex-1 space-y-4 overflow-y-auto p-6">
+            <div className="chat-scroll flex-1 min-h-0 space-y-4 overflow-y-auto p-6">
               {(!messages || messages.length === 0) && (
                 <div className="py-12 text-center text-cit-text-dim">
                   <p className="mb-2 text-lg font-medium text-cit-text">

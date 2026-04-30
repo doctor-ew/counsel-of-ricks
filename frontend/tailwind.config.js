@@ -32,6 +32,10 @@ export default {
         // pair with the Google Fonts link in index.html
         display: ['Audiowide', 'system-ui', 'sans-serif'],
         mono: ['"JetBrains Mono"', 'ui-monospace', 'monospace'],
+        // Rick & Morty wordmark fonts — TTF served from /public/fonts/.
+        // Use sparingly: brand/title only. They eat readability at small sizes.
+        rick: ['RickAndMorty', 'Audiowide', 'system-ui', 'sans-serif'],
+        schwifty: ['GetSchwifty', 'Audiowide', 'system-ui', 'sans-serif'],
       },
       boxShadow: {
         'portal-glow':

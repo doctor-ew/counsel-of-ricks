@@ -111,6 +111,12 @@ if frontend_path.exists():
     # Serve static assets
     app.mount("/assets", StaticFiles(directory=frontend_path / "assets"), name="assets")
 
+    # Serve files Vite copies from /public (fonts, vite.svg, etc.) at the root.
+    # Without an explicit mount the SPA catch-all below would shadow these.
+    fonts_path = frontend_path / "fonts"
+    if fonts_path.exists():
+        app.mount("/fonts", StaticFiles(directory=fonts_path), name="fonts")
+
     # Catch-all route for SPA - serve index.html for all non-API routes
     @app.get("/{full_path:path}")
     async def serve_spa(request: Request, full_path: str):
