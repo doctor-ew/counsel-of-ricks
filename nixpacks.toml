@@ -1,18 +1,13 @@
 [phases.setup]
 nixPkgs = ["python313", "nodejs_22"]
 
+# Nixpacks auto-installs Python deps from requirements.txt — don't override.
+# Only add bun (for the frontend build) on top of what Nixpacks provides.
 [phases.install]
-# Install bun for the frontend build, then Python deps.
-cmds = [
-  "npm install -g bun",
-  "pip install --upgrade pip",
-  "pip install -r requirements.txt",
-]
+cmds = ["npm install -g bun"]
 
 [phases.build]
-cmds = [
-  "cd frontend && bun install && bun run build && cd ..",
-]
+cmds = ["cd frontend && bun install && bun run build && cd .."]
 
 [start]
-cmd = "uvicorn app.main:app --host 0.0.0.0 --port $PORT --workers 2"
+cmd = "python scripts/migrate.py && uvicorn app.main:app --host 0.0.0.0 --port $PORT --workers 2"
