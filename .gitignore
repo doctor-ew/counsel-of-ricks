@@ -1,9 +1,51 @@
-transcripts/
+# Python
 __pycache__/
-.env
-*.pyc
+*.py[cod]
+*$py.class
+.venv/
+venv/
+*.egg-info/
+dist/
+build/
+.eggs/
 
-# Beads / Dolt files (added by bd init)
-.dolt/
+# Environment
+.env
+.env.local
+.env.*.local
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Node
+node_modules/
+frontend/node_modules/
+
+# Build outputs
+frontend/dist/
+*.log
+
+# Database
 *.db
-.beads-credential-key
+*.sqlite3
+
+# Testing
+.coverage
+htmlcov/
+.pytest_cache/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# UV
+uv.lock
+
+# Database exports
+data_export.sql
+schema_export.sql
+.beads/issues.jsonl
+.beads/config.yaml
