@@ -1,0 +1,107 @@
+/* frontend/src/styles/citadel.css
+ * V1 Citadel Holo — palette tokens (CSS vars) + small reusable utilities
+ * the gauge / header components reference. Imported once from main.tsx:
+ *   import './styles/citadel.css';
+ *
+ * Tailwind users: the same colors are also exposed as Tailwind tokens via
+ * tailwind.config.ts; this file is for bits that don't fit cleanly into
+ * utility classes (scanline overlay, scrollbar suppression, font fallbacks).
+ */
+
+:root {
+  --cit-vacuum:    #07090c;
+  --cit-bg-1:      #0e1218;
+  --cit-bg-2:      #161b22;
+  --cit-portal:    #5dffaf;
+  --cit-portal-dim:#1e6a47;
+  --cit-plasma:    #ff4ad7;
+  --cit-scan-cyan: #7df1ff;
+  --cit-flare:     #ffc857;
+  --cit-alarm:     #ff5573;
+  --cit-text:      #cfe9d8;
+  --cit-text-dim:  #7a8a83;
+  --cit-hairline:  rgba(125, 244, 188, 0.18);
+}
+
+/* CRT-style scanline overlay — drop on any element with .cit-scanlines */
+.cit-scanlines {
+  background-image: repeating-linear-gradient(
+    0deg,
+    transparent 0 2px,
+    rgba(125, 241, 255, 0.07) 2px 3px
+  );
+}
+
+/* ─── Animated tribunal backdrop ──────────────────────────────────────────
+   Used by <CitadelBackdrop />. All animations are transform/opacity-only
+   so they composite on the GPU. Honors prefers-reduced-motion. */
+.cit-backdrop {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at 20% 0%, rgba(93, 255, 175, 0.06), transparent 55%),
+    radial-gradient(ellipse at 80% 100%, rgba(255, 74, 215, 0.05), transparent 55%);
+}
+.cit-portal-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(8px);
+  background: radial-gradient(circle, rgba(93, 255, 175, 0.55) 0%, rgba(93, 255, 175, 0.18) 35%, transparent 70%);
+  animation: cit-pulse 6s ease-in-out infinite;
+}
+.cit-portal-a { width: 340px; height: 340px; top: -120px; left: -100px; }
+.cit-portal-b {
+  width: 260px; height: 260px; bottom: -100px; right: -80px;
+  background: radial-gradient(circle, rgba(255, 74, 215, 0.40) 0%, rgba(255, 74, 215, 0.12) 35%, transparent 70%);
+  animation-duration: 8s; animation-delay: -2s;
+}
+.cit-portal-c {
+  width: 180px; height: 180px; top: 40%; left: 55%;
+  background: radial-gradient(circle, rgba(125, 241, 255, 0.35) 0%, rgba(125, 241, 255, 0.10) 40%, transparent 70%);
+  animation-duration: 5s; animation-delay: -1s;
+}
+@keyframes cit-pulse {
+  0%, 100% { transform: scale(1);    opacity: 0.55; }
+  50%      { transform: scale(1.18); opacity: 0.95; }
+}
+.cit-grid {
+  position: absolute; inset: -40px; opacity: 0.18;
+  background-image:
+    linear-gradient(rgba(125, 244, 188, 0.18) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(125, 244, 188, 0.18) 1px, transparent 1px);
+  background-size: 60px 60px;
+  animation: cit-grid-drift 40s linear infinite;
+  -webkit-mask-image: radial-gradient(ellipse at center, #000 30%, transparent 75%);
+          mask-image: radial-gradient(ellipse at center, #000 30%, transparent 75%);
+}
+@keyframes cit-grid-drift {
+  0%   { transform: translate(0, 0); }
+  100% { transform: translate(60px, 60px); }
+}
+.cit-glyph {
+  position: absolute;
+  font-family: 'JetBrains Mono', 'Audiowide', monospace;
+  letter-spacing: 0.05em;
+  text-shadow: 0 0 8px currentColor;
+  animation-name: cit-drift;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+}
+@keyframes cit-drift {
+  0%, 100% { transform: translate(0, 0) rotate(-2deg); opacity: 0; }
+  10%, 90% { opacity: 1; }
+  50%      { transform: translate(var(--drift), calc(var(--drift) * -0.6)) rotate(3deg); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cit-portal-orb, .cit-grid, .cit-glyph { animation: none !important; }
+}
+
+/* Hide scrollbars inside chat / ledger panes without losing scroll */
+.cit-no-scrollbar {
+  scrollbar-width: none;
+}
+.cit-no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
