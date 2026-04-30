@@ -68,6 +68,7 @@ CREATE TABLE IF NOT EXISTS messages (
     content TEXT NOT NULL,
     citations JSONB DEFAULT '[]',
     arbiter_flags JSONB DEFAULT '[]',
+    truth_score INTEGER NULL,          -- GH-8: arbiter confidence 0-100, null = no score yet
     created_at TIMESTAMP DEFAULT NOW()
 );
 
@@ -83,6 +84,12 @@ CREATE TABLE IF NOT EXISTS fact_ledger (
     contradicts JSONB DEFAULT '[]',
     created_at TIMESTAMP DEFAULT NOW(),
     superseded_by UUID REFERENCES fact_ledger(id)
+);
+
+-- Migration tracking (used by scripts/migrate.py — idempotent, applied file names only)
+CREATE TABLE IF NOT EXISTS _migrations (
+    name       TEXT PRIMARY KEY,
+    applied_at TIMESTAMPTZ DEFAULT NOW()
 );
 
 -- Indexes
