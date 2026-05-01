@@ -37,7 +37,7 @@ export default function AppHeader({
   const tint = AGENT_TINT[agent]
   return (
     <header
-      className="relative flex h-16 items-center gap-4 overflow-hidden border-b px-4 text-cit-text"
+      className="relative flex h-20 items-center gap-4 overflow-hidden border-b px-4 text-cit-text"
       style={{
         fontFamily: 'JetBrains Mono, ui-monospace, monospace',
         background: 'var(--cit-vacuum)',
@@ -54,21 +54,21 @@ export default function AppHeader({
 
       {/* portal seal */}
       <div
-        className="relative flex h-9 w-9 items-center justify-center rounded-full"
+        className="relative flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full"
         style={{
-          border: '1px solid var(--cit-portal)',
+          border: '1.5px solid var(--cit-portal)',
           boxShadow:
-            '0 0 18px rgba(93,255,175,0.4), inset 0 0 12px rgba(93,255,175,0.2)',
+            '0 0 24px rgba(93,255,175,0.45), inset 0 0 16px rgba(93,255,175,0.2)',
         }}
         aria-hidden
       >
         <svg
           viewBox="0 0 24 24"
-          width={22}
-          height={22}
+          width={28}
+          height={28}
           fill="none"
           stroke="var(--cit-portal)"
-          strokeWidth={1.4}
+          strokeWidth={1.3}
         >
           <ellipse cx={12} cy={12} rx={10} ry={10} />
           <ellipse cx={12} cy={12} rx={6.5} ry={6.5} opacity={0.7} />
@@ -78,16 +78,17 @@ export default function AppHeader({
 
       <div className="relative flex flex-col leading-tight">
         <div
-          className="text-[20px] leading-none text-portal"
+          className="leading-none text-portal"
           style={{
             fontFamily: 'RickAndMorty, Audiowide, system-ui, sans-serif',
+            fontSize: '30px',
             letterSpacing: '0.04em',
-            textShadow: '0 0 14px rgba(93,255,175,0.55)',
+            textShadow: '0 0 20px rgba(93,255,175,0.65)',
           }}
         >
           COUNCEL OF RICKS
         </div>
-        <div className="mt-0.5 text-[10px] tracking-[0.2em] text-cit-text-dim">
+        <div className="mt-1 text-[10px] tracking-[0.22em] text-cit-text-dim">
           INTERDIMENSIONAL TRIBUNAL · DEPOSITION SUITE
         </div>
       </div>

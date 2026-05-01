@@ -197,8 +197,8 @@ export default function SessionPage() {
                 <div className="py-12 text-center text-cit-text-dim">
                   <p className="mb-2 text-lg font-medium text-cit-text">
                     {isCoach
-                      ? "Let's begin. Tell me about the situation with your kitchen renovation."
-                      : "I'll be cross-examining you today. Let's start with the basics."}
+                      ? "Okay, let's lock this in. Walk me through the whole Meeseeks cube incident — from the moment you activated it to when everything went sideways."
+                      : "I've deposed witnesses across forty-seven dimensions. They all think they're ready. They're not. Now — tell me exactly what you were doing the night of the Galactic Federation breach."}
                   </p>
                   <p className="text-sm">Type your response below to begin.</p>
                 </div>

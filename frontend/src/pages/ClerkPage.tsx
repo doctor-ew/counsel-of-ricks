@@ -13,10 +13,10 @@ interface ConversationEntry {
 }
 
 const PROMPTS = [
-  'What does the contract say about payment terms?',
+  'What does the Galactic Federation file say about the incident?',
   'Summarize the key facts established so far',
   'Are there contradictions in the testimony?',
-  'What documents mention the renovation timeline?',
+  'Which dimensions were visited during the alleged breach?',
 ]
 
 export default function ClerkPage() {

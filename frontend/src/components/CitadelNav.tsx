@@ -13,14 +13,14 @@ interface Props {
 
 const PortalSeal = () => (
   <div
-    className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full"
+    className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full"
     style={{
-      border: '1px solid var(--cit-portal)',
-      boxShadow: '0 0 14px rgba(93,255,175,0.35)',
+      border: '1.5px solid var(--cit-portal)',
+      boxShadow: '0 0 22px rgba(93,255,175,0.4)',
     }}
     aria-hidden
   >
-    <svg viewBox="0 0 24 24" width={18} height={18} fill="none" stroke="var(--cit-portal)" strokeWidth={1.4}>
+    <svg viewBox="0 0 24 24" width={28} height={28} fill="none" stroke="var(--cit-portal)" strokeWidth={1.3}>
       <ellipse cx={12} cy={12} rx={10} ry={10} />
       <ellipse cx={12} cy={12} rx={6.5} ry={6.5} opacity={0.7} />
       <ellipse cx={12} cy={12} rx={3} ry={3} opacity={0.4} />
@@ -32,7 +32,7 @@ export default function CitadelNav({ backTo, links }: Props) {
   const navigate = useNavigate()
   return (
     <header
-      className="relative z-10 flex h-14 flex-shrink-0 items-center gap-3 border-b px-4"
+      className="relative z-10 flex h-20 flex-shrink-0 items-center gap-4 border-b px-4"
       style={{
         fontFamily: 'JetBrains Mono, ui-monospace, monospace',
         background: 'var(--cit-vacuum)',
@@ -52,15 +52,16 @@ export default function CitadelNav({ backTo, links }: Props) {
 
       <Link to="/" className="flex flex-col leading-tight">
         <div
-          className="text-[16px] leading-none text-portal"
+          className="leading-none text-portal"
           style={{
             fontFamily: 'RickAndMorty, Audiowide, system-ui, sans-serif',
-            textShadow: '0 0 12px rgba(93,255,175,0.5)',
+            fontSize: '30px',
+            textShadow: '0 0 18px rgba(93,255,175,0.6)',
           }}
         >
           COUNCEL OF RICKS
         </div>
-        <div className="text-[9px] tracking-[0.18em] text-cit-text-dim">
+        <div className="mt-1 text-[10px] tracking-[0.2em] text-cit-text-dim">
           INTERDIMENSIONAL TRIBUNAL
         </div>
       </Link>

@@ -121,7 +121,7 @@ export default function ProfilesPage() {
                   <textarea
                     value={formData.relationship_to_case}
                     onChange={(e) => setFormData({ ...formData, relationship_to_case: e.target.value })}
-                    placeholder="e.g. Homeowner who hired contractor for kitchen renovation"
+                    placeholder="e.g. Dimension-hopping tourist who accidentally activated a Meeseeks cube"
                     required rows={3}
                     className={CIT_INPUT + ' resize-none'}
                   />
