@@ -55,7 +55,7 @@ export default function CitadelNav({ backTo, links }: Props) {
           className="leading-none text-portal"
           style={{
             fontFamily: 'RickAndMorty, Audiowide, system-ui, sans-serif',
-            fontSize: '30px',
+            fontSize: '40px',
             textShadow: '0 0 18px rgba(93,255,175,0.6)',
           }}
         >

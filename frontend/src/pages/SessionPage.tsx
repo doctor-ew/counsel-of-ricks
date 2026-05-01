@@ -110,6 +110,7 @@ export default function SessionPage() {
 
   const isCoach = session.agent_mode === 'plaintiff_coach'
   const headerAgent: 'coach' | 'defense' = isCoach ? 'coach' : 'defense'
+  const witnessAvatar = pickWitnessAvatar(session.id)
 
   // Truth-O-Meter score is sourced from the most recent agent-role message.
   // Arbiter analysis runs against the witness response but its outputs
@@ -205,7 +206,7 @@ export default function SessionPage() {
               )}
 
               {messages?.map((message) => (
-                <MessageBubble key={message.id} message={message} isCoach={isCoach} />
+                <MessageBubble key={message.id} message={message} isCoach={isCoach} witnessAvatar={witnessAvatar} />
               ))}
 
               {sendMessage.isPending && (
@@ -447,12 +448,43 @@ export default function SessionPage() {
   )
 }
 
-function MessageBubble({ message, isCoach }: { message: Message; isCoach: boolean }) {
+const AGENT_AVATAR: Record<string, string> = {
+  coach: '/pix/summer.webp',
+  defense: '/pix/rick.webp',
+  arbiter: '/pix/morty.webp',
+}
+
+const WITNESS_AVATARS = [
+  '/pix/butter-robot.webp',
+  '/pix/devil.webp',
+  '/pix/glip-glops.jpeg',
+  '/pix/mr-frundles.webp',
+  '/pix/mr-poopybutthole.webp',
+  '/pix/scary-terry.webp',
+  '/pix/scientist.webp',
+  '/pix/space-beth.png',
+]
+
+function pickWitnessAvatar(sessionId: string): string {
+  const seed = sessionId.split('').reduce((acc, c) => acc + c.charCodeAt(0), 0)
+  return WITNESS_AVATARS[seed % WITNESS_AVATARS.length]
+}
+
+function AgentAvatar({ src, tint }: { src: string; tint: string }) {
+  return (
+    <div
+      className="h-10 w-10 flex-shrink-0 overflow-hidden rounded-full self-end"
+      style={{ border: `2px solid ${tint}`, boxShadow: `0 0 10px ${tint}66` }}
+    >
+      <img src={src} alt="" className="h-full w-full object-cover" />
+    </div>
+  )
+}
+
+function MessageBubble({ message, isCoach, witnessAvatar }: { message: Message; isCoach: boolean; witnessAvatar: string }) {
   const isWitness = message.role === 'witness'
   const isArbiter = message.role === 'arbiter'
 
-  // Tint per speaker: witness = scan-cyan (you), agent = portal (coach) or plasma (defense),
-  // arbiter = flare (judge). Borders use the tint, body uses cit-bg-1/2.
   const tint = isWitness
     ? 'var(--cit-scan-cyan)'
     : isArbiter
@@ -461,10 +493,19 @@ function MessageBubble({ message, isCoach }: { message: Message; isCoach: boolea
         ? 'var(--cit-portal)'
         : 'var(--cit-plasma)'
 
+  const avatarSrc = isWitness
+    ? witnessAvatar
+    : isArbiter
+      ? AGENT_AVATAR.arbiter
+      : isCoach
+        ? AGENT_AVATAR.coach
+        : AGENT_AVATAR.defense
+
   return (
-    <div className={`flex ${isWitness ? 'justify-end' : 'justify-start'}`}>
+    <div className={`flex items-end gap-2 ${isWitness ? 'justify-end' : 'justify-start'}`}>
+      {!isWitness && <AgentAvatar src={avatarSrc} tint={tint} />}
       <div
-        className="max-w-[80%] rounded-2xl px-4 py-3 text-cit-text"
+        className="max-w-[75%] rounded-2xl px-4 py-3 text-cit-text"
         style={{
           background: isWitness ? 'var(--cit-bg-2)' : 'var(--cit-bg-1)',
           border: `1px solid ${tint}55`,
@@ -485,7 +526,7 @@ function MessageBubble({ message, isCoach }: { message: Message; isCoach: boolea
           </div>
         )}
 
-        {/* Arbiter Flags — preserved per AC #12. */}
+        {/* Arbiter Flags */}
         {message.arbiter_flags.length > 0 && (
           <div
             className="mt-3 space-y-2 border-t pt-3"
@@ -497,6 +538,7 @@ function MessageBubble({ message, isCoach }: { message: Message; isCoach: boolea
           </div>
         )}
       </div>
+      {isWitness && <AgentAvatar src={avatarSrc} tint={tint} />}
     </div>
   )
 }
@@ -579,7 +621,7 @@ function FactCard({ fact }: { fact: FactEntry }) {
       )}
 
       {!hasSupport && (
-        <div className="mt-2 text-xs text-flare">⚠ No documentary support</div>
+        <div className="mt-2 text-xs text-flare">⚠ UNVERIFIED · NO ARCHIVE MATCH</div>
       )}
     </div>
   )

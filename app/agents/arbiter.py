@@ -270,16 +270,24 @@ Only flag clear contradictions, not minor variations. Return [] if no contradict
                     )
                 )
 
-        # Flag unsupported claims
-        for fact in facts:
-            if not fact.get("citations"):
-                flags.append(
-                    ArbiterFlag(
-                        flag_type="unsupported",
-                        description=f"Oh jeez, I-I can't find any documentary support for: {fact['fact'][:100]}...",
-                        related_fact_ids=[],
-                    )
+        # Flag unsupported claims — merge into one flag to avoid repetition
+        unsupported = [f for f in facts if not f.get("citations")]
+        if len(unsupported) == 1:
+            flags.append(
+                ArbiterFlag(
+                    flag_type="unsupported",
+                    description=f"Oh jeez — no docs back this up: \"{unsupported[0]['fact'][:80]}\"",
+                    related_fact_ids=[],
                 )
+            )
+        elif len(unsupported) > 1:
+            flags.append(
+                ArbiterFlag(
+                    flag_type="unsupported",
+                    description=f"Oh jeez — {len(unsupported)} claims have zero documentary support in the archive",
+                    related_fact_ids=[],
+                )
+            )
 
         # Flag vague statements
         for fact in facts:

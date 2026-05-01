@@ -81,7 +81,7 @@ export default function AppHeader({
           className="leading-none text-portal"
           style={{
             fontFamily: 'RickAndMorty, Audiowide, system-ui, sans-serif',
-            fontSize: '30px',
+            fontSize: '40px',
             letterSpacing: '0.04em',
             textShadow: '0 0 20px rgba(93,255,175,0.65)',
           }}
