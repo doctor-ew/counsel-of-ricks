@@ -8,7 +8,7 @@ import ProtectedRoute from './components/ProtectedRoute'
 
 function App() {
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-vacuum">
       <Routes>
         <Route path="/login" element={<LoginPage />} />
         <Route
