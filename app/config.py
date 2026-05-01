@@ -21,13 +21,26 @@ class Settings(BaseSettings):
     @property
     def async_database_url(self) -> str:
         """Convert database URL to async format for SQLAlchemy."""
+        from urllib.parse import urlparse, urlencode, parse_qs, urlunparse
         url = self.database_url
-        # Railway uses postgres://, SQLAlchemy needs postgresql+asyncpg://
         if url.startswith("postgres://"):
             url = url.replace("postgres://", "postgresql+asyncpg://", 1)
         elif url.startswith("postgresql://"):
             url = url.replace("postgresql://", "postgresql+asyncpg://", 1)
-        return url
+        # asyncpg doesn't accept sslmode — strip it; ssl is passed via connect_args
+        parsed = urlparse(url)
+        params = parse_qs(parsed.query, keep_blank_values=True)
+        params.pop("sslmode", None)
+        params.pop("sslcert", None)
+        params.pop("sslkey", None)
+        params.pop("sslrootcert", None)
+        clean_query = urlencode({k: v[0] for k, v in params.items()})
+        return urlunparse(parsed._replace(query=clean_query))
+
+    @property
+    def requires_ssl(self) -> bool:
+        """True when the database URL includes sslmode=require (cloud DBs)."""
+        return "sslmode" in self.database_url
 
     # Anthropic (LLM calls)
     anthropic_api_key: str
