@@ -117,6 +117,10 @@ if frontend_path.exists():
     if fonts_path.exists():
         app.mount("/fonts", StaticFiles(directory=fonts_path), name="fonts")
 
+    pix_path = frontend_path / "pix"
+    if pix_path.exists():
+        app.mount("/pix", StaticFiles(directory=pix_path), name="pix")
+
     # Catch-all route for SPA - serve index.html for all non-API routes
     @app.get("/{full_path:path}")
     async def serve_spa(request: Request, full_path: str):
