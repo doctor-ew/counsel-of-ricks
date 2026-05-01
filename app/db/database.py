@@ -1,5 +1,6 @@
 """Database connection and session management."""
 
+import ssl
 from collections.abc import AsyncGenerator
 
 from sqlalchemy import text
@@ -9,7 +10,13 @@ from app.config import get_settings
 
 settings = get_settings()
 
-_connect_args = {"ssl": True} if settings.requires_ssl else {}
+if settings.requires_ssl:
+    _ssl_ctx = ssl.create_default_context()
+    _ssl_ctx.check_hostname = False
+    _ssl_ctx.verify_mode = ssl.CERT_NONE
+    _connect_args: dict = {"ssl": _ssl_ctx}
+else:
+    _connect_args = {}
 
 engine = create_async_engine(
     settings.async_database_url,
