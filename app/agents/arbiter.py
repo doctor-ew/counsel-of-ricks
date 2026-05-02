@@ -87,9 +87,23 @@ class ArbiterEngine:
         conversation_context: list[dict],
     ) -> ArbiterAnalysis:
         """Analyze a witness response for facts, contradictions, and risks."""
-        # Step 1: Extract factual claims
-        extracted_facts = await self._extract_facts(witness_message, conversation_context)
-        logger.info(f"Extracted {len(extracted_facts)} facts from response")
+        # Step 1: Extract factual claims (also detects inappropriate content in same call)
+        extracted_facts, inappropriate = await self._extract_facts(witness_message, conversation_context)
+        logger.info(f"Extracted {len(extracted_facts)} facts (inappropriate={inappropriate})")
+
+        # Short-circuit: skip full analysis if content is out of bounds
+        if inappropriate:
+            flags = [ArbiterFlag(
+                flag_type="inappropriate",
+                description="ORDER. The witness's response falls outside the scope of legal testimony. Redirect to the question.",
+                related_fact_ids=[],
+            )]
+            return ArbiterAnalysis(
+                extracted_facts=[],
+                flags=flags,
+                suggested_followups=["Redirect — the witness went off-script. Restate the last substantive question."],
+                truth_score=0,
+            )
 
         # Step 2: Get existing facts for contradiction check
         existing_facts = await self._get_existing_facts(session_id)
@@ -118,15 +132,14 @@ class ArbiterEngine:
 
     async def _extract_facts(
         self, witness_message: str, context: list[dict]
-    ) -> list[dict]:
-        """Use LLM to extract atomic factual claims."""
-        # Get recent context
+    ) -> tuple[list[dict], bool]:
+        """Use LLM to extract atomic factual claims and detect inappropriate content."""
         recent_context = context[-4:] if context else []
         context_str = "\n".join(
             f"{m['role'].upper()}: {m['content']}" for m in recent_context
         )
 
-        prompt = f"""Extract factual claims from this witness response. For each claim, assess the witness's confidence level.
+        prompt = f"""You are analyzing a witness response in a legal deposition training simulation.
 
 CONVERSATION CONTEXT:
 {context_str}
@@ -134,17 +147,18 @@ CONVERSATION CONTEXT:
 WITNESS RESPONSE:
 {witness_message}
 
-Extract each distinct factual claim. Return a JSON array where each element has:
-- "fact": the atomic factual claim (one specific thing)
-- "confidence": one of "certain", "uncertain", "estimate", "dont_recall"
+Return a JSON object with two keys:
 
-Examples of confidence levels:
-- "certain": "The contract was signed on March 15th" (specific, definite)
-- "uncertain": "I think it was around March" (hedging language)
-- "estimate": "It probably cost about $5,000" (approximation)
-- "dont_recall": "I don't remember exactly when" (explicit non-memory)
+1. "inappropriate": true if the response contains explicit sexual content, graphic violence, or content clearly intended to derail the simulation rather than participate in it (crude jokes that go beyond R&M humor, harassment, slurs). false otherwise. Rick and Morty-style irreverence and sarcasm are NOT inappropriate.
 
-Return ONLY the JSON array, no other text. If no facts, return []."""
+2. "facts": an array of factual claims extracted from the response. Each element has:
+   - "fact": the atomic factual claim
+   - "confidence": one of "certain", "uncertain", "estimate", "dont_recall"
+
+If inappropriate is true, facts may be empty. If no facts exist, return an empty array.
+
+Return ONLY the JSON object, no other text. Example:
+{{"inappropriate": false, "facts": [{{"fact": "The contract was signed on March 15th", "confidence": "certain"}}]}}"""
 
         response = await self.client.messages.create(
             model=self.model,
@@ -154,16 +168,15 @@ Return ONLY the JSON array, no other text. If no facts, return []."""
         )
 
         try:
-            content = response.content[0].text
-            # Clean up potential markdown formatting
-            content = content.strip()
+            content = response.content[0].text.strip()
             if content.startswith("```"):
                 content = content.split("\n", 1)[1]
                 content = content.rsplit("```", 1)[0]
-            return json.loads(content)
-        except json.JSONDecodeError:
+            parsed = json.loads(content)
+            return parsed.get("facts", []), bool(parsed.get("inappropriate", False))
+        except (json.JSONDecodeError, AttributeError):
             logger.error(f"Failed to parse facts: {response.content[0].text}")
-            return []
+            return [], False
 
     async def _get_existing_facts(self, session_id: UUID) -> list[dict]:
         """Get existing facts from the ledger."""
@@ -309,7 +322,9 @@ Only flag clear contradictions, not minor variations. Return [] if no contradict
         followups = []
 
         for flag in flags:
-            if flag.flag_type == "contradiction":
+            if flag.flag_type == "inappropriate":
+                followups.append("Redirect — the witness went off-script. Restate the last substantive question.")
+            elif flag.flag_type == "contradiction":
                 followups.append("Oh geez, you should really clarify that contradiction — it's gonna come up")
             elif flag.flag_type == "unsupported":
                 followups.append("Ask them if there's any actual documentation for that claim, please")

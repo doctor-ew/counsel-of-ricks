@@ -18,7 +18,7 @@ class Citation(BaseModel):
 class ArbiterFlag(BaseModel):
     """Schema for arbiter-raised flags."""
 
-    flag_type: Literal["contradiction", "unsupported", "vague", "risk"]
+    flag_type: Literal["contradiction", "unsupported", "vague", "risk", "inappropriate"]
     description: str
     related_fact_ids: list[UUID] = []
 
