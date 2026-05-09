@@ -206,6 +206,16 @@ Return ONLY the JSON object, no other text. Example:
             for f in facts
         ]
 
+    @staticmethod
+    def _facts_to_table(facts: list[dict]) -> str:
+        """Compact tabular format — same info as JSON, ~half the tokens."""
+        if not facts:
+            return "(none)"
+        rows = ["idx | id | confidence | fact"]
+        for i, f in enumerate(facts):
+            rows.append(f"{i} | {f.get('id', '-')} | {f.get('confidence', '?')} | {f['fact']}")
+        return "\n".join(rows)
+
     async def _check_contradictions(
         self, new_facts: list[dict], existing_facts: list[dict]
     ) -> list[dict]:
@@ -216,10 +226,10 @@ Return ONLY the JSON object, no other text. Example:
         prompt = f"""Check if any new facts contradict existing facts.
 
 EXISTING FACTS (already established):
-{json.dumps(existing_facts, indent=2)}
+{self._facts_to_table(existing_facts)}
 
 NEW FACTS (just stated):
-{json.dumps(new_facts, indent=2)}
+{self._facts_to_table(new_facts)}
 
 Return a JSON array of contradictions found. Each element should have:
 - "new_fact_index": index of the new fact (0-based)

@@ -123,7 +123,7 @@ class ChatService:
             select(Message)
             .where(Message.session_id == session_id)
             .order_by(Message.created_at.desc())
-            .limit(10)
+            .limit(6)
         )
         messages = result.scalars().all()
 
