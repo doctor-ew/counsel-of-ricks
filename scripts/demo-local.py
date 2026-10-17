@@ -31,7 +31,7 @@ def main():
                 probe.bind(('127.0.0.1', port))
             except OSError as error:
                 parser.error('Port ' + str(port) + ' is occupied: ' + str(error))
-    output = ROOT / '.nightshift/demo-local' 
+    output = ROOT / '.nightshift/demo-local'
     output.mkdir(parents=True, exist_ok=True)
     children = []
     streams = []
