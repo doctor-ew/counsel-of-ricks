@@ -1,0 +1,5 @@
+simulation: counsel-live-demo
+routing: header
+mocks:
+  - routeKey: counsel
+    path: ../mocks/counsel-api/config.yaml

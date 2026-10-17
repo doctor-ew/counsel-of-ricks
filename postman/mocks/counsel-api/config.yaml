@@ -1,0 +1,10 @@
+version: 1
+name: counsel-demo-api
+slug: counsel-demo-api
+protocol: http
+port: 8001
+interceptRequests: true
+scenarios:
+  - name: default
+    path: ./default.js
+    default: true
