@@ -32,7 +32,7 @@ Each issue is intentionally independent and begins from the published preparatio
 
 ## Runtime and delivery
 
-The wrapper explicitly selects the reviewed public-community runtime and sets its runtime home; it does not invoke the globally installed private `nightshift` symlink. On the prepared presenter machine it resolves `nightshift-community/.nightshift/production-smoke/runtime`. On another machine set `NIGHTSHIFT_COMMUNITY_HOME` and/or `NIGHTSHIFT_DEMO_RUNTIME` to the reviewed community checkout/runtime. Configuration/routing are initialized in the demo baseline.
+The wrapper explicitly selects the reviewed public-community runtime and sets its runtime home; it does not invoke the globally installed private `nightshift` symlink. On the prepared presenter machine it resolves `nightshift-community/.nightshift/production-smoke/runtime`. On another machine set `NIGHTSHIFT_COMMUNITY_HOME` and/or `NIGHTSHIFT_DEMO_RUNTIME` to the reviewed community checkout/runtime. Configuration/routing are initialized in the demo baseline. The optional Jev evaluation is explicitly disabled for these runs; no Jev payload is authorized by this launcher.
 
 The wrapper fixes Codex/gpt-6.1-sol, subscription authentication, gear1, an isolated auto branch and base `nightshift/live-demo-baseline`. Shared routing and author provenance retain independent review. It opens the local dashboard and permits push/PR only after required gates. It does not merge, deploy, reset a failed ticket or renew its allowance. Existing Codex and Claude subscription login must be available; no automatic API billing fallback is authorized.
 

@@ -19,6 +19,7 @@ if [ "${1:-}" = --check ]; then CHECK=true; shift; fi
 BASE='nightshift/live-demo-baseline'
 export NIGHTSHIFT_HOME="$RUNTIME"
 export NIGHTSHIFT_UPDATE_GUARD=1
+export NIGHTSHIFT_JEV_ENABLED=false
 export BEADS_DIR="$PROJECT/.beads"
 [ -f "$RUNTIME/scripts/nightshift-factory.sh" ] || { echo 'Set NIGHTSHIFT_DEMO_RUNTIME to the reviewed public community runtime.' >&2; exit 66; }
 [ "$(git -C "$PROJECT" branch --show-current)" = "$BASE" ] || { echo 'Run from the prepared live-demo baseline checkout.' >&2; exit 65; }
