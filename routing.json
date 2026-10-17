@@ -238,5 +238,9 @@
       "cross_provider": false,
       "review_isolation": "fresh tool-free session; human spec approval"
     }
-  }
+  },
+  "allowed_providers": [
+    "codex",
+    "claude"
+  ]
 }
