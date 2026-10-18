@@ -1,0 +1,125 @@
+{
+  "session": {
+    "id": "11111111-1111-4111-8111-111111111111",
+    "witness_name": "SYNTHETIC WITNESS \u2014 demo only",
+    "agent_mode": "defense_cross",
+    "started_at": "2026-10-17T13:00:00Z",
+    "ended_at": null,
+    "status": "active",
+    "profile_id": null,
+    "profile": null
+  },
+  "messages": [
+    {
+      "id": "33333333-3333-4333-8333-333333333333",
+      "role": "agent",
+      "content": "Recorded synthetic example: your delivery statements conflict. The Fact Ledger shows every fact today. The live feature will add filters so we can inspect contradictions and unsupported claims.",
+      "citations": [
+        {
+          "document_id": "22222222-2222-4222-8222-222222222222",
+          "document_name": "SYNTHETIC delivery log",
+          "page_number": 1,
+          "excerpt": "Fictional records for the Nightshift demonstration."
+        }
+      ],
+      "arbiter_flags": [
+        {
+          "flag_type": "contradiction",
+          "description": "Fictional Monday/Tuesday/Wednesday statements disagree.",
+          "related_fact_ids": [
+            "a11b1120-daeb-5116-b2ed-21d3b3b3665a",
+            "741d2ffc-8c1a-5bb5-9daa-4dfaef79ecc0",
+            "9889bf45-3b54-5122-8772-6c2b3ed3762d"
+          ]
+        }
+      ],
+      "truth_score": 35,
+      "created_at": "2026-10-17T13:00:00Z"
+    }
+  ],
+  "ledger": {
+    "facts": [
+      {
+        "id": "a11b1120-daeb-5116-b2ed-21d3b3b3665a",
+        "fact_text": "The synthetic delivery log records arrival on Monday.",
+        "confidence": "certain",
+        "source_type": "document",
+        "citations": [
+          {
+            "document_id": "22222222-2222-4222-8222-222222222222",
+            "document_name": "SYNTHETIC delivery log",
+            "page_number": 1,
+            "excerpt": "Fictional records for the Nightshift demonstration."
+          }
+        ],
+        "contradicts": [],
+        "created_at": "2026-10-17T13:00:00Z"
+      },
+      {
+        "id": "741d2ffc-8c1a-5bb5-9daa-4dfaef79ecc0",
+        "fact_text": "I previously said the fictional package arrived on Tuesday.",
+        "confidence": "certain",
+        "source_type": "witness",
+        "citations": [
+          {
+            "document_id": "22222222-2222-4222-8222-222222222222",
+            "document_name": "SYNTHETIC delivery log",
+            "page_number": 1,
+            "excerpt": "Fictional records for the Nightshift demonstration."
+          }
+        ],
+        "contradicts": [
+          "a11b1120-daeb-5116-b2ed-21d3b3b3665a"
+        ],
+        "created_at": "2026-10-17T13:00:00Z"
+      },
+      {
+        "id": "34cc36db-3f5f-564a-909a-b33720139ee0",
+        "fact_text": "I think the fictional folder was red, but have no citation.",
+        "confidence": "estimate",
+        "source_type": "witness",
+        "citations": [],
+        "contradicts": [],
+        "created_at": "2026-10-17T13:00:00Z"
+      },
+      {
+        "id": "9889bf45-3b54-5122-8772-6c2b3ed3762d",
+        "fact_text": "I also said the fictional package arrived on Wednesday.",
+        "confidence": "estimate",
+        "source_type": "witness",
+        "citations": [],
+        "contradicts": [
+          "a11b1120-daeb-5116-b2ed-21d3b3b3665a"
+        ],
+        "created_at": "2026-10-17T13:00:00Z"
+      },
+      {
+        "id": "65613bb4-6e20-5f2f-9907-841a85cf9c20",
+        "fact_text": "My estimate of the fictional delivery time is unverified.",
+        "confidence": "estimate",
+        "source_type": "witness",
+        "citations": [],
+        "contradicts": [],
+        "created_at": "2026-10-17T13:00:00Z"
+      },
+      {
+        "id": "942aea1b-9263-5dd9-91f1-a49575e7d966",
+        "fact_text": "The synthetic log records a signed receipt.",
+        "confidence": "certain",
+        "source_type": "document",
+        "citations": [
+          {
+            "document_id": "22222222-2222-4222-8222-222222222222",
+            "document_name": "SYNTHETIC delivery log",
+            "page_number": 1,
+            "excerpt": "Fictional records for the Nightshift demonstration."
+          }
+        ],
+        "contradicts": [],
+        "created_at": "2026-10-17T13:00:00Z"
+      }
+    ],
+    "contradiction_count": 2,
+    "unsupported_count": 3
+  }
+}

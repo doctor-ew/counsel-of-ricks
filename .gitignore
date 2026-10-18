@@ -49,3 +49,6 @@ data_export.sql
 schema_export.sql
 .beads/issues.jsonl
 .beads/config.yaml
+
+# Local synthetic demonstration process logs
+.nightshift/demo-local/
