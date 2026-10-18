@@ -91,3 +91,9 @@ Do not remove that source checkout while the prepared launcher uses it.
 Preparation acceptance is still pending until the dashboard records Product and
 Adversarial passed, `status=paused`, `next_action=implement`, with no Implementation
 attempt. Model source-disclosure approval is pending automatic approval review.
+
+Read-only admission passed for12 and14 after the launcher was updated to use
+an existing ticket's recorded immutable baseline SHA. Preparation commits can
+move the named baseline branch; that must not change the retained ticket base.
+Historical artifacts were re-snapshotted by the normal cleanup helper, with no
+source deletion, counter reset or model call.

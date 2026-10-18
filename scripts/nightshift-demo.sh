@@ -25,6 +25,10 @@ export NIGHTSHIFT_JEV_ENABLED=false
 export BEADS_DIR="$PROJECT/.beads"
 [ -f "$RUNTIME/scripts/nightshift-factory.sh" ] || { echo 'Set NIGHTSHIFT_DEMO_RUNTIME to the reviewed public community runtime.' >&2; exit 66; }
 [ "$(git -C "$PROJECT" branch --show-current)" = "$BASE" ] || { echo 'Run from the prepared live-demo baseline checkout.' >&2; exit 65; }
+# Resume the recorded immutable baseline even if the preparation branch moved.
+OWNERSHIP=$(bash "$RUNTIME/scripts/nightshift-worktree.sh" check "$NUMBER" --project "$PROJECT")
+PINNED_BASE=$(jq -r 'select(.registered == true) | .base_sha // empty' <<< "$OWNERSHIP")
+[ -z "$PINNED_BASE" ] || BASE="$PINNED_BASE"
 if [ "$CHECK" = true ]; then
   for tool in git python3 jq gh codex claude; do bash "$RUNTIME/scripts/nightshift-capability.sh" --presence "$tool"; done
   bash "$RUNTIME/scripts/nightshift-preflight-check.sh" --project "$PROJECT" --branch auto --base "$BASE" --ref "$REF"
