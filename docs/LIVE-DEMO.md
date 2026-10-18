@@ -61,3 +61,33 @@ npm --prefix frontend run build
 ```
 
 Baseline tests cover fixture/source-contract consistency. Browser evidence proves the real UI made its three GETs through the local HTTP simulation and displayed all six facts. This does not certify the real backend, Clerk or application AI. Required feature tests and independent stage review remain work for the audience-triggered runs.
+
+## Tuesday show-and-tell: stage ticket12 without implementing it
+
+From this prepared baseline checkout:
+
+```bash
+./scripts/nightshift-demo.sh saturday --prepare
+```
+
+Ticket12 was originally the Saturday feature. Preparation now uses the locally
+reviewed issue146 source checkout and records a deliberate pause after Product
+and Adversarial pass. Implementation must remain pending. This is not feature
+acceptance. The retained run, failures and budget remain the same.
+
+When ready to start coding during the presentation:
+
+```bash
+./scripts/nightshift-demo.sh saturday
+```
+
+Omitting the preparation boundary explicitly resumes the next retained stage.
+Use the first command for rehearsal; use the second only to begin the coding
+demonstration. Ordinary saved console Resume preserves a preparation boundary.
+The local runtime defaults to the presenter's `.nightshift/tuesday-recovery`
+checkout; `NIGHTSHIFT_DEMO_RUNTIME` can explicitly select another reviewed source.
+Do not remove that source checkout while the prepared launcher uses it.
+
+Preparation acceptance is still pending until the dashboard records Product and
+Adversarial passed, `status=paused`, `next_action=implement`, with no Implementation
+attempt. Model source-disclosure approval is pending automatic approval review.

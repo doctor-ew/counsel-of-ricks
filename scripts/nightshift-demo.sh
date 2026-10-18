@@ -3,7 +3,8 @@
 set -euo pipefail
 PROJECT=$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd -P)
 COMMUNITY=${NIGHTSHIFT_COMMUNITY_HOME:-$(cd "$PROJECT/../.." && pwd -P)}
-RUNTIME=${NIGHTSHIFT_DEMO_RUNTIME:-$COMMUNITY/.nightshift/production-smoke/runtime}
+RUNTIME=${NIGHTSHIFT_DEMO_RUNTIME:-$COMMUNITY/.nightshift/tuesday-recovery}
+PREPARE=false
 DAY=${1:-saturday}
 if [ "$DAY" = --check ]; then DAY=saturday; CHECK=true; shift; else CHECK=false; [ "$#" -eq 0 ] || shift; fi
 case "$DAY" in
@@ -11,10 +12,11 @@ case "$DAY" in
   monday) NUMBER=13 ;;
   tuesday) NUMBER=14 ;;
   friday) NUMBER=15 ;;
-  *) echo 'Usage: scripts/nightshift-demo.sh [saturday|monday|tuesday|friday] [--check]' >&2; exit 64 ;;
+  *) echo 'Usage: scripts/nightshift-demo.sh [saturday|monday|tuesday|friday] [--check|--prepare]' >&2; exit 64 ;;
 esac
 REF="gh:doctor-ew/counsel-of-ricks#$NUMBER"
 if [ "${1:-}" = --check ]; then CHECK=true; shift; fi
+if [ "${1:-}" = --prepare ]; then PREPARE=true; shift; fi
 [ "$#" -eq 0 ] || { echo 'Unexpected extra arguments.' >&2; exit 64; }
 BASE='nightshift/live-demo-baseline'
 export NIGHTSHIFT_HOME="$RUNTIME"
@@ -32,7 +34,12 @@ if [ "$CHECK" = true ]; then
 fi
 printf '%s\n' "Starting $REF from $BASE using the isolated community runtime."
 printf '%s\n' 'This launches real engineering models. The before demo remains available; no merge or deploy is authorized.'
+EXTRA=()
+if [ "$PREPARE" = true ]; then
+  EXTRA+=(--stop-before implement)
+  printf '%s\n' 'Preparation only: pause before Implementation for show-and-tell.'
+fi
 exec bash "$RUNTIME/scripts/nightshift-factory.sh" "$REF" --project "$PROJECT" \
   --provider codex --model gpt-6.1-sol --auth subscription --gear 1 \
   --branch auto --base "$BASE" --dashboard auto --dashboard-browser once \
-  --output concise --push --pr
+  --output concise --push --pr "${EXTRA[@]}"
