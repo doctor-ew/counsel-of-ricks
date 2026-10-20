@@ -4,11 +4,15 @@ Requires a running Postman simulation; see docs/anthropic-compatibility.md.
 Database and retrieval boundaries use synthetic data. No provider keys are used.
 """
 
+import ast
+import inspect
 import os
+from pathlib import Path
 from types import SimpleNamespace
 from unittest.mock import AsyncMock, MagicMock
 from uuid import uuid4
 
+import anthropic
 import httpx
 import pytest
 
@@ -20,6 +24,29 @@ from app.agents.defense_cross import DefenseCrossAgent
 from app.schemas.questions import QuestionGenerateRequest
 from app.services.clerk import ClerkService
 from app.services.questions import QuestionGenerator
+
+
+def test_message_keywords_match_installed_sdk():
+    """Catch signature drift in CI even when the HTTP simulation is not running."""
+    signature = inspect.signature(anthropic.resources.messages.AsyncMessages.create)
+    calls = []
+    root = Path(__file__).resolve().parents[1] / "app"
+    for path in root.rglob("*.py"):
+        for node in ast.walk(ast.parse(path.read_text())):
+            if (
+                isinstance(node, ast.Call)
+                and isinstance(node.func, ast.Attribute)
+                and node.func.attr == "create"
+                and isinstance(node.func.value, ast.Attribute)
+                and node.func.value.attr == "messages"
+            ):
+                keywords = {keyword.arg: None for keyword in node.keywords}
+                try:
+                    signature.bind(None, **keywords)
+                except TypeError as error:
+                    pytest.fail(f"{path.name}:{node.lineno}: {error}")
+                calls.append(node)
+    assert calls, "No Messages API call sites were checked"
 
 
 @pytest.fixture
