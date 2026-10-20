@@ -1,0 +1,7 @@
+# Railway must compile the frontend with its own build-time variables.
+/frontend/dist/
+/frontend/node_modules/
+/.venv/
+/.env
+/.env.local
+/.env.*.local

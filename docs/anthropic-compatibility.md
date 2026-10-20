@@ -32,6 +32,6 @@ The file count describes the loaded corpus, not completeness of every episode tr
 
 Production frontend builds require `VITE_CLERK_PUBLISHABLE_KEY`; Vite now fails the build if it is absent. The publishable key is public and is embedded in the JavaScript bundle at build time.
 
-Upload a clean source snapshot without `frontend/dist` or `frontend/node_modules`. The Nixpacks final source copy can overwrite its freshly built assets with uploaded local assets. A local build without the Clerk key caused a blank page after the SDK fix; the runtime environment could not repair the already compiled bundle.
+Upload a clean source snapshot without `frontend/dist` or `frontend/node_modules`; `.railwayignore` explicitly excludes these paths. The Nixpacks final source copy can overwrite its freshly built assets with uploaded local assets. A local build without the Clerk key caused a blank page after the SDK fix; the runtime environment could not repair the already compiled bundle.
 
 Verify that the served JavaScript contains the configured publishable key before declaring a frontend deployment healthy. Database health alone does not establish frontend readiness.
