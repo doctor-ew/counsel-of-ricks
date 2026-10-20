@@ -70,7 +70,7 @@ class QuestionGenerator:
             model=self.model,
             system=self._get_system_prompt(request.difficulty),
             messages=[{"role": "user", "content": prompt}],
-            temperature=0.7,
+            extra_body={"temperature": 0.7},
             max_tokens=3000,
         )
 

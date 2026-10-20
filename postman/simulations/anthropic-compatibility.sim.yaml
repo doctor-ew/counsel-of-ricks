@@ -1,0 +1,5 @@
+simulation: anthropic-compatibility
+routing: path
+mocks:
+  - routeKey: anthropic
+    path: ../mocks/anthropic/default.js

@@ -9,7 +9,6 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.config import get_settings
 from app.db.models import FactLedger
-from app.schemas.chat import Citation
 from app.schemas.clerk import ClerkMessage, ClerkResponse, ClerkSource
 from app.services.retrieval import RetrievalService
 
@@ -122,7 +121,7 @@ Provide a clear, citation-backed answer. Reference specific documents and page n
             model=self.model,
             system=CLERK_SYSTEM_PROMPT,
             messages=messages,
-            temperature=0.3,  # Lower temp for factual accuracy
+            extra_body={"temperature": 0.3},  # Lower temp for factual accuracy
             max_tokens=1500,
         )
 

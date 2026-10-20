@@ -1,5 +1,6 @@
 """Base agent class."""
 
+import logging
 from abc import ABC, abstractmethod
 from dataclasses import dataclass
 from uuid import UUID
@@ -13,6 +14,7 @@ from app.schemas.profiles import ProfileContext
 from app.services.retrieval import RetrievalService
 
 settings = get_settings()
+logger = logging.getLogger(__name__)
 
 
 @dataclass
@@ -79,7 +81,7 @@ class BaseDepositionAgent(ABC):
             model=self.model,
             system=system_msg,
             messages=messages,
-            temperature=0.7,
+            extra_body={"temperature": 0.7},
             max_tokens=1024,
         )
 

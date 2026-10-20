@@ -173,7 +173,7 @@ Return ONLY the JSON object, no other text. Example:
         response = await self.client.messages.create(
             model=self.model,
             messages=[{"role": "user", "content": prompt}],
-            temperature=0,
+            extra_body={"temperature": 0},
             max_tokens=1000,
         )
 
@@ -244,7 +244,7 @@ Only flag clear contradictions, not minor variations. Return [] if no contradict
         response = await self.client.messages.create(
             model=self.model,
             messages=[{"role": "user", "content": prompt}],
-            temperature=0,
+            extra_body={"temperature": 0},
             max_tokens=500,
         )
 
