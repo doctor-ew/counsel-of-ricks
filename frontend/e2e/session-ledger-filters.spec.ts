@@ -49,8 +49,11 @@ test('C07/C09 synthetic demo keyboard, contrast, focus and preserved styling', a
   }
   // Start at the focusable element immediately before the first filter.
   await buttons[0].evaluate((el:HTMLElement)=>{
-    const all=[...document.querySelectorAll<HTMLElement>('button,a[href],input,textarea,select,[tabindex="0"]')].filter(e=>e.offsetParent!==null)
-    all[all.indexOf(el)-1].focus()
+    const all=[...document.querySelectorAll<HTMLElement>('button,a[href],input,textarea,select,[tabindex="0"]')].filter(e=>e.offsetParent!==null && !e.matches(':disabled') && e.tabIndex>=0)
+    const predecessor=all[all.indexOf(el)-1]
+    if(!predecessor)throw new Error('No enabled tabbable predecessor')
+    predecessor.focus()
+    if(document.activeElement!==predecessor)throw new Error('Predecessor did not receive focus')
   })
   for(let i=0;i<3;i++) {await page.keyboard.press('Tab');await expect(buttons[i]).toBeFocused()}
   for(let i=0;i<3;i++) {
