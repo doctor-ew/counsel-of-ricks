@@ -36,6 +36,32 @@ export default function SessionPage() {
   const [difficulty, setDifficulty] = useState<'standard' | 'aggressive' | 'expert'>('standard')
   const [uptime, setUptime] = useState('00:00:00')
   const messagesEndRef = useRef<HTMLDivElement>(null)
+  const [ledgerSelection, setLedgerSelection] = useState<{
+    sessionId: string | undefined
+    filter: 'all' | 'contradictions' | 'unsupported'
+  }>({ sessionId, filter: 'all' })
+
+  const ledgerFilter = ledgerSelection.sessionId === sessionId
+    ? ledgerSelection.filter
+    : 'all'
+
+  if (ledgerSelection.sessionId !== sessionId) {
+    setLedgerSelection({ sessionId, filter: 'all' })
+  }
+
+  const facts = ledger?.facts ?? []
+  const contradictions = facts.filter((fact) => fact.contradicts.length > 0)
+  const unsupported = facts.filter((fact) => fact.citations.length === 0)
+  const visibleFacts = ledgerFilter === 'contradictions'
+    ? contradictions
+    : ledgerFilter === 'unsupported'
+      ? unsupported
+      : facts
+  const ledgerFilters = [
+    { value: 'all', label: 'All', count: facts.length },
+    { value: 'contradictions', label: 'Contradictions', count: contradictions.length },
+    { value: 'unsupported', label: 'Unsupported', count: unsupported.length },
+  ] as const
 
   const generateQuestions = useGenerateQuestions()
   const exportQuestions = useExportQuestions()
@@ -287,32 +313,42 @@ export default function SessionPage() {
               >
                 ◉ FACT LEDGER
               </h2>
-              {ledger && (
-                <div className="mt-2 flex gap-4 text-xs text-cit-text-dim">
-                  <span>{ledger.facts.length} facts</span>
-                  {ledger.contradiction_count > 0 && (
-                    <span className="font-medium text-alarm">
-                      {ledger.contradiction_count} contradictions
-                    </span>
-                  )}
-                  {ledger.unsupported_count > 0 && (
-                    <span className="text-flare">
-                      {ledger.unsupported_count} unsupported
-                    </span>
-                  )}
-                </div>
-              )}
+              <div role="group" aria-label="Filter facts" className="mt-3 flex flex-wrap gap-2">
+                {ledgerFilters.map(({ value, label, count }) => (
+                  <button
+                    key={value}
+                    type="button"
+                    aria-pressed={ledgerFilter === value}
+                    onClick={() => setLedgerSelection({ sessionId, filter: value })}
+                    className="rounded px-2 py-1 text-xs focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#7df1ff]"
+                    style={{
+                      background: ledgerFilter === value ? 'var(--cit-bg-2)' : 'var(--cit-bg-1)',
+                      color: ledgerFilter === value ? 'var(--cit-portal)' : 'var(--cit-text)',
+                      border: `1px solid ${ledgerFilter === value ? 'var(--cit-portal)' : 'var(--cit-hairline)'}`,
+                      fontWeight: ledgerFilter === value ? 600 : 400,
+                    }}
+                  >
+                    {label} {count}
+                  </button>
+                ))}
+              </div>
             </div>
 
             <div className="space-y-3 p-4">
-              {ledger?.facts.map((fact) => (
+              {visibleFacts.map((fact) => (
                 <FactCard key={fact.id} fact={fact} />
               ))}
 
-              {(!ledger || ledger.facts.length === 0) && (
-                <p className="py-8 text-center text-sm text-cit-text-dim">
+              {facts.length === 0 && (
+                <div role="status" className="py-8 text-center text-sm text-cit-text">
                   Facts will appear here as you testify
-                </p>
+                </div>
+              )}
+
+              {facts.length > 0 && visibleFacts.length === 0 && (
+                <div role="status" className="py-8 text-center text-sm text-cit-text">
+                  No facts match this filter
+                </div>
               )}
             </div>
           </aside>
