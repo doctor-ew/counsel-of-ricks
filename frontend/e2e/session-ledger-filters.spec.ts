@@ -25,7 +25,9 @@ test('C07/C09 synthetic demo keyboard, contrast, focus and preserved styling', a
   }
   expect(await styles(page)).toEqual(JSON.parse(fs.readFileSync(baselineFile,'utf8')))
   const buttons=labels.map((l,i)=>page.getByRole('button',{name:`${l} ${counts[i]}`,exact:true}))
-  for(const b of buttons)await expect(b).toBeVisible()
+  await test.step('C07 required accessible filter controls', async () => {
+    for(const b of buttons)await expect(b).toBeVisible()
+  })
   const measurements:any[]=[]
   async function measure(button:any,state:string) {
     const value=await button.evaluate((el:HTMLElement)=>{
