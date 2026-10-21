@@ -52,3 +52,5 @@ schema_export.sql
 
 # Local synthetic demonstration process logs
 .nightshift/demo-local/
+
+frontend/e2e-results/
