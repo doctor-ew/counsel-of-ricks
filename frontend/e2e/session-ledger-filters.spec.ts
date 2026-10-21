@@ -10,7 +10,7 @@ const texts = fixture.ledger.facts.map(f=>f.fact_text)
 async function styles(page: any) {
   return page.locator('aside').evaluate((aside: HTMLElement) => {
     const props = (el: Element, keys: string[]) => Object.fromEntries(keys.map(k=>[k,getComputedStyle(el).getPropertyValue(k)]))
-    return { sidebar:props(aside,['width','background-color','border-left','color']), root:props(document.documentElement,['--cit-bg-1','--cit-portal','--cit-flare','--cit-alarm','--cit-text','--cit-text-dim','--cit-hairline']), cards:[...aside.querySelectorAll('.rounded-lg.p-3')].map(el=>props(el,['background-color','border','box-shadow','color'])) }
+    return { sidebar:props(aside,['width','background-color','border','box-shadow','color']), root:props(document.documentElement,['--cit-bg-1','--cit-portal','--cit-flare','--cit-alarm','--cit-text','--cit-text-dim','--cit-hairline']), cards:[...aside.querySelectorAll('.rounded-lg.p-3')].map(el=>props(el,['width','background-color','border','box-shadow','color'])) }
   })
 }
 test('C07/C09 synthetic demo keyboard, contrast, focus and preserved styling', async ({page})=>{
