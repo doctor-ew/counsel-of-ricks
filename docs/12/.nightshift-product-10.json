@@ -1,0 +1,123 @@
+{
+  "version": 1,
+  "task": "12",
+  "stage": "product",
+  "status": "pass",
+  "findings": [],
+  "checks": [
+    {
+      "command": "python3 docs/12/product-check-10.py",
+      "exit_code": 0
+    },
+    {
+      "command": "python3 /Users/drew.schillinger/shuttlebay/doctorews-laboratory/nightshift-community/.nightshift/tuesday-recovery/scripts/nightshift-repair-check.py check --project \"$PWD\" --manifest docs/12/product-10/repair-checks.json --out docs/12/product-10/repair-check.receipt.json",
+      "exit_code": 0
+    }
+  ],
+  "evidence": [
+    {
+      "path": "docs/12/.nightshift-product-1.json",
+      "sha256": "6a585dead80a4679ffeb09137a1cf5beb88bc597b9c71550fcc8f2be757c9a56"
+    },
+    {
+      "path": "docs/12/.nightshift-product-2.json",
+      "sha256": "6351dcd9b1b259852476016c18f5c2efedbeced1b65947c539df71e8fbc79b24"
+    },
+    {
+      "path": "docs/12/.nightshift-product-3.json",
+      "sha256": "03c5c0afc649a24caffcf96f6a5b4b1d07c7a3c2f4bbbed53951b62b7d50d84c"
+    },
+    {
+      "path": "docs/12/.nightshift-product-4.json",
+      "sha256": "9444822e794946e9ef5a2228ef6fc9b7c419537a7960e2e021f9ebe67b775ad6"
+    },
+    {
+      "path": "docs/12/.nightshift-product-5.json",
+      "sha256": "bbaff5acfaaba4ad278be358024cf082b47c7accfd946d5f87b08ad4eff374f7"
+    },
+    {
+      "path": "docs/12/.nightshift-product-6.json",
+      "sha256": "4d07fef620ef20b6e0928300fd7e5370921f478aee156c9ccc9f7f02fae5a0a9"
+    },
+    {
+      "path": "docs/12/.nightshift-product-7.json",
+      "sha256": "15fc4525517132ad74c53064726349f77ef1fbbe635572a6daf0808ce2b87453"
+    },
+    {
+      "path": "docs/12/.nightshift-product-8.json",
+      "sha256": "99c1f05b0caa33e344084cb884e7bc5ecd45541f802fa449df3d7aba85a92129"
+    },
+    {
+      "path": "docs/12/.nightshift-product-9.json",
+      "sha256": "a42b826fac0286a57e0c4f049f761186b8bb19327b50f7b1f603dd05f32ef901"
+    },
+    {
+      "path": "docs/12/PRODUCT-10.md",
+      "sha256": "47b8f62ad756a794ab3784db3672bb2dd40ba6fb3cce0f522e44c40e923bec0a"
+    },
+    {
+      "path": "docs/12/SPEC.md",
+      "sha256": "55180bed26e9b4ff32f1950220aaab9db80d9af94b781fac4fb3283e31201f0a"
+    },
+    {
+      "path": "docs/12/behavior-scenarios.json",
+      "sha256": "dd58b2d13ec5b9617a066fee547a33f07f7652a36453544c9f14ef2fccb1f818"
+    },
+    {
+      "path": "docs/12/classification-review-4.out.json",
+      "sha256": "6565b1c9ec8f750dd289a5cee43b06d3653aa10c352516ce5ce127cf317cbb86"
+    },
+    {
+      "path": "docs/12/package-registry-check-7.json",
+      "sha256": "d4c2cb21cfb2b751b9a156aa62b669c3bcecf38c4c8968722829da0a20e79eee"
+    },
+    {
+      "path": "docs/12/product-10/exploratory-check.json",
+      "sha256": "0859936fd7d1a3dc2c2f0513f274d46ed9b6675a628937aa0100ea197326abfd"
+    },
+    {
+      "path": "docs/12/product-10/repair-check.receipt.json",
+      "sha256": "8cf3f4fd8dbb4d9b0e47fc423a525fb81da319cb1bd29727d2d90afee7f7cf0f"
+    },
+    {
+      "path": "docs/12/product-10/repair-checks.json",
+      "sha256": "60335f86704f9e18adc4f34fba68b6bf354ad0f98b974e4a8accf51d98d8427e"
+    },
+    {
+      "path": "docs/12/product-check-10.out.json",
+      "sha256": "120481483010dfcd1bf7639c7dcbaab320c0be931d5b5ed72330e97ece60bdae"
+    },
+    {
+      "path": "docs/12/product-check-10.py",
+      "sha256": "8fa7d6905eea0287760ac1ae9e2b3c372da1d85729dbff082ee7c3f24eace713"
+    },
+    {
+      "path": "docs/12/product-check-9.out.json",
+      "sha256": "120481483010dfcd1bf7639c7dcbaab320c0be931d5b5ed72330e97ece60bdae"
+    },
+    {
+      "path": "docs/12/product-extractor-2.out.json",
+      "sha256": "fa1763e83cbef217b61fde89e70667b8d819d62c369db83f86fbb60f5c87eb11"
+    },
+    {
+      "path": "docs/12/profiler-order-evidence.json",
+      "sha256": "4628716ee19560eb09199f33884b36a5b6f20668bb8e9469d9e4c7cc18761cce"
+    },
+    {
+      "path": "docs/12/repair-check.receipt.json",
+      "sha256": "5f45f1bc0db024c73cda24cfb98cf340ae2566f687689b0e0605c502e817eff2"
+    },
+    {
+      "path": "docs/12/source-citations.before.json",
+      "sha256": "b9b8d8b442be2a3c68423e955888466830664fdb28c05ced9731467c6760ca82"
+    },
+    {
+      "path": "docs/12/source-citations.current.json",
+      "sha256": "340a8c12815e690b02f88924ff0a6be3393222723bb0311964c8936273ea02f7"
+    },
+    {
+      "path": "docs/12/spec-writer-2.out.json",
+      "sha256": "82d469a6b74cbd38287a4aa348875f508c627457d3563563adc0fc721d8f860d"
+    }
+  ]
+}

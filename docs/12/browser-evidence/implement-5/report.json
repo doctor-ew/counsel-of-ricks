@@ -1,0 +1,163 @@
+{
+  "config": {
+    "argv": [
+      "/opt/homebrew/Cellar/node/26.12.0/bin/node",
+      "/Users/drew.schillinger/shuttlebay/doctorews-laboratory/nightshift-community/.nightshift/counsel-live-demo-worktrees/12/frontend/node_modules/.bin/playwright",
+      "test"
+    ],
+    "configFile": "/Users/drew.schillinger/shuttlebay/doctorews-laboratory/nightshift-community/.nightshift/counsel-live-demo-worktrees/12/frontend/playwright.config.ts",
+    "rootDir": "/Users/drew.schillinger/shuttlebay/doctorews-laboratory/nightshift-community/.nightshift/counsel-live-demo-worktrees/12/frontend/e2e",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/Users/drew.schillinger/shuttlebay/doctorews-laboratory/nightshift-community/.nightshift/counsel-live-demo-worktrees/12/frontend/e2e-results/artifacts",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "",
+        "name": "",
+        "testDir": "/Users/drew.schillinger/shuttlebay/doctorews-laboratory/nightshift-community/.nightshift/counsel-live-demo-worktrees/12/frontend/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 60000
+      }
+    ],
+    "filteredProjects": [
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "/Users/drew.schillinger/shuttlebay/doctorews-laboratory/nightshift-community/.nightshift/counsel-live-demo-worktrees/12/frontend/e2e-results/artifacts",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "name": "",
+        "testDir": "/Users/drew.schillinger/shuttlebay/doctorews-laboratory/nightshift-community/.nightshift/counsel-live-demo-worktrees/12/frontend/e2e",
+        "snapshotDir": "/Users/drew.schillinger/shuttlebay/doctorews-laboratory/nightshift-community/.nightshift/counsel-live-demo-worktrees/12/frontend/e2e",
+        "testIgnore": [],
+        "testMatch": "**/*.@(spec|test).?(c|m)[jt]s?(x)",
+        "timeout": 60000,
+        "use": {
+          "browserName": "chromium",
+          "baseURL": "http://127.0.0.1:5173",
+          "viewport": {
+            "width": 1440,
+            "height": 1100
+          }
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": ""
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "./e2e-results/report.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "default",
+    "updateSourceMethod": "patch",
+    "version": "1.64.1",
+    "workers": 1,
+    "webServer": {
+      "command": "python3 ../scripts/demo-local.py --no-open",
+      "url": "http://127.0.0.1:5173/demo/index.html",
+      "reuseExistingServer": false,
+      "gracefulShutdown": {
+        "signal": "SIGINT",
+        "timeout": 10000
+      },
+      "timeout": 60000
+    }
+  },
+  "suites": [
+    {
+      "title": "session-ledger-filters.spec.ts",
+      "file": "session-ledger-filters.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "C07/C09 synthetic demo keyboard, contrast, focus and preserved styling",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2930,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "steps": [
+                    {
+                      "title": "C07 required accessible filter controls",
+                      "duration": 11
+                    }
+                  ],
+                  "startTime": "2026-10-21T00:51:45.274Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "16b4f44d8da1edb21711-d9b3270b31ac13fabb79",
+          "file": "session-ledger-filters.spec.ts",
+          "line": 16,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-21T00:51:43.068Z",
+    "duration": 10552.736,
+    "expected": 1,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

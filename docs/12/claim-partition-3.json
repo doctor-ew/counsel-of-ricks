@@ -1,0 +1,240 @@
+{
+  "head_sha": "10b798fc9d84bce5712daeeaf10d73fa671747f5",
+  "file_targets": [
+    "frontend/src/pages/SessionPage.tsx",
+    "frontend/test/session-ledger-filters.test.tsx",
+    "frontend/e2e/session-ledger-filters.spec.ts",
+    "frontend/playwright.config.ts",
+    "frontend/package.json",
+    "frontend/package-lock.json",
+    ".gitignore"
+  ],
+  "hits": [],
+  "misses": [
+    {
+      "claim": "The sidebar maps facts directly to cards in supplied order.",
+      "tag": "EXISTING",
+      "cache_key": "77affb50ec6f24a20c0d7158bd6c4fe0713bdcf6b7d78fe1743275b4bc718b26"
+    },
+    {
+      "claim": "The existing empty-session message is Facts will appear here as you testify.",
+      "tag": "EXISTING",
+      "cache_key": "b81642c78eefb529bcdadfa89791477651b71dd922a49f5da339d2167cc0bb16"
+    },
+    {
+      "claim": "FactEntry declares contradicts and citations arrays.",
+      "tag": "EXISTING",
+      "cache_key": "24427eac814ec198d02c5051d75ff5eef10395c61fffc9a7b88a864429ccd40d"
+    },
+    {
+      "claim": "The server contradiction predicate is nonempty contradicts.",
+      "tag": "EXISTING",
+      "cache_key": "d82b9e0c580ef9fb61df6844d591d280ca213c99dd57df46e080de7a796e0c22"
+    },
+    {
+      "claim": "The server unsupported predicate is empty citations.",
+      "tag": "EXISTING",
+      "cache_key": "3698e92c9ba79fe5f1e25502d2ce63ef14ac9437515715d081cd902e124e83b1"
+    },
+    {
+      "claim": "Fact card support and contradiction treatments are independent.",
+      "tag": "EXISTING",
+      "cache_key": "f5267013d1ae1f53229f03e68f2fb5a779cc0fda5932f71806c5fe33063f51d1"
+    },
+    {
+      "claim": "useLedger uses a session-specific query key.",
+      "tag": "EXISTING",
+      "cache_key": "e29304073bedea39420b33af0a348fff3471c964ec7f3a30d7c2011a145d4db9"
+    },
+    {
+      "claim": "useLedger refreshes every five seconds.",
+      "tag": "EXISTING",
+      "cache_key": "e93639a9dfff831441920ff698a5ea48cdfa24c66dd0a841285a24a39a7dae8c"
+    },
+    {
+      "claim": "The frontend declares Vitest, jsdom and Testing Library dependencies.",
+      "tag": "EXISTING",
+      "cache_key": "4925e45fd2b2c7e53b4aa547a9b929b617fc73c95ac796b05ca91ba8ae9dec16"
+    },
+    {
+      "claim": "Vitest selects jsdom.",
+      "tag": "EXISTING",
+      "cache_key": "35ac5317c89e47402b0198ca0ee49eed87cb66aa8222c185408477118f60a48b"
+    },
+    {
+      "claim": "Vitest discovers test/**/*.test.{ts,tsx} files.",
+      "tag": "EXISTING",
+      "cache_key": "9bbf9663d615ec109fbfc9c65fd788b694c6213e2533119d4aca232325c2a638"
+    },
+    {
+      "claim": "The TypeScript project includes only src.",
+      "tag": "EXISTING",
+      "cache_key": "389c0726a58e8a2905e19bf8ee4de9097d342a4d189aaa09d831034d53a8e5e6"
+    },
+    {
+      "claim": "The fixture has six ordered facts.",
+      "tag": "EXISTING",
+      "cache_key": "5b80e41cb7f0ccc51588476c0e0eaf914d8b6ff6af1634792f93af62ab505ab5"
+    },
+    {
+      "claim": "Fixture positions 2 and 4 have nonempty contradicts.",
+      "tag": "EXISTING",
+      "cache_key": "cc7d0b69a6ebea84b52cbc3f043bc559d1f207e8827b719ff3e906a604ee305f"
+    },
+    {
+      "claim": "Fixture positions 3, 4 and 5 have empty citations.",
+      "tag": "EXISTING",
+      "cache_key": "00fbbb710b830de5137945953e2b325a822c61897e644016d88860a4609e8c2d"
+    },
+    {
+      "claim": "Fixture position 4 belongs to both categories.",
+      "tag": "EXISTING",
+      "cache_key": "a23908aeb77ca121fcc3573195139322cb658491b9cf08fa0a6dadb575bcf3b2"
+    },
+    {
+      "claim": "The existing fixture test checks fixture shape rather than filter interactions.",
+      "tag": "EXISTING",
+      "cache_key": "18930de9bc176a5107949b96d4557c92120a9ab30f27a6f94c18bcbb265d7d8e"
+    },
+    {
+      "claim": "The demo entry has a development-only guard.",
+      "tag": "EXISTING",
+      "cache_key": "cf40e7631f29b6c5fbee16d578c2dfa8bd5efbbbe264a2377fff7c84591ee45a"
+    },
+    {
+      "claim": "The demo entry has a visible synthetic label.",
+      "tag": "EXISTING",
+      "cache_key": "59eaca597109e8ac834fe18c8f04aa67399c2020e1523902ee7e3a90b1dcfe37"
+    },
+    {
+      "claim": "The demo entry supplies the session route.",
+      "tag": "EXISTING",
+      "cache_key": "ddc4888fdf1d13ab20bbaa83bb26f6706132508d7580a460fb8d57d39177faac"
+    },
+    {
+      "claim": "The demo launcher supports --no-open.",
+      "tag": "EXISTING",
+      "cache_key": "e35f749775a538b8a8f056b508fadbcc916efecccd85dfe57dfd39adb3256e8f"
+    },
+    {
+      "claim": "The demo launcher defaults to UI port 5173 and API port 8001.",
+      "tag": "EXISTING",
+      "cache_key": "2a54230c5de8311f6e2826804054a365671565a0e9c420aa41a1fd6c66a7d3a2"
+    },
+    {
+      "claim": "The demo launcher invokes the postman simulation CLI.",
+      "tag": "EXISTING",
+      "cache_key": "c462c0d2371f1817b3ca0452631040e944169de5a67ce3e0947a86e64dadd786"
+    },
+    {
+      "claim": "The demo launcher starts the frontend.",
+      "tag": "EXISTING",
+      "cache_key": "970d025b8e21c2e1eb3e10cd5c50df3b953d5f5e03415e8d0bf402f18f5ed4d2"
+    },
+    {
+      "claim": "The launcher constructs /demo/index.html#/session/11111111-1111-4111-8111-111111111111.",
+      "tag": "EXISTING",
+      "cache_key": "df96f025152e1cc9c63111151e3ae8d2f0a45a52fae669accc1afff37d21df1b"
+    },
+    {
+      "claim": "The ledger client fetches /sessions/<id>/ledger relative to the API base using default fetch method.",
+      "tag": "EXISTING",
+      "cache_key": "02eac7fdb533f8f93062039f3c5783ffa5231c8e6af1ea57a8a175ae94e450f1"
+    },
+    {
+      "claim": "The named root variables --cit-bg-1, --cit-portal, --cit-flare, --cit-alarm, --cit-text, --cit-text-dim and --cit-hairline exist.",
+      "tag": "EXISTING",
+      "cache_key": "239a8871eef9de353fa8c62f2364163cddb5e1ca7cc1b8adb9f4192b62bcc608"
+    },
+    {
+      "claim": "frontend/bun.lock and frontend/package-lock.json both exist.",
+      "tag": "EXISTING",
+      "cache_key": "60be473ad8cd4c604740cd137d133256cafe5b735b3731f8333e635f297596e4"
+    },
+    {
+      "claim": ".gitignore does not currently ignore frontend/e2e-results/.",
+      "tag": "EXISTING",
+      "cache_key": "842927cb3da83a4f1f1d12d902f0ebc4e9d55482b1fe4bbb236990731288897d"
+    },
+    {
+      "claim": ".nightshift.toml selects npm --prefix frontend test && npm --prefix frontend run build.",
+      "tag": "EXISTING",
+      "cache_key": "34b1cef6973abec8a0dc4dec3dd0f211916f079b61e50b289f5fbca4c9332620"
+    },
+    {
+      "claim": "CLAUDE.md build/test examples at lines 57-65 are commented placeholders.",
+      "tag": "EXISTING",
+      "cache_key": "d3af256884feb817507e3a2bfeab70896b4b078418bd567fbb4e04ab89e17d6e"
+    },
+    {
+      "claim": "The Files to Change table lists seven files.",
+      "tag": "EXISTING",
+      "cache_key": "7342a0fac8fe8b7e51111dbf7b2e8ba45c83b431ec532721fdc4d0f844a06c4a"
+    },
+    {
+      "claim": "The project architect routing threshold is three files.",
+      "tag": "EXISTING",
+      "cache_key": "95b8a3305095c149a7085b13ea5f9f096eced0bded8f9d20113baeea48a8520d"
+    },
+    {
+      "claim": "Commit 10b798f differs from d2fafd7 only in routing.json.",
+      "tag": "EXISTING",
+      "cache_key": "0206860af0e7b708a2ef8aa22239495840c17605be1f32641dabef8d6cc611fb"
+    },
+    {
+      "claim": "The base reference a89877879ef9b95618e5be58273346d6fa15fc18 differs from d2fafd7 by only one deleted Beads ledger line.",
+      "tag": "EXISTING",
+      "cache_key": "a38fbd89dabcc952cd4f5aece4d09b221704e350fad904101d41b4e5610c59cd"
+    },
+    {
+      "claim": "React Profiler onRender can observe committed DOM before passive effects; an effect-only reset can be hidden by a post-act assertion.",
+      "tag": "EXISTING",
+      "cache_key": "62736588438da68053dd7fc200ffb54147c54a3feb290af5fc82ec91a36e74f1"
+    },
+    {
+      "claim": "The scenario semantic digest is d1996262772f930e0153b31f0bf9f5afefeaa98093290d1726191a8537a5ded6.",
+      "tag": "EXISTING",
+      "cache_key": "78ce2391619d270870457fb3a8de3d0848d6c85e0a9a13fd0ad5401ec3f0c81f"
+    },
+    {
+      "claim": "The behavioral-proof helper supports text_equals, text_contains, text_section_contains, json_equals, json_field_equals, json_field_length_at_most and json_field_nonempty.",
+      "tag": "EXISTING",
+      "cache_key": "752c98ea4e44c04e92846c55a6a444d3462fe2b0d22c5d2b2f93415b102ebe83"
+    },
+    {
+      "claim": "The registry version @playwright/test 1.64.1 was resolved during authoring, and its playwright binary is cli.js; inspect retained evidence if offline.",
+      "tag": "EXISTING",
+      "cache_key": "369d0cbb4ac091de253d97e7d570d09cb4c26e9f66fd49830e3f23e74b0498b3"
+    },
+    {
+      "claim": "Create local session UI filter selection with All, Contradictions and Unsupported native buttons and aria-pressed.",
+      "tag": "NEW",
+      "cache_key": "523b4b8ad7e7b98ce5835a5ed982cf38405d36520af3479c7f1a8075f18dd7c3"
+    },
+    {
+      "claim": "Add derived current-data counts, independent membership, order preservation and distinct empty states.",
+      "tag": "NEW",
+      "cache_key": "c4b4af3abdd21375a0a0260ca5787931506cee9d2d57f51e4657f7e2e90f1401"
+    },
+    {
+      "claim": "Add same-session selection retention and synchronous effective All selection on session change.",
+      "tag": "NEW",
+      "cache_key": "fb8cd3f1ea39285144042242cc3c4ce29de0fae2364b9071e86e6a590fe44ae0"
+    },
+    {
+      "claim": "Create frontend/test/session-ledger-filters.test.tsx with query-boundary and commit-level observations.",
+      "tag": "NEW",
+      "cache_key": "de0a58ca99038080c2cab833719901c3b4adf947716f5f92ab4001534861386b"
+    },
+    {
+      "claim": "Create frontend/e2e/session-ledger-filters.spec.ts and frontend/playwright.config.ts for Chromium browser checks.",
+      "tag": "NEW",
+      "cache_key": "a72a69cb011bd1d8be8cc806ff462c87d1ce472bc80cafa3c73b1a55c572df90"
+    },
+    {
+      "claim": "Add exact-pinned dev-only @playwright/test and planned test:e2e script; regenerate npm lock and ignore browser output.",
+      "tag": "NEW",
+      "cache_key": "9d164b8c1fda57060cf43ba472d74eaf31332f0f5d2e55093ce7a55eb443a9a0"
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "status": "FAIL",
+  "reason": "Observed RED, not final success. Selected command: `npm --prefix frontend test -- --reporter=verbose`. It is the explicit task command, run with cwd .../12/.nightshift/red-observer-12 (scope: frontend). The context resolver returned status ok; its conventions AGENTS.md and CLAUDE.md were both read. Neither prescribes a test command: AGENTS.md has no test command, and CLAUDE.md lines 53-60 are an unfilled template placeholder at line 55 (\"_Add your build and test commands here_\"), so there is no AGENTS/CLAUDE conflict. The only configured command is .nightshift.toml line 33, `npm --prefix frontend test && npm --prefix frontend run build`. I ran the task's narrower command and not that one: the task is a RED observation, the build step was not requested, and the `--reporter=verbose` flag comes from the task. No lockfile fallback was needed. Provenance: sha256 of frontend/src/pages/SessionPage.tsx equals the blob at commit 10b798f (e6129720...c99c). sha256 of frontend/test/session-ledger-filters.test.tsx equals the blob at 8d83275 (b91137b1...0268c). Actual exit status: 1. Vitest v3.2.7: Test Files 1 failed | 1 passed (2); Tests 10 failed | 4 passed (14). Passed: 2 in test/demo-fixture.test.ts and 2 C05 recorder-calibration tests. Failed (all 10 in test/session-ledger-filters.test.tsx > ledger filter behavior): C01/C07 default, membership, overlap, order and accessible selected controls; C01 counts facts rather than contradiction references; C02 keeps zero categories enabled and distinguishes filtered empty; C03 empty and unavailable ledgers (false); C03 empty and unavailable ledgers (true); C04 same-session query refresh retains Contradictions; C04 same-session query refresh retains Unsupported; C05 resets Contradictions before every destination commit; C05 resets Unsupported before every destination commit; C06 freezes query data, counts switch requests separately and preserves ordinary polling. Failure reflects missing filter controls: YES. All 10 failures are TestingLibraryElementError \"Unable to find an accessible element with the role \"button\"\", with no name or with the name regexes /^All\\s/, /^Contradictions\\s/ and /^Unsupported\\s/ (fact-ledger filter buttons). No import, resolve, module, syntax or setup errors appear in the log. The DOM dump shows the page rendered, including the \"◉ FACT LEDGER\" heading. Test lines at which each failure surfaced: test/session-ledger-filters.test.tsx lines 31, 32, 37, 49, 56, 62, 71 and 76. Log written to docs/12/independent-red-observer.log (4700 lines, sha256 339120ac4c9b6479a2183620281e3eaed1aa8fb5abd9c9a7afbda5dfad1bf767). No source or test files were edited, and no existing evidence was overwritten; the log did not exist before. No build was run. Not claiming final success.",
+  "attempts": 1,
+  "results": {
+    "passed": 4,
+    "failed": 10
+  },
+  "artifacts": {
+    "branch": "red-observer-12 (detached/ephemeral worktree under counsel-live-demo-worktrees/12; parent HEAD 6563b0f; SessionPage bytes = 10b798f, test bytes = 8d83275)",
+    "diff": "No source or test edits. Only artifact created: /Users/drew.schillinger/shuttlebay/doctorews-laboratory/nightshift-community/.nightshift/counsel-live-demo-worktrees/12/docs/12/independent-red-observer.log",
+    "model": "sonnet",
+    "provider": "claude"
+  },
+  "rules_fired": [
+    "context-resolver-run",
+    "conventions-AGENTS.md-and-CLAUDE.md-read",
+    "no-agents-claude-command-conflict",
+    "explicit-task-command-selected",
+    "no-build-run",
+    "read-only-no-source-or-test-edits",
+    "no-diagnosis",
+    "no-e2e",
+    "exact-error-quoting",
+    "route_gear:1"
+  ]
+}

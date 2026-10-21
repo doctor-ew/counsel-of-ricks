@@ -1,0 +1,272 @@
+{
+  "ac_ids": [
+    "AC1",
+    "AC2",
+    "AC3",
+    "AC4",
+    "AC5",
+    "AC6",
+    "AC7"
+  ],
+  "applicability": {
+    "kind": "deterministic",
+    "rationale": "Client-side React rendering, navigation, data refresh and browser interaction use ordinary deterministic application tests; no prompt or model runtime changes.",
+    "review": null,
+    "risks": [
+      "deterministic_logic"
+    ]
+  },
+  "author": {
+    "provider": "codex",
+    "author_id": "codex-controller-focus-repair-12"
+  },
+  "cases": [
+    {
+      "ac_ids": [
+        "AC1",
+        "AC2"
+      ],
+      "applicability": {
+        "kind": "deterministic",
+        "rationale": "Ordinary deterministic application evidence for C01; independent classification review remains pending.",
+        "review": null,
+        "risks": [
+          "deterministic_logic"
+        ]
+      },
+      "counterexamples": [
+        "A fact in both categories must appear once in each corresponding view."
+      ],
+      "expected": [],
+      "forbidden": "Disjoint categorization, pair counting, sorted results or hardcoded production counts.",
+      "given": "The unchanged public six-fact fixture is loaded. Also exercise separate in-memory data with one fact containing multiple contradiction references and another fact with none.",
+      "id": "C01",
+      "input": null,
+      "prohibited": [],
+      "required": true,
+      "then": "All is initially selected with count 6; Contradictions has count 2 and only fixture positions 2,4; Unsupported has count 3 and only positions 3,4,5; All restores positions 1 through 6. In the separate multiple-reference boundary, the contradiction count is exactly 1 and exactly one card renders, regardless of reference count.",
+      "visibility": "public",
+      "when": "Open the session and select each filter, then All."
+    },
+    {
+      "ac_ids": [
+        "AC3"
+      ],
+      "applicability": {
+        "kind": "deterministic",
+        "rationale": "Ordinary deterministic application evidence for C02; independent classification review remains pending.",
+        "review": null,
+        "risks": [
+          "deterministic_logic"
+        ]
+      },
+      "counterexamples": [
+        "Showing Facts will appear here as you testify for a nonempty filtered ledger fails."
+      ],
+      "expected": [],
+      "forbidden": "The session no-facts message for a nonempty ledger, hidden controls or disabled empty categories.",
+      "given": "A nonempty ledger has citations on every fact and no contradictions.",
+      "id": "C02",
+      "input": null,
+      "prohibited": [],
+      "required": true,
+      "then": "Zero-count controls remain enabled; each filtered view says No facts match this filter; All restores every fact.",
+      "visibility": "public",
+      "when": "Select each zero-count category and then All."
+    },
+    {
+      "ac_ids": [
+        "AC1",
+        "AC3"
+      ],
+      "applicability": {
+        "kind": "deterministic",
+        "rationale": "Ordinary deterministic application evidence for C03; independent classification review remains pending.",
+        "review": null,
+        "risks": [
+          "deterministic_logic"
+        ]
+      },
+      "counterexamples": [
+        "An empty session showing No facts match this filter fails."
+      ],
+      "expected": [],
+      "forbidden": "Missing controls, exceptions or a misleading filtered-empty message for an empty session.",
+      "given": "The current ledger contains no facts; also exercise an initially unavailable ledger.",
+      "id": "C03",
+      "input": null,
+      "prohibited": [],
+      "required": true,
+      "then": "Each control shows 0 and remains usable; no cards render; the existing session no-facts message is retained, distinct from filtered-empty copy.",
+      "visibility": "public",
+      "when": "Render and activate all three controls."
+    },
+    {
+      "ac_ids": [
+        "AC1",
+        "AC2",
+        "AC4"
+      ],
+      "applicability": {
+        "kind": "deterministic",
+        "rationale": "Ordinary deterministic application evidence for C04; independent classification review remains pending.",
+        "review": null,
+        "risks": [
+          "deterministic_logic"
+        ]
+      },
+      "counterexamples": [
+        "A newly cited fact remaining in Unsupported fails."
+      ],
+      "expected": [],
+      "forbidden": "Stale memoization, resetting on same-session refresh or trusting stale summary counts.",
+      "given": "Contradictions or Unsupported is selected with existing query data.",
+      "id": "C04",
+      "input": null,
+      "prohibited": [],
+      "required": true,
+      "then": "Selection persists and counts and cards reflect only the latest facts in their supplied order, even if response summary counts are stale.",
+      "visibility": "public",
+      "when": "Replace ledger query data for the same session with a new ordered array changing both memberships and counts, including transitions to and from zero."
+    },
+    {
+      "ac_ids": [
+        "AC4"
+      ],
+      "applicability": {
+        "kind": "deterministic",
+        "rationale": "Ordinary deterministic application evidence for C05; independent classification review remains pending.",
+        "review": null,
+        "risks": [
+          "deterministic_logic"
+        ]
+      },
+      "counterexamples": [
+        "Rendering a cached destination session as Unsupported fails.",
+        "A reset performed in an effect after the first destination commit passes a post-act assertion but fails here, because its first recorded destination commit still applies the previous filter."
+      ],
+      "expected": [],
+      "forbidden": "A previous session filter leaking into any committed state of another session, including a transient state that a later effect corrects; relying on a post-act assertion that cannot distinguish an effect-based reset from a derived reset.",
+      "given": "A filtered session (Contradictions or Unsupported selected) is displayed with the page mounted. The destination session's ledger query data is already cached, with a different ordered fact set that includes at least one fact the previous filter would hide. A commit-level recorder is installed before navigation: the test renders SessionPage inside a React Profiler whose onRender callback runs synchronously in the commit phase, before passive effects flush, and snapshots the DOM at every commit, together with a probe inside the router that records the current route session id. A MutationObserver drained with takeRecords may corroborate it but does not replace it.",
+      "id": "C05",
+      "input": null,
+      "prohibited": [],
+      "required": true,
+      "then": "In the first recorded commit whose route session is the destination, All has aria-pressed=true, Contradictions and Unsupported have aria-pressed=false, the control counts equal counts computed independently from the destination facts, and the cards are exactly all destination facts in supplied order. No recorded commit for the destination session shows aria-pressed=true on Contradictions or Unsupported, or filtered cards or counts. Returning to the first session records the same All-first behavior for that session, and every later session change does likewise. An assertion made only after act() has flushed effects does not satisfy this case.",
+      "visibility": "public",
+      "when": "Navigate to the destination session without remounting the page, let all pending effects flush, then navigate back to the first session. Each recorded commit stores the route session id, every control's aria-pressed value and displayed count, and the ordered card texts."
+    },
+    {
+      "ac_ids": [
+        "AC4"
+      ],
+      "applicability": {
+        "kind": "deterministic",
+        "rationale": "Ordinary deterministic application evidence for C06; independent classification review remains pending.",
+        "review": null,
+        "risks": [
+          "deterministic_logic"
+        ]
+      },
+      "counterexamples": [
+        "A filter handler issuing a ledger request fails even when displayed cards are correct."
+      ],
+      "expected": [],
+      "forbidden": "Mutating facts, triggering refetch on selection or suppressing existing polling.",
+      "given": "Frozen query data and a controlled request observer are available; scheduled refreshes are separately accounted for.",
+      "id": "C06",
+      "input": null,
+      "prohibited": [],
+      "required": true,
+      "then": "Input arrays and nested entries stay unchanged; filter switching makes no extra API/model requests and ordinary refresh remains unchanged.",
+      "visibility": "public",
+      "when": "Switch filters repeatedly without advancing polling, then allow one ordinary refresh."
+    },
+    {
+      "ac_ids": [
+        "AC5"
+      ],
+      "applicability": {
+        "kind": "deterministic",
+        "rationale": "Ordinary deterministic application evidence for C07; independent classification review remains pending.",
+        "review": null,
+        "risks": [
+          "deterministic_logic"
+        ]
+      },
+      "counterexamples": [
+        "A color-only selected style without aria-pressed fails.",
+        "A button with outline:none and no replacement indicator fails the focus-indicator measurement even though its aria-pressed and tab order are correct.",
+        "A selected or focused state with label text below 4.5:1 or an indicator below 3:1 fails the contrast measurement.",
+        "Activation that re-creates the button and drops focus fails the same-node focus-retention check."
+      ],
+      "expected": [],
+      "forbidden": "Pointer-only interaction, ambiguous selected state, lost focus, outline:none without an equivalent indicator, contrast below the stated thresholds, altered existing sidebar or card styling, or treating jsdom assertions or a screenshot alone as evidence of focus rendering or contrast.",
+      "given": "The ledger and all three controls are rendered in real Chromium through the labelled synthetic demo entry, started by the existing launcher `python3 scripts/demo-local.py --no-open` and driven by the declared dev-only Playwright runner (`@playwright/test`, Chromium) over the unchanged public fixture. A zero-count category is exercised in the same browser by fulfilling only the ledger request with separate synthetic data in which every fact has a citation and none contradicts. Vitest, jsdom and Testing Library assertions cover accessible names, counts and aria-pressed, but jsdom does not satisfy any focus-rendering or contrast obligation. Before implementation, the same runner records a baseline of the unmodified sidebar and fact cards.",
+      "id": "C07",
+      "input": null,
+      "prohibited": [],
+      "required": true,
+      "then": "(1) Tab order is All, then Contradictions, then Unsupported, by accessible name of the active element at each step. (2) The three controls are native buttons whose accessible names contain the label and count, and exactly one has aria-pressed=true after each activation. (3) Enter and Space each update the cards and selected state, and the activated button remains the focused element and the same DOM node after the view changes. (4) The focused button's computed outline-style is not none and outline-width is at least 2px, or it has a non-none box-shadow ring of at least 2px, and that indicator differs from the same button's unfocused computed values; outline:none with no replacement fails. (5) Using WCAG relative luminance with each background alpha-composited over its effective ancestor backgrounds, label and count text meets at least 4.5:1 in the unfocused, hovered, focused and selected states, and the focus indicator meets at least 3:1 against the adjacent background; the selected state's computed style differs from the unselected state's in addition to aria-pressed. (6) Existing sidebar and card styling is preserved: the aside's computed width, background, border and the resolved root values of --cit-bg-1, --cit-portal, --cit-flare, --cit-alarm, --cit-text, --cit-text-dim and --cit-hairline, and every fixture card's computed background, border, box-shadow and text color, equal the pre-implementation baseline. (7) Retained evidence is the runner's JSON report, a measurements JSON listing each measured value and threshold, and one screenshot per measured state, copied under docs/12/browser-evidence/ with SHA-256 hashes. If Chromium or the runner cannot be installed or launched, the browser portion of this case is blocked with concrete evidence and is never satisfied by jsdom assertions.",
+      "visibility": "public",
+      "when": "From the focusable element immediately before the controls, press Tab repeatedly, then press Enter and separately Space on each control. Hover each control. Measure computed styles in the unfocused, hovered, focused, selected and selected-and-focused states, including a zero-count control. The predecessor must be visible, enabled and tabbable (nonnegative tabIndex); verify it actually has focus before pressing Tab. Disabled controls are not focusable predecessors."
+    },
+    {
+      "ac_ids": [
+        "AC6"
+      ],
+      "applicability": {
+        "kind": "deterministic",
+        "rationale": "Ordinary deterministic application evidence for C08; independent classification review remains pending.",
+        "review": null,
+        "risks": [
+          "deterministic_logic"
+        ]
+      },
+      "counterexamples": [
+        "A suite that only checks fixture lengths fails this obligation."
+      ],
+      "expected": [],
+      "forbidden": "Claiming an import failure or passing fixture-only tests proves feature RED; fabricated review or results.",
+      "given": "Implementation is absent and meaningful public UI tests have been authored using prepared tooling.",
+      "id": "C08",
+      "input": null,
+      "prohibited": [],
+      "required": true,
+      "then": "Relevant missing-filter assertions visibly fail before implementation and pass afterward; preserved evidence is independently reviewed.",
+      "visibility": "public",
+      "when": "Run focused tests before implementation and retain their output; obtain independent review; after implementation run the same locked cases."
+    },
+    {
+      "ac_ids": [
+        "AC7"
+      ],
+      "applicability": {
+        "kind": "deterministic",
+        "rationale": "Ordinary deterministic application evidence for C09; independent classification review remains pending.",
+        "review": null,
+        "risks": [
+          "deterministic_logic"
+        ]
+      },
+      "counterexamples": [
+        "A successful build without exercising the labelled demo fails AC7."
+      ],
+      "expected": [],
+      "forbidden": "Treating synthetic simulation as live backend/AI proof, altering fixture records, auth or production entry to pass.",
+      "given": "The proposed implementation and locked tests are available in the prepared local environment.",
+      "id": "C09",
+      "input": null,
+      "prohibited": [],
+      "required": true,
+      "then": "All commands succeed; demo shows 6/2/3 counts, overlap and restored order with keyboard operation; retain command outputs and browser evidence, with synthetic label and production behavior preserved.",
+      "visibility": "public",
+      "when": "Run npm --prefix frontend ci, npm --prefix frontend test and npm --prefix frontend run build; start python3 scripts/demo-local.py and exercise the labelled synthetic demo."
+    }
+  ],
+  "heldout": null,
+  "prototype_files": [],
+  "runtime": null,
+  "task": "12",
+  "version": 1
+}

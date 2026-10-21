@@ -1,0 +1,38 @@
+{
+  "status": "SUCCESS",
+  "reason": "Required style-preservation coverage is incomplete.",
+  "attempts": 1,
+  "artifacts": {
+    "branch": "",
+    "diff": "",
+    "provider": "codex",
+    "model": "gpt-6.1-sol"
+  },
+  "rules_fired": [
+    "required_behavior_coverage",
+    "observable_assertions",
+    "route_gear:1"
+  ],
+  "results": {
+    "decision": "repair",
+    "scenario_ids": [
+      "C01",
+      "C02",
+      "C03",
+      "C04",
+      "C05",
+      "C06",
+      "C07",
+      "C08",
+      "C09"
+    ],
+    "findings": [
+      {
+        "scenario_id": "C07",
+        "code": "INCOMPLETE_STYLE_PRESERVATION_COVERAGE",
+        "reason": "The design requires width, background, border, box-shadow and text color to remain unchanged for both the sidebar and every fixture card. C07 omits sidebar box-shadow and text color, and card width, from its baseline comparisons. Add explicit computed-value equality assertions for these properties so changes to them fail the case."
+      }
+    ],
+    "reviewed_input_sha256": "929d2de0b8d7183bdb325e72b77142ddfc9b34e1f47bf74d9d2f4decf1e1d8a2"
+  }
+}

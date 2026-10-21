@@ -1,0 +1,55 @@
+{
+  "status": "SUCCESS",
+  "reason": "Design review only; no execution is claimed. Most behavior has observable coverage: C01 to C04 for categories, overlap, zero counts and empty states, and C07 for the browser measurements. Four gaps need repair. C05 does not require the recorder calibration. C06 gives no observable count for ordinary refresh. C08 does not list which behaviors must be RED. No case requires a deliberately unsorted fact order.",
+  "attempts": 1,
+  "artifacts": {
+    "branch": "",
+    "diff": "",
+    "provider": "claude",
+    "model": "sonnet"
+  },
+  "rules_fired": [
+    "required-negative-coverage",
+    "observable-expectation",
+    "distinguishing-assertion",
+    "unsupported-runtime-assumption",
+    "route_gear:1"
+  ],
+  "results": {
+    "decision": "repair",
+    "scenario_ids": [
+      "C01",
+      "C02",
+      "C03",
+      "C04",
+      "C05",
+      "C06",
+      "C07",
+      "C08",
+      "C09"
+    ],
+    "findings": [
+      {
+        "scenario_id": "C05",
+        "code": "recorder_calibration_not_required_by_scenario",
+        "reason": "The spec says the Profiler recorder is unproven for this application until two throwaway harnesses are run: one that resets in an effect, and one that derives the selection during render. The C05 given, when and then fields do not require either outcome. A recorder that cannot tell the two apart would still satisfy C05 as written. Add observable expectations to C05. The effect-reset harness must yield at least one destination snapshot with a stale pressed control, or with filtered cards or counts, while the post-act DOM shows All. The derived-reset harness must yield no stale destination snapshot. If either result differs, C05 is blocked and is not downgraded to a post-act assertion. The calibration output must be retained with the RED evidence."
+      },
+      {
+        "scenario_id": "C06",
+        "code": "refresh_expectation_unobservable",
+        "reason": "The then field says only that ordinary refresh remains unchanged. That does not tell an implementation that keeps the five-second polling from one that suppresses or duplicates it. Specify exact observable counts. First, zero ledger or other requests are recorded across the repeated filter switches. Second, after the polling interval advances once, exactly one request goes to /sessions/<same-id>/ledger. Third, the new data is rendered, and the selection and frozen inputs are unchanged."
+      },
+      {
+        "scenario_id": "C08",
+        "code": "red_scope_not_enumerated",
+        "reason": "AC6 requires RED for categories, overlap, order, empty data, refresh, session reset, nonmutation/no extra requests, and keyboard/selected behavior. The C08 then field only says that relevant missing-filter assertions fail. One failing test would satisfy it. Require RED output showing assertion failures, not import or setup errors, for each of those behavior groups, mapped to the C01 to C06 tests and the component-level keyboard and selected tests. The output must include the C05 calibration results. Require the retained final passing run to use the same locked tests."
+      },
+      {
+        "scenario_id": "C04",
+        "code": "order_preservation_not_distinguishing",
+        "reason": "The forbidden list includes sorted results, but no required dataset has an order that differs from a plausible sort. The six-fact fixture is already in ascending position order, so a sorting implementation could pass. Require at least one in-memory dataset, in C04 or C01, whose supplied order is deliberately not ascending by id or any other sortable key. It must include members of both categories and an overlap fact. The Contradictions, Unsupported and All views must preserve exactly that supplied order."
+      }
+    ],
+    "reviewed_input_sha256": "f169c2153d16e9ad378aeee0d6a712cf8273e5a25703c0b678b60ad158cc1883"
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "version": 1,
+  "task": "12",
+  "gate": "development",
+  "observer": {
+    "provider": "codex",
+    "author_id": "implement-3-orchestrator"
+  },
+  "scenario_ids": [
+    "C01",
+    "C02",
+    "C03",
+    "C04",
+    "C05",
+    "C06",
+    "C07",
+    "C08",
+    "C09"
+  ],
+  "command": {
+    "argv": [
+      "npm",
+      "--prefix",
+      "frontend",
+      "run",
+      "test:e2e"
+    ],
+    "source": {
+      "path": "docs/12/implement-3-red-provenance.md",
+      "line": 5,
+      "sha256": "b2ccb264d8bda2e45a81ad3e1762aea99e56a8a672c7ed9b70de9b4fdafa2a3c"
+    }
+  },
+  "exit_code": 1,
+  "assertions": {
+    "kind": "relevant_assertion",
+    "passed": 4,
+    "failed": 11
+  },
+  "log": {
+    "path": "/Users/drew.schillinger/shuttlebay/doctorews-laboratory/nightshift-community/.nightshift/counsel-live-demo-worktrees/12/docs/12/implement-3-red-combined.log",
+    "sha256": "3c0760e1c606b9c8593439ebc78b5dfdee6233ca8915b46930780fb721ca706a"
+  },
+  "tests": [
+    {
+      "path": "frontend/test/session-ledger-filters.test.tsx",
+      "sha256": "93a1be29477a463b3d61794bb408dde76b3c7b2bae85652b297d27c24866e1ca"
+    },
+    {
+      "path": "frontend/e2e/session-ledger-filters.spec.ts",
+      "sha256": "d68a5d785d296a6d6fe8abdd03f13d06f63128dfcd97242d3afac4af2a7d303b"
+    }
+  ],
+  "red_lock_sha": "d9f705714bc77d8f22efc642e46271c901f50355",
+  "source_hashes": {}
+}

@@ -1,0 +1,35 @@
+{
+  "artifacts": {
+    "branch": "",
+    "diff": "",
+    "model": "sonnet",
+    "provider": "claude"
+  },
+  "attempts": 1,
+  "reason": "Both prior findings are resolved. C06 now asserts an empty request log across the filter switches. After one polling interval it asserts exactly one entry, GET /api/v1/sessions/A/ledger, so a request to a wrong session or endpoint would fail. C08 now maps keyboard RED/GREEN to the real-Chromium C07 run. Before implementation, the accessible-control assertion fails because the controls are absent. After implementation, the same locked test runs the Tab, Enter, Space and same-node focus assertions. Vitest covers native button semantics and selected state. The other required behavior has observable, discriminating coverage: category membership and overlap, non-ascending order, empty versus filtered-empty states, same-session refresh with stale summaries, and per-commit session reset with recorder calibration. Browser contrast, focus-indicator and style-baseline checks are also covered. This is a design review only; no execution pass is claimed.",
+  "results": {
+    "decision": "approve",
+    "scenario_ids": [
+      "C01",
+      "C02",
+      "C03",
+      "C04",
+      "C05",
+      "C06",
+      "C07",
+      "C08",
+      "C09"
+    ],
+    "findings": [],
+    "reviewed_input_sha256": "8f0b7245c2ab421603ffec9fa77d11c03374fdf807a71cb997835a6f86f08d44"
+  },
+  "rules_fired": [
+    "required_negative_coverage",
+    "observable_assertions",
+    "boundary_and_counterexample_coverage",
+    "runner_applicability_consistency",
+    "prior_findings_resolved",
+    "route_gear:1"
+  ],
+  "status": "SUCCESS"
+}

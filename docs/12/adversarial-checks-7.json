@@ -1,0 +1,31 @@
+{
+  "task": "12",
+  "stage": "adversarial",
+  "manual_acceptance": "pending",
+  "checks": [
+    {
+      "command": "Verify SHA256 of every retained adversarial-6 evidence file",
+      "exit_code": 0,
+      "stdout": "Checked 24 retained files; mismatches: 0",
+      "stderr": ""
+    },
+    {
+      "command": "python3 docs/12/adversarial-gate-check-5.py",
+      "exit_code": 0,
+      "stdout": "{\"sources\": 23, \"verified\": 39, \"net_new\": 6, \"unresolved\": 0, \"manual_acceptance\": \"pending\", \"independent_provider\": \"codex\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": "python3 /Users/drew.schillinger/shuttlebay/doctorews-laboratory/nightshift-community/.nightshift/tuesday-recovery/scripts/nightshift-behavior-proof.py validate --project . --task 12 --scenarios docs/12/behavior-scenarios.json",
+      "exit_code": 0,
+      "stdout": "{\"outcome\": \"pass\", \"reviewed_input_sha256\": \"d1996262772f930e0153b31f0bf9f5afefeaa98093290d1726191a8537a5ded6\", \"status\": \"valid\", \"task\": \"12\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": "git diff --check",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ]
+}

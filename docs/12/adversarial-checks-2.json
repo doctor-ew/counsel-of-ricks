@@ -1,0 +1,47 @@
+{
+  "task": "12",
+  "stage": "adversarial",
+  "manual_acceptance": "pending",
+  "source_recheck": "admission_refused_before_provider_launch",
+  "claims_executed": false,
+  "prior_evidence_preserved": true,
+  "budget": {
+    "version": 1,
+    "infrastructure_failures": 0,
+    "substantive_failures": 1,
+    "total": 1,
+    "limits": {
+      "infrastructure": 3,
+      "substantive": 4,
+      "total": 12
+    },
+    "attempts": {
+      "8ab2f0f9f290411d94f73beb881d1870": "substantive"
+    },
+    "next_action": "repair_spec_before_retry",
+    "repair_inputs": {
+      "8ab2f0f9f290411d94f73beb881d1870": "2d458e738443f7c1c48cc91871a3dd823c4ab2a75998d7dab2bef358b63a2f60"
+    },
+    "review_requests": {
+      "8ab2f0f9f290411d94f73beb881d1870": {
+        "signature": "1de79b33697951490023d16202b903792d9087d7782973370401f662aed44c11",
+        "output": "/Users/drew.schillinger/shuttlebay/doctorews-laboratory/nightshift-community/.nightshift/counsel-live-demo-worktrees/12/docs/12/adversarial-sources.out.json",
+        "retained": "/Users/drew.schillinger/shuttlebay/doctorews-laboratory/nightshift-community/.nightshift/counsel-live-demo-worktrees/12/docs/12/adversarial-8ab2f0f9f290411d94f73beb881d1870.json"
+      }
+    }
+  },
+  "checks": [
+    {
+      "command": "NIGHTSHIFT_HOME=/Users/drew.schillinger/shuttlebay/doctorews-laboratory/nightshift-community/.nightshift/release-0.4.0 bash /Users/drew.schillinger/shuttlebay/doctorews-laboratory/nightshift-community/.nightshift/release-0.4.0/scripts/nightshift-dispatch-bounded.sh nightshift-code-fact-extractor --gear auto --auth subscription --risk standard --attempt 2 --adversarial --author-provider claude --in docs/12/adversarial-sources-2.in.md --out docs/12/adversarial-sources-2.out.json",
+      "exit_code": 1
+    },
+    {
+      "command": "python3 /Users/drew.schillinger/shuttlebay/doctorews-laboratory/nightshift-community/.nightshift/release-0.4.0/scripts/nightshift-behavior-proof.py validate --project . --task 12 --scenarios docs/12/behavior-scenarios.json",
+      "exit_code": 0
+    },
+    {
+      "command": "git diff --check",
+      "exit_code": 0
+    }
+  ]
+}

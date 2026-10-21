@@ -1,0 +1,19 @@
+{
+  "status": "FAIL",
+  "reason": "ticket budget enforcement stopped provider: {\"allowed\": false, \"reason\": \"ticket_active_time_budget_exhausted\", \"ledger\": \"/Users/drew.schillinger/shuttlebay/doctorews-laboratory/counsel-of-ricks/.git/nightshift/ticket-budgets/6b51d431df5d7f141cbececcf79edf3dd861c3b4069f0b11661a3eefacbba918.json\", \"task\": \"12\", \"coverage\": \"instrumented-dispatches-only\", \"historical_usage\": \"unknown\", \"calls_reserved\": 45, \"active_seconds\": 6822.256744384766, \"max_calls\": 64, \"max_active_seconds\": 6819, \"deadline_at\": null, \"max_wall_seconds\": null}",
+  "attempts": 1,
+  "artifacts": {
+    "branch": "",
+    "diff": "",
+    "provider": "claude",
+    "model": "sonnet"
+  },
+  "rules_fired": [
+    "dispatcher_failure",
+    "route_gear:1"
+  ],
+  "results": {
+    "passed": 0,
+    "failed": 0
+  }
+}

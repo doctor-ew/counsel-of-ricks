@@ -1,0 +1,45 @@
+{
+  "findings": [
+    {
+      "artifact": "docs/12/behavior-scenarios.json",
+      "artifact_content_sha256": "d1996262772f930e0153b31f0bf9f5afefeaa98093290d1726191a8537a5ded6",
+      "artifact_sha256": "dd58b2d13ec5b9617a066fee547a33f07f7652a36453544c9f14ef2fccb1f818",
+      "current_passed": true,
+      "id": "FIRST_RENDER_OBSERVATION_MECHANISM_UNSPECIFIED",
+      "original_failed": true,
+      "passed": true,
+      "pointer": "/cases/4",
+      "prior_artifact": "docs/12/behavior-scenarios.pre-repair-3.json",
+      "prior_sha256": "a6bc7f5bae00f3d802621912d8a56f71401b7e04204f862a3afe625b696ded1a"
+    },
+    {
+      "artifact": "docs/12/behavior-scenarios.json",
+      "artifact_content_sha256": "d1996262772f930e0153b31f0bf9f5afefeaa98093290d1726191a8537a5ded6",
+      "artifact_sha256": "dd58b2d13ec5b9617a066fee547a33f07f7652a36453544c9f14ef2fccb1f818",
+      "current_passed": true,
+      "id": "UNMEASURABLE_FOCUS_CONTRAST_AND_UNSUPPORTED_BROWSER_RUNTIME",
+      "original_failed": true,
+      "passed": true,
+      "pointer": "/cases/6",
+      "prior_artifact": "docs/12/behavior-scenarios.pre-repair-3.json",
+      "prior_sha256": "a6bc7f5bae00f3d802621912d8a56f71401b7e04204f862a3afe625b696ded1a"
+    },
+    {
+      "artifact": "docs/12/source-citations.current.json",
+      "artifact_content_sha256": "945ad807004289f242ce0e729f2f25b7745a5ac263747808fcedd549a669c79b",
+      "artifact_sha256": "340a8c12815e690b02f88924ff0a6be3393222723bb0311964c8936273ea02f7",
+      "current_passed": true,
+      "id": "SOURCE-CITATION-WORDING-REPAIR",
+      "original_failed": true,
+      "passed": true,
+      "pointer": "/sources",
+      "prior_artifact": "docs/12/source-citations.before.json",
+      "prior_sha256": "b9b8d8b442be2a3c68423e955888466830664fdb28c05ced9731467c6760ca82"
+    }
+  ],
+  "gate_approval": false,
+  "manifest": "docs/12/product-8/repair-checks.json",
+  "manifest_sha256": "60335f86704f9e18adc4f34fba68b6bf354ad0f98b974e4a8accf51d98d8427e",
+  "schema_version": 1,
+  "status": "passed"
+}

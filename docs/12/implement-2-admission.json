@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "task": "12",
+  "stage": "implement",
+  "manual_acceptance": "pending",
+  "implementation_started": false,
+  "classification_review": "approved metadata accepted; classification_unreviewed no longer returned",
+  "spec_lock": "41c2a0f8d3ae5709369091f8fa9508422e221880",
+  "red_lock": null,
+  "component_red": {
+    "command": "npm --prefix frontend test -- --reporter=verbose",
+    "exit_code": 1,
+    "failed": 10,
+    "passed": 4,
+    "calibrations": "both pass",
+    "log": "docs/12/implement-2-component-red-3.log"
+  },
+  "browser_baseline": {
+    "command": "CAPTURE_BASELINE=1 npm --prefix frontend run test:e2e",
+    "exit_code": 1,
+    "reason": "required default demo ports occupied by sibling-checkout demo; no baseline or browser RED captured"
+  },
+  "development_admission": "blocked: lock_identity_missing; proof_state_unavailable",
+  "next_action": "Controller must arrange free default demo ports, capture pre-implementation browser baseline and browser RED, then seal complete tests and record RED before development admission. Reuse this test draft; retain setup failures and prior counters. Do not treat passing unpatched build as GREEN."
+}

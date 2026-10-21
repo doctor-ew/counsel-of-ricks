@@ -1,0 +1,57 @@
+{
+  "version": 1,
+  "task": "12",
+  "gate": "development",
+  "observer": {
+    "provider": "codex",
+    "author_id": "codex-controller-focus-repair-12"
+  },
+  "scenario_ids": [
+    "C01",
+    "C02",
+    "C03",
+    "C04",
+    "C05",
+    "C06",
+    "C07",
+    "C08",
+    "C09"
+  ],
+  "command": {
+    "argv": [
+      "npm",
+      "--prefix",
+      "frontend",
+      "test",
+      "--",
+      "--reporter=verbose"
+    ],
+    "source": {
+      "path": "docs/12/focus-amendment-red-provenance.md",
+      "line": 3,
+      "sha256": "07d768a991b1150fd8af46db6e278203cce75636291dc20261c0052b36ae37ba"
+    }
+  },
+  "exit_code": 1,
+  "assertions": {
+    "kind": "relevant_assertion",
+    "passed": 4,
+    "failed": 10
+  },
+  "log": {
+    "path": "/Users/drew.schillinger/shuttlebay/doctorews-laboratory/nightshift-community/.nightshift/counsel-live-demo-worktrees/12/docs/12/amended-request-component-red.log",
+    "sha256": "132741d4b7dcab7382947654a18063d3a9a54a08f4195f141b8a953fe74e2787"
+  },
+  "tests": [
+    {
+      "path": "frontend/test/session-ledger-filters.test.tsx",
+      "sha256": "b91137b17dcbf5fcea9537947b0053ac5f3bc32230b35290791881a01b90268c"
+    },
+    {
+      "path": "frontend/e2e/session-ledger-filters.spec.ts",
+      "sha256": "dd3fce666597fce1ebd0631f0d82852f63eaa0ee1e4725e5a291e6d5d2a64741"
+    }
+  ],
+  "red_lock_sha": "8d832758fb1259c5d6eeecb875d7b5c8d1c55122",
+  "source_hashes": {}
+}

@@ -1,0 +1,15 @@
+{
+  "spec_sha256": "25dde52036a879a9aa53d4b15df1528c619ea6383ed5cd7f52b7fc04f991ab3f",
+  "findings": [
+    {
+      "id": "UNMEASURABLE_FOCUS_CONTRAST_AND_UNSUPPORTED_BROWSER_RUNTIME",
+      "target": "docs/12/behavior-scenarios.json#C07",
+      "problem": "The then-clause requires 'focus remains visible' and no 'unreadable focus/contrast', but gives no measurable pass/fail check. A wrong implementation with outline:none, or a low-contrast selected or focused state, would not be distinguished from a correct one. Specify observable assertions: the focused button's computed style has a visible focus indicator (non-none outline or equivalent, distinct from the unfocused state), and the selected, hover and focus foreground/background contrast is computed against a stated threshold (e.g. WCAG 4.5:1 text, 3:1 indicator). Also assert that existing sidebar styling and card variables are preserved. The case also requires real browser Tab, Enter, Space, focus and contrast, but the prepared tooling is only Vitest, jsdom and Testing Library, and Files to Change lists no browser test or evidence artifact. jsdom cannot evidence real focus rendering or contrast. Name the browser runner and the retained artifact, or add the dependency and scope. If no runner is available, mark the case as blocked rather than satisfied by jsdom assertions. Also add Tab-order assertions (All, Contradictions, Unsupported) and that focus stays on the activated button after the view changes."
+    },
+    {
+      "id": "FIRST_RENDER_OBSERVATION_MECHANISM_UNSPECIFIED",
+      "target": "docs/12/behavior-scenarios.json#C05",
+      "problem": "The case requires that the first destination render already selects All, with no frame using the previous filter. Testing Library's act flushes effects, so a post-act assertion cannot tell an effect-based reset from a derived reset. Both pass such a check, and the stated counterexample (cached destination rendered as Unsupported) is not reliably detected. Specify an observable mechanism that records every committed DOM state during the navigation, such as a MutationObserver or a synchronous commit-time probe. Assert that no recorded state shows the destination session with aria-pressed=true on Contradictions or Unsupported, or with filtered cards or counts. Also assert the destination cards and counts in order in the first recorded state."
+    }
+  ]
+}

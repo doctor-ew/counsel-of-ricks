@@ -1,0 +1,207 @@
+{
+  "version": 1,
+  "task": "12",
+  "stage": "product",
+  "status": "fail",
+  "findings": [
+    {
+      "id": "UNMEASURABLE_FOCUS_CONTRAST_AND_UNSUPPORTED_BROWSER_RUNTIME",
+      "target": "docs/12/behavior-scenarios.json#C07",
+      "problem": "The then-clause requires 'focus remains visible' and no 'unreadable focus/contrast', but gives no measurable pass/fail check. A wrong implementation with outline:none, or a low-contrast selected or focused state, would not be distinguished from a correct one. Specify observable assertions: the focused button's computed style has a visible focus indicator (non-none outline or equivalent, distinct from the unfocused state), and the selected, hover and focus foreground/background contrast is computed against a stated threshold (e.g. WCAG 4.5:1 text, 3:1 indicator). Also assert that existing sidebar styling and card variables are preserved. The case also requires real browser Tab, Enter, Space, focus and contrast, but the prepared tooling is only Vitest, jsdom and Testing Library, and Files to Change lists no browser test or evidence artifact. jsdom cannot evidence real focus rendering or contrast. Name the browser runner and the retained artifact, or add the dependency and scope. If no runner is available, mark the case as blocked rather than satisfied by jsdom assertions. Also add Tab-order assertions (All, Contradictions, Unsupported) and that focus stays on the activated button after the view changes."
+    },
+    {
+      "id": "FIRST_RENDER_OBSERVATION_MECHANISM_UNSPECIFIED",
+      "target": "docs/12/behavior-scenarios.json#C05",
+      "problem": "The case requires that the first destination render already selects All, with no frame using the previous filter. Testing Library's act flushes effects, so a post-act assertion cannot tell an effect-based reset from a derived reset. Both pass such a check, and the stated counterexample (cached destination rendered as Unsupported) is not reliably detected. Specify an observable mechanism that records every committed DOM state during the navigation, such as a MutationObserver or a synchronous commit-time probe. Assert that no recorded state shows the destination session with aria-pressed=true on Contradictions or Unsupported, or with filtered cards or counts. Also assert the destination cards and counts in order in the first recorded state."
+    },
+    {
+      "id": "PRODUCT-EVIDENCE-MISSING",
+      "target": "docs/12",
+      "problem": "Specification and scenarios are now retained and extraction succeeded. Independent Claude classification review requires repair; approval evidence is still absent and review fields remain null. Earlier failures and counters are preserved."
+    }
+  ],
+  "checks": [
+    {
+      "command": "bash /Users/drew.schillinger/shuttlebay/doctorews-laboratory/nightshift-community/.nightshift/release-0.4.0/scripts/nightshift-dispatch-bounded.sh nightshift-code-fact-extractor --auth subscription --risk low --in docs/12/product-extractor.in.md --out docs/12/product-extractor-2.out.json",
+      "exit_code": 0
+    },
+    {
+      "command": "python3 /Users/drew.schillinger/shuttlebay/doctorews-laboratory/nightshift-community/.nightshift/release-0.4.0/scripts/nightshift-behavior-proof.py validate --project \"$PWD\" --task 12 --scenarios docs/12/behavior-scenarios.json",
+      "exit_code": 0
+    },
+    {
+      "command": "python3 /Users/drew.schillinger/shuttlebay/doctorews-laboratory/nightshift-community/.nightshift/release-0.4.0/scripts/nightshift-repair-check.py check --project \"$PWD\" --manifest docs/12/repair-checks.json --out docs/12/repair-check.receipt.json",
+      "exit_code": 0
+    },
+    {
+      "command": "python3 docs/12/product-check-2.py",
+      "exit_code": 1
+    },
+    {
+      "command": "git diff --check",
+      "exit_code": 0
+    }
+  ],
+  "evidence": [
+    {
+      "path": "docs/12/.nightshift-product-1.json",
+      "sha256": "6a585dead80a4679ffeb09137a1cf5beb88bc597b9c71550fcc8f2be757c9a56"
+    },
+    {
+      "path": "docs/12/REPAIR-COVERAGE.md",
+      "sha256": "cd43dc85380492fd7f2481e5b4d9b01312649fbda5c6e534feac3f481176666d"
+    },
+    {
+      "path": "docs/12/ROUTING-REPAIR.md",
+      "sha256": "fced8faa3075a7035b0faf9dd64d2dbed32c6b20fd0805faff2ff20c121ebddc"
+    },
+    {
+      "path": "docs/12/SPEC.md",
+      "sha256": "25dde52036a879a9aa53d4b15df1528c619ea6383ed5cd7f52b7fc04f991ab3f"
+    },
+    {
+      "path": "docs/12/SPEC.pre-repair-2.md",
+      "sha256": "2347453d6ab71fe77b3f27bd217ccbb9b2163184c466afd9ada49df14249aa03"
+    },
+    {
+      "path": "docs/12/behavior-scenarios.json",
+      "sha256": "a6bc7f5bae00f3d802621912d8a56f71401b7e04204f862a3afe625b696ded1a"
+    },
+    {
+      "path": "docs/12/behavior-scenarios.pre-repair-2.json",
+      "sha256": "49aa72af733ae220fa309a98a4c1e0aa48b573678c133375ab102be640ea6b94"
+    },
+    {
+      "path": "docs/12/classification-review-2.in.json",
+      "sha256": "2049dba2bc635f1793402c811a39f037af0f44e00035d04c416494c181b2e121"
+    },
+    {
+      "path": "docs/12/classification-review-2.out.json",
+      "sha256": "b263be3c099ca6024acf351be9c87f53f330ef7bd559160a5f283d21a35e08a5"
+    },
+    {
+      "path": "docs/12/classification-review-3.in.json",
+      "sha256": "6214dfa4048a41e188115bd52ea595c7b636f85ad0caa07ffda3acf4d7081f04"
+    },
+    {
+      "path": "docs/12/classification-review-3.out.json",
+      "sha256": "2aef12dae9d2e90f0c6dff3452ed9a16d83dd13ed7a56742782bf194216b6b70"
+    },
+    {
+      "path": "docs/12/extractor-start.txt",
+      "sha256": "953d206f0fbf5ba6537ef1f900c76b436c43e77acc0e11a1fef21aeb367df912"
+    },
+    {
+      "path": "docs/12/product-check-2.first.out.json",
+      "sha256": "467616bcd2cd2a42bb2adef215ff32552d952f1b07302e58fe3a3935366b2d81"
+    },
+    {
+      "path": "docs/12/product-check-2.out.json",
+      "sha256": "10a9e4a25b1cf9d11a179149073e007f391241d765a3e808877906f117565851"
+    },
+    {
+      "path": "docs/12/product-check-2.py",
+      "sha256": "0f375d1e8b34d45ebccf1d17c1e0d86cede768633bd46a3ecbbc512884937262"
+    },
+    {
+      "path": "docs/12/product-check-2.second.out.json",
+      "sha256": "d4c3812ad0a2d862e5578cfe0cb420b4fbe10fb0df33aed9705a665808784a42"
+    },
+    {
+      "path": "docs/12/product-extractor-2.out.json",
+      "sha256": "fa1763e83cbef217b61fde89e70667b8d819d62c369db83f86fbb60f5c87eb11"
+    },
+    {
+      "path": "docs/12/product-extractor-2.out.json.attempts.json",
+      "sha256": "2a12ab65560b5def90b1b82cafae01c562097d0280b9888e0dca03709ff48cd8"
+    },
+    {
+      "path": "docs/12/product-extractor.in.md",
+      "sha256": "8806791cfa7470f3703dccb42aeeeb4d441cb7e6d179a6344c47298c46cfa8bc"
+    },
+    {
+      "path": "docs/12/product-extractor.out.json",
+      "sha256": "8f2d0067550d35192effb5c98d0655ad2ca4b99f77f697e51705e2cebbbf1fbc"
+    },
+    {
+      "path": "docs/12/product-extractor.out.json.attempts.json",
+      "sha256": "b37983dc9bb642ade918607184fcd55f05bda2f37778fe19991078ef23387dd0"
+    },
+    {
+      "path": "docs/12/product-guardrail-2.json",
+      "sha256": "bd05f508df58c560dca70ed81108bfa272e19b627a467f6bd843976dcdce656e"
+    },
+    {
+      "path": "docs/12/product-scope-check.json",
+      "sha256": "718098bfa1e40f8b397f95d1cc0ffe58cd4a1c8b0ea146fb4c5b96e526a38bc0"
+    },
+    {
+      "path": "docs/12/proof-capabilities.json",
+      "sha256": "5b134e306b5d7f73c3a0f64f2077cf1a0ba93b541afddb94d06079c5e0c94c76"
+    },
+    {
+      "path": "docs/12/repair-check.receipt.json",
+      "sha256": "cf8cd3fec149b370145bdcb965e38f194315de92d45d1d410f529291775f6cdf"
+    },
+    {
+      "path": "docs/12/repair-checks.json",
+      "sha256": "9d6b97f4445af30dc2b25e642d30487f9e69dfbb9cfd23df8577e7825352ecc0"
+    },
+    {
+      "path": "docs/12/retained-product-1/.nightshift-product-1.json",
+      "sha256": "6a585dead80a4679ffeb09137a1cf5beb88bc597b9c71550fcc8f2be757c9a56"
+    },
+    {
+      "path": "docs/12/retained-product-1/extractor-start.txt",
+      "sha256": "953d206f0fbf5ba6537ef1f900c76b436c43e77acc0e11a1fef21aeb367df912"
+    },
+    {
+      "path": "docs/12/retained-product-1/product-extractor.in.md",
+      "sha256": "8806791cfa7470f3703dccb42aeeeb4d441cb7e6d179a6344c47298c46cfa8bc"
+    },
+    {
+      "path": "docs/12/retained-product-1/product-extractor.out.json",
+      "sha256": "8f2d0067550d35192effb5c98d0655ad2ca4b99f77f697e51705e2cebbbf1fbc"
+    },
+    {
+      "path": "docs/12/retained-product-1/product-extractor.out.json.attempts.json",
+      "sha256": "b37983dc9bb642ade918607184fcd55f05bda2f37778fe19991078ef23387dd0"
+    },
+    {
+      "path": "docs/12/retained-product-1/proof-capabilities.json",
+      "sha256": "5b134e306b5d7f73c3a0f64f2077cf1a0ba93b541afddb94d06079c5e0c94c76"
+    },
+    {
+      "path": "docs/12/retained-product-1/scenario-validation.json",
+      "sha256": "53c3f15b638f5dc76865025402c3718bf1ca8a17750a24dadaec53fb3160e422"
+    },
+    {
+      "path": "docs/12/retained-product-1/source-ticket.json",
+      "sha256": "70dd0755e817fcbad0b0042198d909ca4d37a2d67c0cb3cf2b199484926851e3"
+    },
+    {
+      "path": "docs/12/scenario-validation.json",
+      "sha256": "53c3f15b638f5dc76865025402c3718bf1ca8a17750a24dadaec53fb3160e422"
+    },
+    {
+      "path": "docs/12/source-ticket.json",
+      "sha256": "70dd0755e817fcbad0b0042198d909ca4d37a2d67c0cb3cf2b199484926851e3"
+    },
+    {
+      "path": "docs/12/spec-author-provider.txt",
+      "sha256": "243b0dc9b847e66c440dca985e10fe0ce9e29c379b018ddd5747ba8948f84cc8"
+    },
+    {
+      "path": "docs/12/spec-writer-2.out.json",
+      "sha256": "82d469a6b74cbd38287a4aa348875f508c627457d3563563adc0fc721d8f860d"
+    },
+    {
+      "path": "docs/12/spec-writer-2.patch",
+      "sha256": "522a74790065bb8007b3562f0f46653eba749b91ff120ddf14a2f6043f84a856"
+    },
+    {
+      "path": "docs/12/spec-writer.in.md",
+      "sha256": "3f1449d1ccf033a604628bf23d4de6be08c5bb3a28034f796cfb9636018b4f1d"
+    }
+  ]
+}

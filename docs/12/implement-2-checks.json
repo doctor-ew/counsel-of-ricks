@@ -1,0 +1,32 @@
+[
+  {
+    "command": "npm --prefix frontend exec -- playwright test --list",
+    "exit_code": 1,
+    "stdout": "Listing tests:\nTotal: 0 tests in 0 files\n",
+    "stderr": "npm warn Unknown user config \"always-auth\" (//pkgs.dev.azure.com/YoungConsulting/Framework/_packaging/YCDevFeed2023/npm/registry/:always-auth). This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.\n\nTypeError: Module \"file:///Users/drew.schillinger/shuttlebay/doctorews-laboratory/nightshift-community/.nightshift/counsel-live-demo-worktrees/12/postman/mocks/counsel-api/fixture.json\" needs an import attribute of \"type: json\"\n    at eval (<anonymous>:1:1)\n\nTypeError: Module \"file:///Users/drew.schillinger/shuttlebay/doctorews-laboratory/nightshift-community/.nightshift/counsel-live-demo-worktrees/12/postman/mocks/counsel-api/fixture.json\" needs an import attribute of \"type: json\"\n    at eval (<anonymous>:1:1)\n\nTypeError: Module \"file:///Users/drew.schillinger/shuttlebay/doctorews-laboratory/nightshift-community/.nightshift/counsel-live-demo-worktrees/12/postman/mocks/counsel-api/fixture.json\" needs an import attribute of \"type: json\"\n    at eval (<anonymous>:1:1)\n\nError: No tests found\n"
+  },
+  {
+    "command": "npm --prefix frontend run build",
+    "exit_code": 0,
+    "stdout": "\n> courtprep-frontend@0.1.0 build\n> tsc -b && vite build\n\nvite v6.4.4 building for production...\ntransforming...\n\u2713 1715 modules transformed.\nrendering chunks...\ncomputing gzip size...\ndist/index.html                   0.84 kB \u2502 gzip:  0.48 kB\ndist/assets/index-BDHYS4RP.css   21.00 kB \u2502 gzip:  5.17 kB\ndist/assets/index-XaAGH25P.js   211.53 kB \u2502 gzip: 61.93 kB\n\u2713 built in 895ms\n",
+    "stderr": "npm warn Unknown user config \"always-auth\" (//pkgs.dev.azure.com/YoungConsulting/Framework/_packaging/YCDevFeed2023/npm/registry/:always-auth). This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.\n"
+  },
+  {
+    "command": "python3 /Users/drew.schillinger/shuttlebay/doctorews-laboratory/nightshift-community/.nightshift/tuesday-recovery/scripts/nightshift-behavior-proof.py validate --project /Users/drew.schillinger/shuttlebay/doctorews-laboratory/nightshift-community/.nightshift/counsel-live-demo-worktrees/12 --task 12 --scenarios docs/12/behavior-scenarios.json",
+    "exit_code": 0,
+    "stdout": "{\"outcome\": \"pass\", \"reviewed_input_sha256\": \"d1996262772f930e0153b31f0bf9f5afefeaa98093290d1726191a8537a5ded6\", \"status\": \"valid\", \"task\": \"12\"}\n",
+    "stderr": ""
+  },
+  {
+    "command": "python3 /Users/drew.schillinger/shuttlebay/doctorews-laboratory/nightshift-community/.nightshift/tuesday-recovery/scripts/nightshift-behavior-proof.py seal --project /Users/drew.schillinger/shuttlebay/doctorews-laboratory/nightshift-community/.nightshift/counsel-live-demo-worktrees/12 --task 12 --scenarios docs/12/behavior-scenarios.json",
+    "exit_code": 1,
+    "stdout": "{\"next_action\": \"inspect_evidence\", \"outcome\": \"unknown\", \"reason\": \"lock_identity_missing\", \"status\": \"blocked\"}\n",
+    "stderr": ""
+  },
+  {
+    "command": "python3 /Users/drew.schillinger/shuttlebay/doctorews-laboratory/nightshift-community/.nightshift/tuesday-recovery/scripts/nightshift-behavior-proof.py gate --project /Users/drew.schillinger/shuttlebay/doctorews-laboratory/nightshift-community/.nightshift/counsel-live-demo-worktrees/12 --task 12 --gate development",
+    "exit_code": 1,
+    "stdout": "{\"next_action\": \"inspect_evidence\", \"outcome\": \"unknown\", \"reason\": \"proof_state_unavailable\", \"status\": \"blocked\"}\n",
+    "stderr": ""
+  }
+]

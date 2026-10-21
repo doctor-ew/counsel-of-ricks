@@ -1,0 +1,99 @@
+{
+  "version": 1,
+  "task": "12",
+  "stage": "product",
+  "status": "pass",
+  "findings": [],
+  "checks": [
+    {
+      "command": "python3 /Users/drew.schillinger/shuttlebay/doctorews-laboratory/nightshift-community/.nightshift/release-0.4.0/scripts/nightshift-behavior-proof.py validate --project \"$PWD\" --task 12 --scenarios docs/12/behavior-scenarios.json",
+      "exit_code": 0
+    },
+    {
+      "command": "python3 -I docs/12/product-check-5.py (Files to Change parse without scope activation, spec guardrail on current SPEC.md, retained hash-bound repair-check receipt, independent classification approval with digest and all case IDs, git diff --check)",
+      "exit_code": 0
+    },
+    {
+      "command": "git diff --check",
+      "exit_code": 0
+    }
+  ],
+  "evidence": [
+    {
+      "path": "docs/12/.nightshift-product-1.json",
+      "sha256": "6a585dead80a4679ffeb09137a1cf5beb88bc597b9c71550fcc8f2be757c9a56"
+    },
+    {
+      "path": "docs/12/.nightshift-product-2.json",
+      "sha256": "6351dcd9b1b259852476016c18f5c2efedbeced1b65947c539df71e8fbc79b24"
+    },
+    {
+      "path": "docs/12/.nightshift-product-3.json",
+      "sha256": "03c5c0afc649a24caffcf96f6a5b4b1d07c7a3c2f4bbbed53951b62b7d50d84c"
+    },
+    {
+      "path": "docs/12/.nightshift-product-4.json",
+      "sha256": "9444822e794946e9ef5a2228ef6fc9b7c419537a7960e2e021f9ebe67b775ad6"
+    },
+    {
+      "path": "docs/12/.nightshift-adversarial-1.json",
+      "sha256": "d264bb383929b627f46b8f0cf7a977f2ae0a93fa6a063f12f6487b840bde16cf"
+    },
+    {
+      "path": "docs/12/.nightshift-adversarial-2.json",
+      "sha256": "b464716345f7e949ac18573d26e0011b70f4e896f4e2218cee0d8d31cd45bab1"
+    },
+    {
+      "path": "docs/12/SPEC.md",
+      "sha256": "67ca9862502b56a0209ab7411daec2d18ac4989b259b5697dd2cb280a010538c"
+    },
+    {
+      "path": "docs/12/SPEC.pre-adversarial-1.md",
+      "sha256": "2dfa5d8e027df4e4fdf6b094fba592dea8b500da8a15086e53105c1a284a1ef1"
+    },
+    {
+      "path": "docs/12/behavior-scenarios.json",
+      "sha256": "dd58b2d13ec5b9617a066fee547a33f07f7652a36453544c9f14ef2fccb1f818"
+    },
+    {
+      "path": "docs/12/repair-checks.json",
+      "sha256": "30e96504a6859706b5cbf1c80cf092984a7136b8000deb2360ab2a6a95a9c1a9"
+    },
+    {
+      "path": "docs/12/repair-check.receipt.json",
+      "sha256": "8fea71be24f30c5856e6d2a7caef79b5eecc8d43b6e433e7c5b4b5650f3e7fe5"
+    },
+    {
+      "path": "docs/12/classification-review-4.out.json",
+      "sha256": "6565b1c9ec8f750dd289a5cee43b06d3653aa10c352516ce5ce127cf317cbb86"
+    },
+    {
+      "path": "docs/12/product-check-5.py",
+      "sha256": "8554ae2a84a2b2db2dbf718f3414dd671b07b249f0f643e7a1e37a07bcebc29b"
+    },
+    {
+      "path": "docs/12/product-check-5.out.json",
+      "sha256": "8f961854b5a8bb55db12935dc65434a825f4f3587ea4b00ba7011424d91edc0e"
+    },
+    {
+      "path": "docs/12/adversarial-sources.out.json",
+      "sha256": "844b85e26a8d16dfc93705fbb040ac9859fba77bf6a5abbc4ea3b6492e19f889"
+    },
+    {
+      "path": "docs/12/repair-admission.json",
+      "sha256": "4ad1ae15d08bcca62e83de74dac7313a363aa759036abfccc7a19b3ea7a93695"
+    },
+    {
+      "path": "docs/12/.adversarial-budget.json",
+      "sha256": "f3ae243a7568bd1c8a147d7ffaf4d91578277531b573b5bee507b8db59e06fc2"
+    },
+    {
+      "path": "docs/12/REPAIR-5.md",
+      "sha256": "7bf1d4f67336b99a4bf62fe12e17b504bf1b6fd1be96b467d607156a2daf297c"
+    },
+    {
+      "path": "docs/12/source-ticket.json",
+      "sha256": "70dd0755e817fcbad0b0042198d909ca4d37a2d67c0cb3cf2b199484926851e3"
+    }
+  ]
+}

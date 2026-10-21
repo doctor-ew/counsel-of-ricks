@@ -1,0 +1,54 @@
+{
+  "version": 1,
+  "task": "12",
+  "manual_acceptance": "pending",
+  "commands": [
+    {
+      "command": [
+        "lsof",
+        "-nP",
+        "-iTCP:5173",
+        "-sTCP:LISTEN"
+      ],
+      "exit_code": 0,
+      "stdout": "COMMAND   PID             USER   FD   TYPE             DEVICE SIZE/OFF NODE NAME\nnode    94013 drew.schillinger   16u  IPv4 0xf40bd803059fb131      0t0  TCP 127.0.0.1:5173 (LISTEN)\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "lsof",
+        "-nP",
+        "-iTCP:8001",
+        "-sTCP:LISTEN"
+      ],
+      "exit_code": 0,
+      "stdout": "COMMAND   PID             USER   FD   TYPE             DEVICE SIZE/OFF NODE NAME\npostman 93977 drew.schillinger   33u  IPv4 0xfdbec12e22abf495      0t0  TCP 127.0.0.1:8001 (LISTEN)\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "ps",
+        "-p",
+        "94013,93977",
+        "-o",
+        "pid,ppid,command"
+      ],
+      "exit_code": 0,
+      "stdout": "  PID  PPID COMMAND\n93977 93960 postman simulation run /Users/drew.schillinger/shuttlebay/doctorews-laboratory/nightshift-community/.nightshift/counsel-live-demo/postman/simulations/counsel-live-demo.sim.yaml --port 8001 --no-history --output ndjson\n94013 93980 node /Users/drew.schillinger/shuttlebay/doctorews-laboratory/nightshift-community/.nightshift/counsel-live-demo/frontend/node_modules/.bin/vite --mode demo --host 127.0.0.1 --strictPort --port 5173\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "lsof",
+        "-a",
+        "-p",
+        "94013",
+        "-d",
+        "cwd"
+      ],
+      "exit_code": 0,
+      "stdout": "COMMAND   PID             USER   FD   TYPE DEVICE SIZE/OFF      NODE NAME\nnode    94013 drew.schillinger  cwd    DIR   1,16      576 314370115 /Users/drew.schillinger/shuttlebay/doctorews-laboratory/nightshift-community/.nightshift/counsel-live-demo/frontend\n",
+      "stderr": ""
+    }
+  ]
+}

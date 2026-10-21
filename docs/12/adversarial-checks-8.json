@@ -1,0 +1,31 @@
+{
+  "task": "12",
+  "stage": "adversarial",
+  "manual_acceptance": "pending",
+  "checks": [
+    {
+      "command": "Verify SHA256 of every retained adversarial-7 evidence file (only spec-author-provider.txt may differ: claude -> codex scenario-repair author)",
+      "exit_code": 0,
+      "stdout": "Checked 25 retained files; missing: 0; mismatches: ['docs/12/spec-author-provider.txt']",
+      "stderr": ""
+    },
+    {
+      "command": "python3 -I docs/12/adversarial-gate-check-8.py",
+      "exit_code": 0,
+      "stdout": "{\"sources\": 23, \"verified\": 39, \"net_new\": 6, \"unresolved\": 0, \"manual_acceptance\": \"pending\", \"claim_reviewer_provider\": \"codex\", \"spec_author_provider\": \"claude\", \"scenario_review_provider\": \"claude\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": "python3 /Users/drew.schillinger/shuttlebay/doctorews-laboratory/nightshift-community/.nightshift/tuesday-recovery/scripts/nightshift-behavior-proof.py validate --project . --task 12 --scenarios docs/12/behavior-scenarios.json",
+      "exit_code": 0,
+      "stdout": "{\"outcome\": \"pass\", \"reviewed_input_sha256\": \"8f0b7245c2ab421603ffec9fa77d11c03374fdf807a71cb997835a6f86f08d44\", \"status\": \"valid\", \"task\": \"12\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": "git diff --check",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ]
+}

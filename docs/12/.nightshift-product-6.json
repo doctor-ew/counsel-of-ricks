@@ -1,0 +1,111 @@
+{
+  "version": 1,
+  "task": "12",
+  "stage": "product",
+  "status": "pass",
+  "findings": [],
+  "checks": [
+    {
+      "command": "python3 /Users/drew.schillinger/shuttlebay/doctorews-laboratory/nightshift-community/.nightshift/release-0.4.0/scripts/nightshift-behavior-proof.py validate --project \"$PWD\" --task 12 --scenarios docs/12/behavior-scenarios.json",
+      "exit_code": 0
+    },
+    {
+      "command": "python3 -I docs/12/product-check-6.py (Files to Change parse without scope activation, spec guardrail on current SPEC.md, retained hash-bound repair-check receipt, source-citation projections vs current SPEC.md, independent classification approval with digest and all case IDs, git diff --check)",
+      "exit_code": 0
+    },
+    {
+      "command": "git diff --check",
+      "exit_code": 0
+    }
+  ],
+  "evidence": [
+    {
+      "path": "docs/12/.nightshift-product-1.json",
+      "sha256": "6a585dead80a4679ffeb09137a1cf5beb88bc597b9c71550fcc8f2be757c9a56"
+    },
+    {
+      "path": "docs/12/.nightshift-product-2.json",
+      "sha256": "6351dcd9b1b259852476016c18f5c2efedbeced1b65947c539df71e8fbc79b24"
+    },
+    {
+      "path": "docs/12/.nightshift-product-3.json",
+      "sha256": "03c5c0afc649a24caffcf96f6a5b4b1d07c7a3c2f4bbbed53951b62b7d50d84c"
+    },
+    {
+      "path": "docs/12/.nightshift-product-4.json",
+      "sha256": "9444822e794946e9ef5a2228ef6fc9b7c419537a7960e2e021f9ebe67b775ad6"
+    },
+    {
+      "path": "docs/12/.nightshift-product-5.json",
+      "sha256": "bbaff5acfaaba4ad278be358024cf082b47c7accfd946d5f87b08ad4eff374f7"
+    },
+    {
+      "path": "docs/12/.nightshift-adversarial-1.json",
+      "sha256": "d264bb383929b627f46b8f0cf7a977f2ae0a93fa6a063f12f6487b840bde16cf"
+    },
+    {
+      "path": "docs/12/.nightshift-adversarial-2.json",
+      "sha256": "b464716345f7e949ac18573d26e0011b70f4e896f4e2218cee0d8d31cd45bab1"
+    },
+    {
+      "path": "docs/12/SPEC.md",
+      "sha256": "bb9673f140ea9063f350ffd959218dc05e3803cb114124ba8d81709366362d97"
+    },
+    {
+      "path": "docs/12/SPEC.pre-adversarial-1.md",
+      "sha256": "2dfa5d8e027df4e4fdf6b094fba592dea8b500da8a15086e53105c1a284a1ef1"
+    },
+    {
+      "path": "docs/12/behavior-scenarios.json",
+      "sha256": "dd58b2d13ec5b9617a066fee547a33f07f7652a36453544c9f14ef2fccb1f818"
+    },
+    {
+      "path": "docs/12/repair-checks.json",
+      "sha256": "60335f86704f9e18adc4f34fba68b6bf354ad0f98b974e4a8accf51d98d8427e"
+    },
+    {
+      "path": "docs/12/repair-check.receipt.json",
+      "sha256": "8b83426ab2bd2093d823edbdbe8eecc90a69173a506d4c22cf710f7ee2149608"
+    },
+    {
+      "path": "docs/12/source-citations.before.json",
+      "sha256": "b9b8d8b442be2a3c68423e955888466830664fdb28c05ced9731467c6760ca82"
+    },
+    {
+      "path": "docs/12/source-citations.current.json",
+      "sha256": "67f2fb8c2d76f20d958a2cf4bf855462b7bef9ee696a64a3313f0981517506a5"
+    },
+    {
+      "path": "docs/12/project-source-repair.py",
+      "sha256": "275cfdd72ba9ae0463c9150c388fd5afb1bb40c5ac0f04333b23e375edc66129"
+    },
+    {
+      "path": "docs/12/classification-review-4.out.json",
+      "sha256": "6565b1c9ec8f750dd289a5cee43b06d3653aa10c352516ce5ce127cf317cbb86"
+    },
+    {
+      "path": "docs/12/product-check-6.py",
+      "sha256": "71e0dc6e12d202d3691e3d513de8241d3b713a1098162997ca5e162c8b5a4544"
+    },
+    {
+      "path": "docs/12/product-check-6.out.json",
+      "sha256": "69fb1a01e409c6801fe16f450f7bbe0373b3153220fe68be1c99f040d3cbb1e5"
+    },
+    {
+      "path": "docs/12/repair-admission.json",
+      "sha256": "4ad1ae15d08bcca62e83de74dac7313a363aa759036abfccc7a19b3ea7a93695"
+    },
+    {
+      "path": "docs/12/.adversarial-budget.json",
+      "sha256": "f3ae243a7568bd1c8a147d7ffaf4d91578277531b573b5bee507b8db59e06fc2"
+    },
+    {
+      "path": "docs/12/REPAIR-6.md",
+      "sha256": "3a557a66157988d3188153d6080ff9c8bfac74353fe08a684481e9cb0f786c30"
+    },
+    {
+      "path": "docs/12/source-ticket.json",
+      "sha256": "70dd0755e817fcbad0b0042198d909ca4d37a2d67c0cb3cf2b199484926851e3"
+    }
+  ]
+}

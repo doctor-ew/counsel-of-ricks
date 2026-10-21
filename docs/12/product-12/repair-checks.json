@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "findings": [
+    {
+      "id": "INCOMPLETE_STYLE_PRESERVATION_COVERAGE",
+      "artifact": "docs/12/behavior-scenarios.json",
+      "pointer": "/cases/6/then",
+      "expected": "(1) Tab order is All, then Contradictions, then Unsupported, by accessible name of the active element at each step. (2) The three controls are native buttons whose accessible names contain the label and count, and exactly one has aria-pressed=true after each activation. (3) Enter and Space each update the cards and selected state, and the activated button remains the focused element and the same DOM node after the view changes. (4) The focused button's computed outline-style is not none and outline-width is at least 2px, or it has a non-none box-shadow ring of at least 2px, and that indicator differs from the same button's unfocused computed values; outline:none with no replacement fails. (5) Using WCAG relative luminance with each background alpha-composited over its effective ancestor backgrounds, label and count text meets at least 4.5:1 in the unfocused, hovered, focused and selected states, and the focus indicator meets at least 3:1 against the adjacent background; the selected state's computed style differs from the unselected state's in addition to aria-pressed. (6) Existing sidebar and card styling is preserved: the aside's computed width, background, border, box-shadow and text color and the resolved root values of --cit-bg-1, --cit-portal, --cit-flare, --cit-alarm, --cit-text, --cit-text-dim and --cit-hairline, and every fixture card's computed width, background, border, box-shadow and text color, equal the pre-implementation baseline. (7) Retained evidence is the runner's JSON report, a measurements JSON listing each measured value and threshold, and one screenshot per measured state, copied under docs/12/browser-evidence/ with SHA-256 hashes. If Chromium or the runner cannot be installed or launched, the browser portion of this case is blocked with concrete evidence and is never satisfied by jsdom assertions.",
+      "prior_artifact": "docs/12/product-12/scenarios-reviewed-11.json",
+      "prior_sha256": "73470014409f92db146098e91c02c96b4bf249c8865459361cd34b756b2616df"
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "status": "SUCCESS",
+  "reason": "Ran exact configured command `npm --prefix frontend test && npm --prefix frontend run build` from .nightshift.toml:33, scope frontend. AGENTS.md and CLAUDE.md contain no explicit applicable test command; no legacy fallback required. Tests: 14 passed, 0 failed, 0 skipped. Build passed. Actual output retained in docs/12/test-runner-5.log. Existing frontend/e2e-results/report.json inspected: 1 passed, 0 failed, 0 skipped; browser tests were not rerun. Manual acceptance remains pending.",
+  "attempts": 1,
+  "artifacts": {
+    "branch": "nightshift/12",
+    "diff": "No source or test edits. Build updated frontend/tsconfig.tsbuildinfo; output retained in docs/12/test-runner-5.log. Prior evidence and counters preserved.",
+    "provider": "codex",
+    "model": "gpt-6.1-sol"
+  },
+  "rules_fired": [
+    "convention_review_completed",
+    "exact_configured_command",
+    "verification_only",
+    "no_browser_execution",
+    "no_publish",
+    "no_stage_receipt",
+    "route_gear:1"
+  ],
+  "results": {
+    "passed": 14,
+    "failed": 0
+  }
+}

@@ -1,0 +1,64 @@
+{
+  "version": 1,
+  "task": "12",
+  "gate": "final",
+  "observer": {
+    "provider": "codex",
+    "author_id": "implement-5-observer"
+  },
+  "scenario_ids": [
+    "C01",
+    "C02",
+    "C03",
+    "C04",
+    "C05",
+    "C06",
+    "C07",
+    "C08",
+    "C09"
+  ],
+  "command": {
+    "argv": [
+      "npm",
+      "--prefix",
+      "frontend",
+      "run",
+      "test:e2e"
+    ],
+    "source": {
+      "path": "docs/12/implement-5-final-provenance.md",
+      "line": 5,
+      "sha256": "e4c806cf63f77f7e2e9e20fa9377b562d564b94f96c0734e85504cd419c0b796"
+    }
+  },
+  "exit_code": 0,
+  "assertions": {
+    "kind": "relevant_assertion",
+    "passed": 15,
+    "failed": 0
+  },
+  "log": {
+    "path": "/Users/drew.schillinger/shuttlebay/doctorews-laboratory/nightshift-community/.nightshift/counsel-live-demo-worktrees/12/docs/12/implement-5-final-combined.log",
+    "sha256": "863f7d0f4b731f9d714f93e66c0641c7532fe25f0119f8a17d5c6e96addd20eb"
+  },
+  "tests": [
+    {
+      "path": "frontend/e2e/session-ledger-filters.spec.ts",
+      "sha256": "dd3fce666597fce1ebd0631f0d82852f63eaa0ee1e4725e5a291e6d5d2a64741"
+    },
+    {
+      "path": "frontend/test/session-ledger-filters.test.tsx",
+      "sha256": "b91137b17dcbf5fcea9537947b0053ac5f3bc32230b35290791881a01b90268c"
+    }
+  ],
+  "red_lock_sha": "8d832758fb1259c5d6eeecb875d7b5c8d1c55122",
+  "source_hashes": {
+    ".gitignore": "4cb216d982c01bf1aab0afe0b44da266b9815354046c2e352cbc9933e64be46b",
+    "frontend/e2e/session-ledger-filters.spec.ts": "dd3fce666597fce1ebd0631f0d82852f63eaa0ee1e4725e5a291e6d5d2a64741",
+    "frontend/package-lock.json": "3ec5908e5768ade644ad347e500e0e60bb545e1239ab4a5988f771c6265a5787",
+    "frontend/package.json": "c27d9413aa2a4c517f5687f0f266e07fd96832b5a36c2ead7d29ea25bfcb381c",
+    "frontend/playwright.config.ts": "c260b96575fb2a775d46773ada68510c80f27889ee042929f3b7427ab970df1b",
+    "frontend/src/pages/SessionPage.tsx": "f3b449add7d28808853e1d9b94fb17420675fcb72ffc0149290be5c0b535ebda",
+    "frontend/test/session-ledger-filters.test.tsx": "b91137b17dcbf5fcea9537947b0053ac5f3bc32230b35290791881a01b90268c"
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "status": "FAIL",
+  "reason": "AGENT BLOCKED — nightshift-run-all-tests. Stage: Run. No tests were executed, so there is no RED observation, exit status or assertion counts. (1) The test command needs approval, which this non-interactive session can't give. `npm --prefix frontend test -- --reporter=verbose` returned \"This command requires approval\". Redirecting output to /Users/drew.schillinger/shuttlebay/doctorews-laboratory/nightshift-community/.nightshift/counsel-live-demo-worktrees/12/docs/12/independent-red-observer.log was also refused: \"Output redirection ... needs approval. The path is outside the working directories for this session\". The session's only allowed directory is .../counsel-live-demo-worktrees/12/.nightshift/red-observer-12. I did not bypass the sandbox because no override was authorized. (2) The mandatory resolver gate could not run. `python3 /Users/drew.schillinger/.nightshift/scripts/nightshift-project-context.py --help` returned \"This command requires approval\", and the $NIGHTSHIFT_HOME form was refused as unverifiable. Listing /Users/drew.schillinger/.nightshift/scripts was refused as outside the allowed directory. I read the in-tree convention files by hand instead, which does not replace the resolver's `conventions` list. AGENTS.md has no test command. CLAUDE.md lines 53-61 are the unfilled \"Build & Test\" placeholder. frontend/ has no scoped AGENTS.md or CLAUDE.md. No conflicting commands. .nightshift.toml line 33 sets [tests] command = \"npm --prefix frontend test && npm --prefix frontend run build\". frontend/package.json line 12 sets \"test\": \"vitest run\". Intended selected command, if approved: `npm --prefix frontend test -- --reporter=verbose`. Source: task input, which matches the test half of .nightshift.toml:33. The extra `--reporter=verbose` flag is explicit controller instruction, and the build half is deliberately omitted for RED observation. Scope: frontend unit tests. No fallback to a lockfile or manifest was needed. Required action: either approve running `npm --prefix frontend test -- --reporter=verbose` and writing .../12/docs/12/independent-red-observer.log, or add the parent docs/12 directory to the session's allowed directories. Also approve or fix the resolver run, then re-dispatch. Whether failures reflect missing filter controls rather than setup/import errors is unknown. No source, tests or prior evidence were modified.",
+  "attempts": 1,
+  "artifacts": {
+    "branch": "",
+    "diff": "",
+    "model": "sonnet",
+    "provider": "claude"
+  },
+  "results": {
+    "failed": 0,
+    "passed": 0
+  },
+  "rules_fired": [
+    "mandatory-pre-execution-gate",
+    "resolver-blocked",
+    "run-blocked-approval-required",
+    "read-only",
+    "no-diagnosis",
+    "route_gear:1"
+  ]
+}

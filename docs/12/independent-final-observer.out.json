@@ -1,0 +1,25 @@
+{
+  "status": "SUCCESS",
+  "reason": "Second run of docs/12/focus-final-observer.sh exited 0: 14/14 component tests passed (2 files), Chromium e2e 1/1 passed (session-ledger-filters.spec.ts), tsc -b && vite build succeeded. The first run exited 1 because the Playwright webServer found 127.0.0.1:5173 already in use, probably the active controller's server. That run stopped before the build step, and its log is kept as independent-final-observer.attempt1.log. Nothing was listening on 5173 afterwards, and the rerun used a fresh checkout. No source, test or baseline changes, commits, gate approvals, publication or deployment.",
+  "attempts": 1,
+  "artifacts": {
+    "branch": "nightshift/12",
+    "diff": "No candidate source or test changes made. Added docs/12/independent-final-observer.log (rerun, exit 0), docs/12/independent-final-observer.attempt1.log (first run, exit 1, port 5173 conflict) and docs/12/independent-final-observer-directory.txt (retained checkout /tmp/nightshift-12-final-observer.ixmEN4). The working tree already had one pre-existing modified file (1 insertion, 1 deletion) that I did not touch.",
+    "model": "sonnet",
+    "provider": "claude"
+  },
+  "results": {
+    "files_changed": [
+      "docs/12/independent-final-observer.log",
+      "docs/12/independent-final-observer.attempt1.log",
+      "docs/12/independent-final-observer-directory.txt"
+    ]
+  },
+  "rules_fired": [
+    "agent-firewall",
+    "independent-verification-only",
+    "no-source-mutation",
+    "report-actual-exit-codes",
+    "route_gear:1"
+  ]
+}

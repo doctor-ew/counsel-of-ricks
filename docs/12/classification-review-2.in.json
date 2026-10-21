@@ -1,0 +1,285 @@
+{
+  "task": "12",
+  "reviewed_input_sha256": "a92012da4cdf53154b85759bcf1d18db6d21f1523bfe5a93e53ddc99de191a67",
+  "spec": "# 12 \u2014 Add Fact Ledger filters for contradictions and unsupported claims\n\n## Problem\n\nSession users need to inspect contradictions and unsupported claims without losing the complete ledger. The current sidebar maps the supplied facts directly into cards and has one session no-facts message (`frontend/src/pages/SessionPage.tsx:307-316`). This Story specifies one bounded frontend capability; no epic decomposition is needed. All seven ticket acceptance criteria remain required.\n\nStatus: initial proposal, not approved. Product sign-off remains missing under the retained AIRLOCK BYPASSED context. No observed RED, GREEN, independent review or demo acceptance is claimed.\n\n## Technical Constraints\n\n- Frontend filtering only. Preserve backend/API/authentication, prompts, ingestion, schema, Truth-O-Meter, transcripts and application model calls. Do not modify synthetic records to satisfy tests. These are ticket requirements.\n- Preserve the existing predicates: contradiction means nonempty `contradicts`; unsupported means empty `citations` (`app/services/ledger.py:41-48`). Both arrays are declared on `FactEntry` (`frontend/src/types/index.ts:72-79`). Membership is independent, not a partition.\n- Preserve existing fact order and card content. The current render uses array order, and card treatment already derives support and contradiction independently (`frontend/src/pages/SessionPage.tsx:307-310`, `frontend/src/pages/SessionPage.tsx:575-625`).\n- Preserve the existing session-specific ledger query and its five-second refresh; do not change its contract (`frontend/src/hooks/useLedger.ts:4-10`).\n- Use prepared tooling: the frontend declares Vitest, jsdom and Testing Library; its test configuration selects jsdom and frontend test files (`frontend/package.json:22-40`, `frontend/vitest.config.ts:1-3`). No dependency or tooling change is planned.\n- Preserve retained failed receipts, counters and allowances. This authoring proposal does not authorize implementation, paid review, push, PR, merge or deployment.\n\n## Solution Design\n\nKeep filter selection local to the session UI. Derive counts and visible facts from the latest query facts on every relevant render. Do not use response summary counts as the source of filter counts: counts must describe the same facts being filtered. Use nonmutating selection, with no additional API/model request or query invalidation on filter activation.\n\nSession identity changes must reset the effective selection to All, including navigation that reuses the mounted page and cached destination data. Same-session refresh must retain selection. Avoid a rendered destination state that briefly applies the previous session's filter.\n\nUse three native buttons with `type=\"button\"` and `aria-pressed`; this specifies the proposed accessibility contract rather than asserting existing markup. Keep controls visible and enabled at zero. Preserve the surrounding visual treatment and provide readable selected, hover and visible keyboard focus states. The existing ledger uses the current sidebar styling and card color variables (`frontend/src/pages/SessionPage.tsx:273-305`, `frontend/src/pages/SessionPage.tsx:592-605`).\n\n### Shared output contract\n\nThis contract governs UI rendering, all public scenarios and test assertions. It is not an API or stored-data change.\n\n| UI artifact | Required content or behavior |\n|---|---|\n| Filter controls | In order: All, Contradictions, Unsupported. Each exposes its label and numeric count in visible text and its accessible name. Exactly one button has `aria-pressed=true`; the others have `aria-pressed=false`. |\n| All count and cards | Count is the current facts length; render all facts in supplied order. |\n| Contradictions count and cards | Count and cards use `contradicts.length > 0`, preserving supplied order. Count facts, not contradiction references or pairs. |\n| Unsupported count and cards | Count and cards use `citations.length === 0`, preserving supplied order. |\n| Overlap | A fact satisfying both predicates appears once in each corresponding filtered view. |\n| Empty session | When no ledger data is available or the facts array is empty, render no cards and retain `Facts will appear here as you testify`; controls remain usable with zero counts. The existing copy is sourced at `frontend/src/pages/SessionPage.tsx:312-315`. |\n| Empty filtered view | When the full facts array is nonempty but the selected category is empty, render `No facts match this filter`; keep all controls usable. |\n| Refresh | Recompute controls and cards from the latest same-session query data while preserving selection. |\n| Session change | Start at All with the destination session's current data. |\n\nThe unchanged fixture has six facts; positions 2 and 4 are contradictions, positions 3, 4 and 5 are unsupported, and position 4 is in both categories (`postman/mocks/counsel-api/fixture.json:40-123`). These positions are public test expectations, never production constants. Tests may create separate synthetic in-memory data without editing that fixture.\n\n## Files to Change\n\nThis table lists the entire proposed implementation scope. The two authoring artifacts accompanying this proposal are planning outputs, not additional implementation scope. No helper extraction or changes to hooks, types, configuration, fixtures or demo entry are authorized by this table.\n\n| File | Change | Why |\n|---|---|---|\n| `frontend/src/pages/SessionPage.tsx` | Modify existing sidebar with local selection, derived counts/cards, empty states, session reset and accessible controls. | AC1\u2013AC5 |\n| `frontend/test/session-ledger-filters.test.tsx` | Planned new file: component/query-boundary tests using prepared tooling and public synthetic data; write before implementation. | AC1\u2013AC6; automated portion of AC7 |\n\n## Acceptance Criteria\n\n1. **AC1:** GIVEN a session ledger WHEN the UI opens THEN All is selected and three controls expose All, Contradictions and Unsupported with accurate current-data counts, including zero.\n2. **AC2:** GIVEN facts with independent category membership WHEN filters are selected THEN Contradictions shows only `contradicts.length > 0`, Unsupported shows only `citations.length === 0`, overlap appears in both corresponding views, and returning to All restores every fact in its original order.\n3. **AC3:** GIVEN either an empty ledger or a nonempty ledger with an empty selected category WHEN rendered THEN the session no-facts state and filtered-empty state are distinct and controls remain usable.\n4. **AC4:** GIVEN an active selection WHEN the existing ledger query refreshes THEN counts and cards update without mutating query data or causing extra API/model requests; GIVEN navigation to a different session THEN selection starts at All.\n5. **AC5:** GIVEN keyboard or assistive-technology use WHEN controls are reached and activated THEN they expose selection, support keyboard activation, retain readable focus/contrast and follow existing visual styling.\n6. **AC6:** GIVEN the feature has not been implemented WHEN meaningful prepared-tooling tests are run THEN preserve relevant failing results for categories, overlap, order, empty data, refresh, session reset, nonmutation/no extra requests and keyboard/selected behavior; retain independent review and reuse those tests for final passing evidence. Do not test arbitrary component internals.\n7. **AC7:** GIVEN the implementation and locked tests WHEN `npm --prefix frontend ci`, `npm --prefix frontend test` and `npm --prefix frontend run build` execute THEN all succeed; verify the feature in the labelled synthetic local demo and retain actual evidence. Synthetic simulation establishes no live backend or AI behavior.\n\n## Risks\n\n- Counting contradiction references or using exclusive categories would violate the required meanings.\n- Cached destination data or a same-component route change could retain the previous selection.\n- Snapshot-only or fixture-only tests could pass while controls, refresh or keyboard interaction remain broken.\n- DOM simulation alone cannot establish actual browser focus, contrast or labelled-demo operation. Retain deterministic browser evidence as well as component assertions.\n- Uncontrolled timers could confuse existing polling requests with requests caused by filter activation. Freeze time during filter assertions and separately exercise ordinary refresh.\n\n## Dependencies\n\nNo backend change, model prototype or new shared contract is required. This is ordinary deterministic React/browser testing, not model runtime proof. Prepared packages and configuration are cited above; their installation and successful execution have not been observed in this stage.\n\nThe controller must integrate these documents, run on-disk scenario validation and deterministic scope parsing without activating an implementation scope lease, obtain actual independent classification review and resolve missing product sign-off before advancing. Review fields remain null. Any required browser runner/environment that is unavailable downstream blocks its required coverage; do not relabel that coverage as not applicable or replace it with text containment. No operator-owned manual acceptance requirement was assigned.\n\n## Test Plan\n\nPublic artifact: `docs/12/behavior-scenarios.json` (proposed new authoring artifact). Version 1 semantic/public review SHA-256: `a92012da4cdf53154b85759bcf1d18db6d21f1523bfe5a93e53ddc99de191a67`. This digest uses the installed helper's canonical semantic hashing with classification review fields null. Recompute after integration; any semantic change invalidates this binding. It is not a test pass or review approval.\n\n| Cases | AC coverage | Required evidence |\n|---|---|---|\n| C01 | AC1, AC2 | Default, exact visible membership/counts, overlap, category order and All restoration. |\n| C02, C03 | AC1, AC3 | Nonempty-category miss versus empty/unavailable ledger; zero-count controls remain enabled. |\n| C04 | AC1, AC2, AC4 | Replace data through the existing query boundary; change membership/counts, cross zero and retain same-session selection. Include deliberately stale summary counts. |\n| C05 | AC4 | Navigate between sessions, including cached navigation without remount; All is effective on arrival. |\n| C06 | AC4 | Freeze input, compare it after repeated switches, observe zero switch-induced requests and preserve ordinary polling. |\n| C07 | AC5 | Accessible button names/counts and selected state; browser Tab, Enter and Space; focus retention and readable focus/contrast. |\n| C08 | AC6 | Meaningful missing-feature RED before implementation, retained output, independent review and final passing locked tests. |\n| C09 | AC7 | Exact install/test/build commands and labelled local demo evidence. |\n\nUse user-visible text, accessible roles and query-boundary updates rather than internal state or component implementation assertions. Freeze or stub unrelated page behavior only as needed for isolation. Include positive and deliberately wrong public examples described in the scenarios. An infrastructure/import failure alone does not establish relevant RED. Existing fixture tests check fixture shape and category definitions, not filter interaction (`frontend/test/demo-fixture.test.ts:10-22`).\n\nCommand selection: the ticket requires the three separate npm commands above. `.nightshift.toml:32-33` specifies `npm --prefix frontend test && npm --prefix frontend run build`, agreeing with the ticket's test/build sequence. The package scripts are defined at `frontend/package.json:6-12`. `CLAUDE.md:57-65` contains only commented examples, not a conflicting selected command. Do not execute these gates during authoring.\n\nFor the later demo check, run `python3 scripts/demo-local.py` and visit `/demo/index.html#/session/11111111-1111-4111-8111-111111111111`. The launcher constructs that URL and starts the simulation/frontend (`scripts/demo-local.py:60-68`). The demo entry provides a visible synthetic label and development-only guard (`frontend/demo/main.tsx:10-20`). Verify 6/2/3, overlap, order restoration and keyboard interaction there. Exercise empty, refreshed and second-session states in controlled tests without changing public demo records. Do not claim screenshot evidence proves absence of requests; use the request observation case.\n\n### Capability matrix\n\nThe installed behavioral-proof helper's `capabilities --project` operation returned available schema version 1 during this authoring run. Supported operators: `text_equals`, `text_contains`, `text_section_contains`, `json_equals`, `json_field_equals`, `json_field_length_at_most`, `json_field_nonempty`. Discovery is not admission. These text/JSON completion operators do not execute or prove application UI behavior.\n\n| AC | Observable artifact/field | Supported check | Semantic-review obligation | Unresolved harness dependency |\n|---|---|---|---|---|\n| AC1 | Rendered button names, counts and selected state | Ordinary DOM/browser assertions; scenario schema validation | Counts describe current facts, not hardcoded fixture totals | Future test execution; no model oracle dependency |\n| AC2 | Ordered visible fact text in each view | Exact ordered UI assertions | Predicates and overlap match server meanings | Future RED/final execution |\n| AC3 | Empty-state text and enabled buttons | DOM/browser assertions | Empty session is distinguished from category miss | Future RED/final execution |\n| AC4 | Query-update output, frozen input and request observation | Query-boundary, timer and request assertions | Session reset versus same-session refresh; attributable request counting | Future query/browser test environment and evidence |\n| AC5 | Accessible names, aria-pressed, keyboard focus and rendered styles | DOM selected-state assertions plus deterministic browser interaction | Readable contrast, visible focus and retained styling | Browser environment and retained visual evidence pending |\n| AC6 | Locked tests, relevant failing output and independent review | Ordinary RED/final evidence and review receipts | Failure represents missing behavior, not test setup | Tests, RED and independent review pending |\n| AC7 | Command exit results and labelled demo evidence | Ordinary command execution and browser checks | Synthetic-only claims; production behavior preserved | Install/build/demo execution pending |\n\nDo not weaken a required check when its runner is unavailable. No completion containment operator is a substitute for exact UI cardinality, source preservation, browser interaction or semantic review.\n\n## Open Questions\n\nNo unresolved product choices were supplied. Approval and execution evidence remain pending dependencies rather than invented decisions. No required runtime/oracle has been established as unavailable; if downstream discovery finds one unavailable, block the affected gate with concrete evidence.\n\n## Model Router\n\n**Decision:** nightshift-engineer\n\nTwo implementation files in one top-level module; no API, DTO, hook signature or stored contract change. The design is a bounded local UI derivation, not an architecture change.\n\n## Sources\n\nSource baseline: branch `nightshift/12`, commit `d2fafd7`. Extractor EXTRACTED_AT: `2026-10-17T15:43:23Z`, commit `d2fafd7`. Current source was read for this proposal. The base reference resolves to `a89877879ef9b95618e5be58273346d6fa15fc18`; the committed difference from it is limited to one deleted Beads ledger line. No application baseline change was observed in that comparison. Ticket requirements and retained approval status come from the supplied task input, not inferred source behavior.\n\n- `frontend/src/pages/SessionPage.tsx:22-38` (branch: nightshift/12, commit: d2fafd7) \u2014 route session identity, ledger hook use and existing local state.\n- `frontend/src/pages/SessionPage.tsx:273-305` (branch: nightshift/12, commit: d2fafd7) \u2014 current sidebar styling and summary count rendering.\n- `frontend/src/pages/SessionPage.tsx:307-316` (branch: nightshift/12, commit: d2fafd7) \u2014 direct fact mapping and existing session no-facts copy.\n- `frontend/src/pages/SessionPage.tsx:575-625` (branch: nightshift/12, commit: d2fafd7) \u2014 typed fact card, independent category predicates, visual treatment and displayed fact content.\n- `frontend/src/types/index.ts:72-85` (branch: nightshift/12, commit: d2fafd7) \u2014 fact array fields and ledger response shape.\n- `frontend/src/hooks/useLedger.ts:4-10` (branch: nightshift/12, commit: d2fafd7) \u2014 session-specific query key, API query function and five-second polling.\n- `app/services/ledger.py:41-48` (branch: nightshift/12, commit: d2fafd7) \u2014 server category count meanings.\n- `postman/mocks/counsel-api/fixture.json:40-123` (branch: nightshift/12, commit: d2fafd7) \u2014 six ordered synthetic facts, category membership, overlap and summary counts.\n- `frontend/package.json:6-12` (branch: nightshift/12, commit: d2fafd7) \u2014 prepared test, build and demo scripts.\n- `frontend/package.json:22-40` (branch: nightshift/12, commit: d2fafd7) \u2014 prepared frontend testing dependencies.\n- `frontend/vitest.config.ts:1-3` (branch: nightshift/12, commit: d2fafd7) \u2014 jsdom and test-file discovery configuration.\n- `frontend/test/demo-fixture.test.ts:10-22` (branch: nightshift/12, commit: d2fafd7) \u2014 existing synthetic fixture assertions and their scope.\n- `scripts/demo-local.py:60-68` (branch: nightshift/12, commit: d2fafd7) \u2014 synthetic simulation/frontend startup and constructed demo URL.\n- `frontend/demo/main.tsx:10-20` (branch: nightshift/12, commit: d2fafd7) \u2014 development-only demo guard, synthetic label and session route.\n- `.nightshift.toml:32-33` (branch: nightshift/12, commit: d2fafd7) \u2014 configured test/build command.\n- `CLAUDE.md:57-65` (branch: nightshift/12, commit: d2fafd7) \u2014 build/test examples are commented placeholders.\n",
+  "scenarios": {
+    "version": 1,
+    "task": "12",
+    "ac_ids": [
+      "AC1",
+      "AC2",
+      "AC3",
+      "AC4",
+      "AC5",
+      "AC6",
+      "AC7"
+    ],
+    "author": {
+      "provider": "codex",
+      "author_id": "/root"
+    },
+    "applicability": {
+      "kind": "deterministic",
+      "rationale": "Client-side React rendering, navigation, data refresh and browser interaction use ordinary deterministic application tests; no prompt or model runtime changes.",
+      "risks": [
+        "deterministic_logic"
+      ],
+      "review": null
+    },
+    "runtime": null,
+    "prototype_files": [],
+    "cases": [
+      {
+        "id": "C01",
+        "ac_ids": [
+          "AC1",
+          "AC2"
+        ],
+        "required": true,
+        "applicability": {
+          "kind": "deterministic",
+          "rationale": "Ordinary deterministic application evidence for C01; independent classification review remains pending.",
+          "risks": [
+            "deterministic_logic"
+          ],
+          "review": null
+        },
+        "given": "The unchanged public six-fact fixture is loaded.",
+        "when": "Open the session and select each filter, then All.",
+        "then": "All is initially selected with count 6; Contradictions has count 2 and only fixture positions 2,4; Unsupported has count 3 and only positions 3,4,5; All restores positions 1 through 6.",
+        "forbidden": "Disjoint categorization, pair counting, sorted results or hardcoded production counts.",
+        "input": null,
+        "expected": [],
+        "prohibited": [],
+        "counterexamples": [
+          "A fact in both categories must appear once in each corresponding view."
+        ],
+        "visibility": "public"
+      },
+      {
+        "id": "C02",
+        "ac_ids": [
+          "AC3"
+        ],
+        "required": true,
+        "applicability": {
+          "kind": "deterministic",
+          "rationale": "Ordinary deterministic application evidence for C02; independent classification review remains pending.",
+          "risks": [
+            "deterministic_logic"
+          ],
+          "review": null
+        },
+        "given": "A nonempty ledger has citations on every fact and no contradictions.",
+        "when": "Select each zero-count category and then All.",
+        "then": "Zero-count controls remain enabled; each filtered view says No facts match this filter; All restores every fact.",
+        "forbidden": "The session no-facts message for a nonempty ledger, hidden controls or disabled empty categories.",
+        "input": null,
+        "expected": [],
+        "prohibited": [],
+        "counterexamples": [
+          "Showing Facts will appear here as you testify for a nonempty filtered ledger fails."
+        ],
+        "visibility": "public"
+      },
+      {
+        "id": "C03",
+        "ac_ids": [
+          "AC1",
+          "AC3"
+        ],
+        "required": true,
+        "applicability": {
+          "kind": "deterministic",
+          "rationale": "Ordinary deterministic application evidence for C03; independent classification review remains pending.",
+          "risks": [
+            "deterministic_logic"
+          ],
+          "review": null
+        },
+        "given": "The current ledger contains no facts; also exercise an initially unavailable ledger.",
+        "when": "Render and activate all three controls.",
+        "then": "Each control shows 0 and remains usable; no cards render; the existing session no-facts message is retained, distinct from filtered-empty copy.",
+        "forbidden": "Missing controls, exceptions or a misleading filtered-empty message for an empty session.",
+        "input": null,
+        "expected": [],
+        "prohibited": [],
+        "counterexamples": [
+          "An empty session showing No facts match this filter fails."
+        ],
+        "visibility": "public"
+      },
+      {
+        "id": "C04",
+        "ac_ids": [
+          "AC1",
+          "AC2",
+          "AC4"
+        ],
+        "required": true,
+        "applicability": {
+          "kind": "deterministic",
+          "rationale": "Ordinary deterministic application evidence for C04; independent classification review remains pending.",
+          "risks": [
+            "deterministic_logic"
+          ],
+          "review": null
+        },
+        "given": "Contradictions or Unsupported is selected with existing query data.",
+        "when": "Replace ledger query data for the same session with a new ordered array changing both memberships and counts, including transitions to and from zero.",
+        "then": "Selection persists and counts and cards reflect only the latest facts in their supplied order, even if response summary counts are stale.",
+        "forbidden": "Stale memoization, resetting on same-session refresh or trusting stale summary counts.",
+        "input": null,
+        "expected": [],
+        "prohibited": [],
+        "counterexamples": [
+          "A newly cited fact remaining in Unsupported fails."
+        ],
+        "visibility": "public"
+      },
+      {
+        "id": "C05",
+        "ac_ids": [
+          "AC4"
+        ],
+        "required": true,
+        "applicability": {
+          "kind": "deterministic",
+          "rationale": "Ordinary deterministic application evidence for C05; independent classification review remains pending.",
+          "risks": [
+            "deterministic_logic"
+          ],
+          "review": null
+        },
+        "given": "A filtered session is displayed.",
+        "when": "Navigate to another session without requiring a full page reload, then return to the first session.",
+        "then": "Each session change starts at All with current session counts and facts, including cached-data navigation.",
+        "forbidden": "A previous session filter leaking into another session.",
+        "input": null,
+        "expected": [],
+        "prohibited": [],
+        "counterexamples": [
+          "Rendering a cached destination session as Unsupported fails."
+        ],
+        "visibility": "public"
+      },
+      {
+        "id": "C06",
+        "ac_ids": [
+          "AC4"
+        ],
+        "required": true,
+        "applicability": {
+          "kind": "deterministic",
+          "rationale": "Ordinary deterministic application evidence for C06; independent classification review remains pending.",
+          "risks": [
+            "deterministic_logic"
+          ],
+          "review": null
+        },
+        "given": "Frozen query data and a controlled request observer are available; scheduled refreshes are separately accounted for.",
+        "when": "Switch filters repeatedly without advancing polling, then allow one ordinary refresh.",
+        "then": "Input arrays and nested entries stay unchanged; filter switching makes no extra API/model requests and ordinary refresh remains unchanged.",
+        "forbidden": "Mutating facts, triggering refetch on selection or suppressing existing polling.",
+        "input": null,
+        "expected": [],
+        "prohibited": [],
+        "counterexamples": [
+          "A filter handler issuing a ledger request fails even when displayed cards are correct."
+        ],
+        "visibility": "public"
+      },
+      {
+        "id": "C07",
+        "ac_ids": [
+          "AC5"
+        ],
+        "required": true,
+        "applicability": {
+          "kind": "deterministic",
+          "rationale": "Ordinary deterministic application evidence for C07; independent classification review remains pending.",
+          "risks": [
+            "deterministic_logic"
+          ],
+          "review": null
+        },
+        "given": "The ledger and all controls, including a zero-count category, are displayed.",
+        "when": "Tab through controls and activate them with Enter and Space in deterministic browser tests.",
+        "then": "Native buttons named All, Contradictions and Unsupported expose counts; exactly one has aria-pressed=true; focus remains visible and activation updates cards and selected state.",
+        "forbidden": "Pointer-only interaction, ambiguous selected state, lost focus or unreadable focus/contrast.",
+        "input": null,
+        "expected": [],
+        "prohibited": [],
+        "counterexamples": [
+          "A color-only selected style without aria-pressed fails."
+        ],
+        "visibility": "public"
+      },
+      {
+        "id": "C08",
+        "ac_ids": [
+          "AC6"
+        ],
+        "required": true,
+        "applicability": {
+          "kind": "deterministic",
+          "rationale": "Ordinary deterministic application evidence for C08; independent classification review remains pending.",
+          "risks": [
+            "deterministic_logic"
+          ],
+          "review": null
+        },
+        "given": "Implementation is absent and meaningful public UI tests have been authored using prepared tooling.",
+        "when": "Run focused tests before implementation and retain their output; obtain independent review; after implementation run the same locked cases.",
+        "then": "Relevant missing-filter assertions visibly fail before implementation and pass afterward; preserved evidence is independently reviewed.",
+        "forbidden": "Claiming an import failure or passing fixture-only tests proves feature RED; fabricated review or results.",
+        "input": null,
+        "expected": [],
+        "prohibited": [],
+        "counterexamples": [
+          "A suite that only checks fixture lengths fails this obligation."
+        ],
+        "visibility": "public"
+      },
+      {
+        "id": "C09",
+        "ac_ids": [
+          "AC7"
+        ],
+        "required": true,
+        "applicability": {
+          "kind": "deterministic",
+          "rationale": "Ordinary deterministic application evidence for C09; independent classification review remains pending.",
+          "risks": [
+            "deterministic_logic"
+          ],
+          "review": null
+        },
+        "given": "The proposed implementation and locked tests are available in the prepared local environment.",
+        "when": "Run npm --prefix frontend ci, npm --prefix frontend test and npm --prefix frontend run build; start python3 scripts/demo-local.py and exercise the labelled synthetic demo.",
+        "then": "All commands succeed; demo shows 6/2/3 counts, overlap and restored order with keyboard operation; retain command outputs and browser evidence, with synthetic label and production behavior preserved.",
+        "forbidden": "Treating synthetic simulation as live backend/AI proof, altering fixture records, auth or production entry to pass.",
+        "input": null,
+        "expected": [],
+        "prohibited": [],
+        "counterexamples": [
+          "A successful build without exercising the labelled demo fails AC7."
+        ],
+        "visibility": "public"
+      }
+    ],
+    "heldout": null
+  },
+  "source_request": {
+    "source": "gh",
+    "repository": "doctor-ew/counsel-of-ricks",
+    "source_id": "12",
+    "external_ref": "gh-12",
+    "title": "Add Fact Ledger filters for contradictions and unsupported claims",
+    "body": "## Outcome\n\nAdd client-side Fact Ledger filters to the existing Session UI: All, Contradictions and Unsupported. This is a bounded live Nightshift demonstration using synthetic local session data. The existing frontend currently renders every fact without filtering.\n\n## Source and baseline\n\n- Base: `nightshift/live-demo-baseline` (the demo-preparation branch; use its current committed baseline).\n- UI: `frontend/src/pages/SessionPage.tsx` currently maps `ledger.facts` directly into `FactCard`.\n- Types: `frontend/src/types/index.ts` defines `FactEntry` with `citations` and `contradicts` arrays.\n- Existing server definitions in `app/services/ledger.py`: a contradiction has a nonempty `contradicts`; unsupported means empty `citations`. Preserve those meanings.\n- Local before view: `/demo/index.html#/session/11111111-1111-4111-8111-111111111111`, served using `python3 scripts/demo-local.py`.\n- Fixture: `postman/mocks/counsel-api/fixture.json`; six facts, two contradictions, three unsupported, with one fact in both filtered categories.\n\n## Acceptance criteria\n\n1. Default is All. Three controls expose All, Contradictions and Unsupported with accurate current-data counts.\n2. Contradictions shows only facts with `contradicts.length > 0`; Unsupported shows only facts with `citations.length === 0`. A fact can belong to both categories. Switching back to All restores every fact in its existing order.\n3. Empty filtered results show a clear message distinct from the session's no-facts state. Keep controls usable when a category is empty.\n4. Counts and displayed facts update when the existing ledger query refreshes. Filtering must not mutate query data or send additional API/model requests. A different session starts at All.\n5. Controls are keyboard-accessible and expose their selected state to assistive technology. Retain existing styling and readable focus/contrast.\n6. Add meaningful failing tests before implementation covering each category, overlap, empty data, refreshed data and keyboard/selected behavior. Preserve the RED result and independent review. Use the prepared test tooling; do not assert arbitrary component internals.\n7. `npm --prefix frontend ci`, `npm --prefix frontend test` and `npm --prefix frontend run build` succeed. Verify the feature in the labelled synthetic local demo.\n\n## Scope limits\n\nFrontend filtering only. Do not change backend/API/authentication, agent prompts, ingestion, database schema, Truth-O-Meter logic, transcripts, application model calls or the synthetic records to make tests pass. New frontend helpers/tests are allowed. The local demo is a synthetic API simulation, not proof of live backend or AI behavior. Keep normal production authentication and production build behavior intact.\n\nThe isolated demo Beads ledger is local; this GitHub issue is the upstream ticket. Do not import unrelated work from the original checkout's active MEX setup. Preserve failed receipts and retained allowances. Push/open a candidate PR only after required gates; never merge or deploy as part of this demonstration.\n",
+    "labels": [],
+    "url": "https://github.com/doctor-ew/counsel-of-ricks/issues/12",
+    "state": "open"
+  },
+  "review_scope": "Independent classification and completeness review of this deterministic frontend specification. Verify full AC coverage, observable cases, scope and test plan. No implementation or RED execution occurs in product. Product airlock bypass is retained; no unresolved operator decision exists. Return exact behavior-reviewer schema. No private fixtures."
+}

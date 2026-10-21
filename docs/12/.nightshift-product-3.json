@@ -1,0 +1,103 @@
+{
+  "version": 1,
+  "task": "12",
+  "stage": "product",
+  "status": "pass",
+  "findings": [],
+  "checks": [
+    {
+      "command": "python3 /Users/drew.schillinger/shuttlebay/doctorews-laboratory/nightshift-community/.nightshift/release-0.4.0/scripts/nightshift-behavior-proof.py validate --project \"$PWD\" --task 12 --scenarios docs/12/behavior-scenarios.json",
+      "exit_code": 0
+    },
+    {
+      "command": "python3 /Users/drew.schillinger/shuttlebay/doctorews-laboratory/nightshift-community/.nightshift/release-0.4.0/scripts/nightshift-repair-check.py check --project \"$PWD\" --manifest docs/12/repair-checks.json --out docs/12/repair-check.receipt.json",
+      "exit_code": 0
+    },
+    {
+      "command": "bash /Users/drew.schillinger/shuttlebay/doctorews-laboratory/nightshift-community/.nightshift/release-0.4.0/scripts/nightshift-agent.sh nightshift-behavior-reviewer --gear auto --auth subscription --risk standard --attempt 3 --adversarial --author-provider claude --in docs/12/classification-review-4.in.json --out docs/12/classification-review-4.out.json",
+      "exit_code": 0
+    },
+    {
+      "command": "python3 -I docs/12/product-check-3.py",
+      "exit_code": 0
+    },
+    {
+      "command": "git diff --check",
+      "exit_code": 0
+    }
+  ],
+  "evidence": [
+    {
+      "path": "docs/12/.nightshift-product-1.json",
+      "sha256": "6a585dead80a4679ffeb09137a1cf5beb88bc597b9c71550fcc8f2be757c9a56"
+    },
+    {
+      "path": "docs/12/.nightshift-product-2.json",
+      "sha256": "6351dcd9b1b259852476016c18f5c2efedbeced1b65947c539df71e8fbc79b24"
+    },
+    {
+      "path": "docs/12/SPEC.md",
+      "sha256": "2dfa5d8e027df4e4fdf6b094fba592dea8b500da8a15086e53105c1a284a1ef1"
+    },
+    {
+      "path": "docs/12/SPEC.pre-repair-3.md",
+      "sha256": "25dde52036a879a9aa53d4b15df1528c619ea6383ed5cd7f52b7fc04f991ab3f"
+    },
+    {
+      "path": "docs/12/behavior-scenarios.json",
+      "sha256": "dd58b2d13ec5b9617a066fee547a33f07f7652a36453544c9f14ef2fccb1f818"
+    },
+    {
+      "path": "docs/12/behavior-scenarios.pre-repair-3.json",
+      "sha256": "a6bc7f5bae00f3d802621912d8a56f71401b7e04204f862a3afe625b696ded1a"
+    },
+    {
+      "path": "docs/12/repair-checks.json",
+      "sha256": "30e96504a6859706b5cbf1c80cf092984a7136b8000deb2360ab2a6a95a9c1a9"
+    },
+    {
+      "path": "docs/12/repair-check.receipt.json",
+      "sha256": "8fea71be24f30c5856e6d2a7caef79b5eecc8d43b6e433e7c5b4b5650f3e7fe5"
+    },
+    {
+      "path": "docs/12/repair-checks-2.json",
+      "sha256": "9d6b97f4445af30dc2b25e642d30487f9e69dfbb9cfd23df8577e7825352ecc0"
+    },
+    {
+      "path": "docs/12/repair-check-2.receipt.json",
+      "sha256": "cf8cd3fec149b370145bdcb965e38f194315de92d45d1d410f529291775f6cdf"
+    },
+    {
+      "path": "docs/12/classification-review-3.out.json",
+      "sha256": "2aef12dae9d2e90f0c6dff3452ed9a16d83dd13ed7a56742782bf194216b6b70"
+    },
+    {
+      "path": "docs/12/classification-review-4.in.json",
+      "sha256": "c00fe995f94a4f919d9b918f07fa3005fd4649beb6a0ee8113710a78194e79c8"
+    },
+    {
+      "path": "docs/12/classification-review-4.out.json",
+      "sha256": "6565b1c9ec8f750dd289a5cee43b06d3653aa10c352516ce5ce127cf317cbb86"
+    },
+    {
+      "path": "docs/12/product-check-3.py",
+      "sha256": "bca490d63276f300c2d0aa909741ea38c829521dbbeb80a7024fe339b0695831"
+    },
+    {
+      "path": "docs/12/product-check-3.out.json",
+      "sha256": "8f961854b5a8bb55db12935dc65434a825f4f3587ea4b00ba7011424d91edc0e"
+    },
+    {
+      "path": "docs/12/REPAIR-3.md",
+      "sha256": "14dab9d02ea0f15fe4301127be3b86fefaf75cb2ae38e8291fdc5c824ee0c573"
+    },
+    {
+      "path": "docs/12/spec-author-provider.txt",
+      "sha256": "c857d09db23e6822e3600bc06ad8d58f92ed62bc8efd81c753f77048662cb97d"
+    },
+    {
+      "path": "docs/12/source-ticket.json",
+      "sha256": "70dd0755e817fcbad0b0042198d909ca4d37a2d67c0cb3cf2b199484926851e3"
+    }
+  ]
+}

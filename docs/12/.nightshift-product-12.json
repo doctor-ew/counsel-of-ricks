@@ -1,0 +1,79 @@
+{
+  "version": 1,
+  "task": "12",
+  "stage": "product",
+  "status": "pass",
+  "findings": [],
+  "checks": [
+    {
+      "command": "python3 /Users/drew.schillinger/shuttlebay/doctorews-laboratory/nightshift-community/.nightshift/tuesday-recovery/scripts/nightshift-repair-check.py check --project \"$PWD\" --manifest docs/12/product-12/repair-checks.json --out docs/12/product-12/repair-check.receipt.json",
+      "exit_code": 0
+    },
+    {
+      "command": "python3 docs/12/product-check-12.py",
+      "exit_code": 0
+    }
+  ],
+  "evidence": [
+    {
+      "path": "docs/12/SPEC.md",
+      "sha256": "55180bed26e9b4ff32f1950220aaab9db80d9af94b781fac4fb3283e31201f0a"
+    },
+    {
+      "path": "docs/12/behavior-scenarios.json",
+      "sha256": "00d4b58c41884343efac51e934de486012ef1df0453c871bc895fbb0c906155a"
+    },
+    {
+      "path": "docs/12/spec-author-provider.txt",
+      "sha256": "243b0dc9b847e66c440dca985e10fe0ce9e29c379b018ddd5747ba8948f84cc8"
+    },
+    {
+      "path": "docs/12/classification-focus-repair-3.in.json",
+      "sha256": "2661a1ef7d2a4333a4636178d29f333f831a9c86a2b04b45b95edba7eb8dc97b"
+    },
+    {
+      "path": "docs/12/classification-focus-repair-3.out.json",
+      "sha256": "4020845118cf8d6ceea6a76fc3f60cb89a14ebf4f9a6b33c86a0f20c377ef293"
+    },
+    {
+      "path": "docs/12/classification-focus-repair-3.out.json.auth-5c109f93ab944b46b5e1174e757f11a4.json",
+      "sha256": "d6da5858282be2cbca8314989fd887361d7a52c9faa1aad1e7736c15a06e80c3"
+    },
+    {
+      "path": "docs/12/product-extractor-2.out.json",
+      "sha256": "fa1763e83cbef217b61fde89e70667b8d819d62c369db83f86fbb60f5c87eb11"
+    },
+    {
+      "path": "docs/12/product-check-12.py",
+      "sha256": "ef39dec3cd80802141ab1d22b2589bb4e8fd726bc26d5c3fc773febb633b381a"
+    },
+    {
+      "path": "docs/12/product-check-12.out.json",
+      "sha256": "2a962cd81c60600deeb4dd50b25af81371deab0405bd5a725ce5e2f8d987fdcc"
+    },
+    {
+      "path": "docs/12/product-12/scenarios-reviewed-11.json",
+      "sha256": "73470014409f92db146098e91c02c96b4bf249c8865459361cd34b756b2616df"
+    },
+    {
+      "path": "docs/12/product-12/repair-checks.json",
+      "sha256": "8886cbff1b4abb1d1946185c913e5fc7221f5790d25a17b5a3a06369ae001f91"
+    },
+    {
+      "path": "docs/12/product-12/repair-check.receipt.json",
+      "sha256": "93c8ddbf63050ddae81bd4f4cb5e628a4ff6c416feb14d09c7979f74e4c9f1cc"
+    },
+    {
+      "path": "docs/12/classification-review-11.in.json",
+      "sha256": "4844cf57a2177612cb5490f58ef053f2bea536ea6dbc8dc2bc2f95651906adf5"
+    },
+    {
+      "path": "docs/12/classification-review-11.out.json",
+      "sha256": "bc359c2b4683f8fb897f003032616c238e2af744ba89434d62e01d020e7a3ea7"
+    },
+    {
+      "path": "docs/12/.nightshift-product-11.json",
+      "sha256": "4927efbf8d5228032682375afb583b1c25182670eda2845c76d4b77746830a85"
+    }
+  ]
+}

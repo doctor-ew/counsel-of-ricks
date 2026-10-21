@@ -1,0 +1,5 @@
+{
+  "command": "nightshift-repair-check.py check with --out docs/12/repair-check-10.receipt.json",
+  "exit_code": 2,
+  "error": "receipt must be repair-check.receipt.json beside the manifest"
+}

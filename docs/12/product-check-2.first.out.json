@@ -1,0 +1,55 @@
+{
+  "task": "12",
+  "checks": [
+    {
+      "command": "behavior scenario validation",
+      "exit_code": 0,
+      "output": "{\"outcome\": \"pass\", \"reviewed_input_sha256\": \"500d8a494dfa89488e3adf347b34c3463c0f92f270dc63376e3076e8cb985ec0\", \"status\": \"valid\", \"task\": \"12\"}\n"
+    },
+    {
+      "command": "deterministic Files to Change parsing without scope activation",
+      "exit_code": 0,
+      "scope": {
+        "frontend/src/pages/SessionPage.tsx": "Modify existing sidebar with local selection, derived counts/cards, empty states, session reset and accessible controls.",
+        "frontend/test/session-ledger-filters.test.tsx": "Planned new file: component/query-boundary tests using prepared tooling and public synthetic data; write before implementation."
+      },
+      "tests": [
+        "frontend/test/session-ledger-filters.test.tsx"
+      ]
+    },
+    {
+      "command": "spec guardrail",
+      "exit_code": 0,
+      "output": {
+        "decision": "approve"
+      }
+    },
+    {
+      "command": "hash-bound scenario repair regression",
+      "exit_code": 2,
+      "output": "{\"status\": \"error\", \"error\": \"paths must be nonempty project-relative paths without traversal\", \"gate_approval\": false}\n"
+    },
+    {
+      "command": "independent classification approval, digest and complete case coverage",
+      "exit_code": 1,
+      "findings": [
+        {
+          "scenario_id": "C07",
+          "code": "UNMEASURABLE_FOCUS_CONTRAST_AND_UNSUPPORTED_BROWSER_RUNTIME",
+          "reason": "The then-clause requires 'focus remains visible' and no 'unreadable focus/contrast', but gives no measurable pass/fail check. A wrong implementation with outline:none, or a low-contrast selected or focused state, would not be distinguished from a correct one. Specify observable assertions: the focused button's computed style has a visible focus indicator (non-none outline or equivalent, distinct from the unfocused state), and the selected, hover and focus foreground/background contrast is computed against a stated threshold (e.g. WCAG 4.5:1 text, 3:1 indicator). Also assert that existing sidebar styling and card variables are preserved. The case also requires real browser Tab, Enter, Space, focus and contrast, but the prepared tooling is only Vitest, jsdom and Testing Library, and Files to Change lists no browser test or evidence artifact. jsdom cannot evidence real focus rendering or contrast. Name the browser runner and the retained artifact, or add the dependency and scope. If no runner is available, mark the case as blocked rather than satisfied by jsdom assertions. Also add Tab-order assertions (All, Contradictions, Unsupported) and that focus stays on the activated button after the view changes."
+        },
+        {
+          "scenario_id": "C05",
+          "code": "FIRST_RENDER_OBSERVATION_MECHANISM_UNSPECIFIED",
+          "reason": "The case requires that the first destination render already selects All, with no frame using the previous filter. Testing Library's act flushes effects, so a post-act assertion cannot tell an effect-based reset from a derived reset. Both pass such a check, and the stated counterexample (cached destination rendered as Unsupported) is not reliably detected. Specify an observable mechanism that records every committed DOM state during the navigation, such as a MutationObserver or a synchronous commit-time probe. Assert that no recorded state shows the destination session with aria-pressed=true on Contradictions or Unsupported, or with filtered cards or counts. Also assert the destination cards and counts in order in the first recorded state."
+        }
+      ]
+    },
+    {
+      "command": "git diff --check",
+      "exit_code": 0,
+      "output": ""
+    }
+  ],
+  "outcome": "fail"
+}

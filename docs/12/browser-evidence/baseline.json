@@ -1,0 +1,62 @@
+{
+  "sidebar": {
+    "width": "320px",
+    "background-color": "rgba(14, 18, 24, 0.55)",
+    "border": "",
+    "box-shadow": "none",
+    "color": "rgb(207, 233, 216)"
+  },
+  "root": {
+    "--cit-bg-1": "#0e1218",
+    "--cit-portal": "#5dffaf",
+    "--cit-flare": "#ffc857",
+    "--cit-alarm": "#ff5573",
+    "--cit-text": "#cfe9d8",
+    "--cit-text-dim": "#7a8a83",
+    "--cit-hairline": "rgba(125, 244, 188, 0.18)"
+  },
+  "cards": [
+    {
+      "width": "287px",
+      "background-color": "rgb(14, 18, 24)",
+      "border": "0px none rgb(207, 233, 216)",
+      "box-shadow": "none",
+      "color": "rgb(207, 233, 216)"
+    },
+    {
+      "width": "287px",
+      "background-color": "rgb(14, 18, 24)",
+      "border": "0px none rgb(207, 233, 216)",
+      "box-shadow": "none",
+      "color": "rgb(207, 233, 216)"
+    },
+    {
+      "width": "287px",
+      "background-color": "rgb(14, 18, 24)",
+      "border": "0px none rgb(207, 233, 216)",
+      "box-shadow": "none",
+      "color": "rgb(207, 233, 216)"
+    },
+    {
+      "width": "287px",
+      "background-color": "rgb(14, 18, 24)",
+      "border": "0px none rgb(207, 233, 216)",
+      "box-shadow": "none",
+      "color": "rgb(207, 233, 216)"
+    },
+    {
+      "width": "287px",
+      "background-color": "rgb(14, 18, 24)",
+      "border": "0px none rgb(207, 233, 216)",
+      "box-shadow": "none",
+      "color": "rgb(207, 233, 216)"
+    },
+    {
+      "width": "287px",
+      "background-color": "rgb(14, 18, 24)",
+      "border": "0px none rgb(207, 233, 216)",
+      "box-shadow": "none",
+      "color": "rgb(207, 233, 216)"
+    }
+  ]
+}

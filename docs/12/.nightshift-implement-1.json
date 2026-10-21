@@ -1,0 +1,45 @@
+{
+  "version": 1,
+  "task": "12",
+  "stage": "implement",
+  "status": "fail",
+  "findings": [
+    {
+      "id": "development-admission-missing",
+      "target": "docs/12/behavior-scenarios.json",
+      "problem": "Required development admission is unavailable: seal exits 1 with classification_unreviewed because applicability review fields are null, despite retained independent approval. Development gate exits 1 with proof_state_unavailable. No GREEN implementation or final behavioral evidence exists. Controller must reconcile approved classification metadata before this stage can proceed; manual acceptance remains pending."
+    }
+  ],
+  "checks": [
+    {
+      "command": "python3 /Users/drew.schillinger/shuttlebay/doctorews-laboratory/nightshift-community/.nightshift/tuesday-recovery/scripts/nightshift-behavior-proof.py validate --project /Users/drew.schillinger/shuttlebay/doctorews-laboratory/nightshift-community/.nightshift/counsel-live-demo-worktrees/12 --task 12 --scenarios docs/12/behavior-scenarios.json",
+      "exit_code": 0
+    },
+    {
+      "command": "python3 /Users/drew.schillinger/shuttlebay/doctorews-laboratory/nightshift-community/.nightshift/tuesday-recovery/scripts/nightshift-behavior-proof.py seal --project /Users/drew.schillinger/shuttlebay/doctorews-laboratory/nightshift-community/.nightshift/counsel-live-demo-worktrees/12 --task 12 --scenarios docs/12/behavior-scenarios.json",
+      "exit_code": 1
+    },
+    {
+      "command": "python3 /Users/drew.schillinger/shuttlebay/doctorews-laboratory/nightshift-community/.nightshift/tuesday-recovery/scripts/nightshift-behavior-proof.py gate --project /Users/drew.schillinger/shuttlebay/doctorews-laboratory/nightshift-community/.nightshift/counsel-live-demo-worktrees/12 --task 12 --gate development",
+      "exit_code": 1
+    }
+  ],
+  "evidence": [
+    {
+      "path": "docs/12/implement-1-admission.json",
+      "sha256": "a46a9f87d524180050cb2161f48f97f88d50545a213da0ecddc3a01c3bfb2400"
+    },
+    {
+      "path": "docs/12/SPEC.md",
+      "sha256": "55180bed26e9b4ff32f1950220aaab9db80d9af94b781fac4fb3283e31201f0a"
+    },
+    {
+      "path": "docs/12/behavior-scenarios.json",
+      "sha256": "dd58b2d13ec5b9617a066fee547a33f07f7652a36453544c9f14ef2fccb1f818"
+    },
+    {
+      "path": "docs/12/classification-review-4.out.json",
+      "sha256": "6565b1c9ec8f750dd289a5cee43b06d3653aa10c352516ce5ce127cf317cbb86"
+    }
+  ]
+}

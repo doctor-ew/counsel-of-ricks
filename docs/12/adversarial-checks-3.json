@@ -1,0 +1,37 @@
+{
+  "task": "12",
+  "stage": "adversarial",
+  "manual_acceptance": "pending",
+  "source_recheck": "approved_23_entries",
+  "claims_verified": 37,
+  "claims_net_new": 6,
+  "claims_blocked": 2,
+  "prior_evidence_preserved": true,
+  "classification_source": "docs/12/classification-review-4.out.json",
+  "checks": [
+    {
+      "command": "python3 docs/12/adversarial-gate-check-3.py",
+      "exit_code": 1
+    },
+    {
+      "command": "python3 /Users/drew.schillinger/shuttlebay/doctorews-laboratory/nightshift-community/.nightshift/release-0.4.0/scripts/nightshift-behavior-proof.py validate --project . --task 12 --scenarios docs/12/behavior-scenarios.json",
+      "exit_code": 0
+    },
+    {
+      "command": "git diff --check",
+      "exit_code": 0
+    },
+    {
+      "command": "npm view @playwright/test@1.64.1 version bin --json",
+      "exit_code": 0
+    },
+    {
+      "command": "NIGHTSHIFT_HOME=/Users/drew.schillinger/shuttlebay/doctorews-laboratory/nightshift-community/.nightshift/release-0.4.0 bash /Users/drew.schillinger/shuttlebay/doctorews-laboratory/nightshift-community/.nightshift/release-0.4.0/scripts/nightshift-dispatch-bounded.sh nightshift-code-fact-extractor --gear auto --auth subscription --risk standard --attempt 3 --adversarial --author-provider claude --in docs/12/adversarial-sources-2.in.md --out docs/12/adversarial-sources-3.out.json",
+      "exit_code": 0
+    },
+    {
+      "command": "NIGHTSHIFT_HOME=/Users/drew.schillinger/shuttlebay/doctorews-laboratory/nightshift-community/.nightshift/release-0.4.0 bash /Users/drew.schillinger/shuttlebay/doctorews-laboratory/nightshift-community/.nightshift/release-0.4.0/scripts/nightshift-dispatch-bounded.sh nightshift-code-fact-extractor --gear auto --auth subscription --risk standard --attempt 3 --adversarial --author-provider claude --in docs/12/adversarial-claims-3.in.md --out docs/12/adversarial-claims-3.out.json",
+      "exit_code": 0
+    }
+  ]
+}

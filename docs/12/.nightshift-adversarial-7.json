@@ -1,0 +1,127 @@
+{
+  "version": 1,
+  "task": "12",
+  "stage": "adversarial",
+  "status": "pass",
+  "findings": [],
+  "checks": [
+    {
+      "command": "Verify SHA256 of every retained adversarial-6 evidence file",
+      "exit_code": 0
+    },
+    {
+      "command": "python3 docs/12/adversarial-gate-check-5.py",
+      "exit_code": 0
+    },
+    {
+      "command": "python3 /Users/drew.schillinger/shuttlebay/doctorews-laboratory/nightshift-community/.nightshift/tuesday-recovery/scripts/nightshift-behavior-proof.py validate --project . --task 12 --scenarios docs/12/behavior-scenarios.json",
+      "exit_code": 0
+    },
+    {
+      "command": "git diff --check",
+      "exit_code": 0
+    }
+  ],
+  "evidence": [
+    {
+      "path": "docs/12/SPEC.md",
+      "sha256": "55180bed26e9b4ff32f1950220aaab9db80d9af94b781fac4fb3283e31201f0a"
+    },
+    {
+      "path": "docs/12/SPEC-DIGEST.md",
+      "sha256": "672ff55a8a6969facdb0dc0814cead65a21674e123c8ceef1a43a787cffbb2e9"
+    },
+    {
+      "path": "docs/12/adversarial-checks-5.json",
+      "sha256": "bea06ff019a41a32b48ce6d7a3756de230aeda26e0c196cef7fda075ab0397c4"
+    },
+    {
+      "path": "docs/12/adversarial-gate-check-5.py",
+      "sha256": "74a8b7d662b1b7cbc3f57fa429cfe97d5a859d13e39e7332596373e7278a6f48"
+    },
+    {
+      "path": "docs/12/adversarial-claims-5.out.json",
+      "sha256": "df457c85f84800a101a4781d0694bd6661ab1a93704ad032e8fbcc753aef67f5"
+    },
+    {
+      "path": "docs/12/adversarial-claims-5.out.json.retry.json",
+      "sha256": "560708bea90dfb025447567970fe64cc81f2e9b0e32eea05c291ee74f31a2a28"
+    },
+    {
+      "path": "docs/12/adversarial-claims-4.in.md",
+      "sha256": "d72a11d94e5f084efa9ebdd49295a9239415950c3fbf327a95a1c73492f3b1e9"
+    },
+    {
+      "path": "docs/12/adversarial-sources-3.out.json",
+      "sha256": "43947c933c3b1d2a5f119f613c9a83d4a1f8f798a4de0e8e6e63fd488c16255a"
+    },
+    {
+      "path": "docs/12/adversarial-claims-3.out.json",
+      "sha256": "b10f4d2c302648bce939edafffae4af40ac692c2ad18e55faefd00be575298ac"
+    },
+    {
+      "path": "docs/12/classification-review-3.json",
+      "sha256": "cddeba4f66585a8502e9f4689e7d87351c38b9663eb8ed15018e08e8ce6fa7bb"
+    },
+    {
+      "path": "docs/12/classification-review-4.out.json",
+      "sha256": "6565b1c9ec8f750dd289a5cee43b06d3653aa10c352516ce5ce127cf317cbb86"
+    },
+    {
+      "path": "docs/12/12-citations.pre-adversarial-5.jsonl",
+      "sha256": "f0160ae043d0073c8a66049da73455ef3254758d01719d71a9762cf0b4b84a3d"
+    },
+    {
+      "path": "docs/12/spec-author-provider.txt",
+      "sha256": "c857d09db23e6822e3600bc06ad8d58f92ed62bc8efd81c753f77048662cb97d"
+    },
+    {
+      "path": "docs/12/profiler-order-probe-4.mjs",
+      "sha256": "acee1c3fd1ab7c7f7fffa81d139a3a3e1c54e8018850bba3037655d7661cdf0f"
+    },
+    {
+      "path": "docs/12/profiler-order-evidence-4.json",
+      "sha256": "4628716ee19560eb09199f33884b36a5b6f20668bb8e9469d9e4c7cc18761cce"
+    },
+    {
+      "path": "docs/12/profiler-order-probe.mjs",
+      "sha256": "f15bcff966a028188839f99c1e189edbe28827144323191a78dcd61f47fd7adc"
+    },
+    {
+      "path": "docs/12/profiler-order-evidence.json",
+      "sha256": "4628716ee19560eb09199f33884b36a5b6f20668bb8e9469d9e4c7cc18761cce"
+    },
+    {
+      "path": "docs/12/package-registry-check-7.json",
+      "sha256": "d4c2cb21cfb2b751b9a156aa62b669c3bcecf38c4c8968722829da0a20e79eee"
+    },
+    {
+      "path": "docs/12/playwright-registry-evidence.json",
+      "sha256": "b03032ef3f4c015e8915b40356a8830e581e649615c8d0384f8e175d53a63c65"
+    },
+    {
+      "path": "docs/12/package-registry-check-4.json",
+      "sha256": "c927ab64a5be6094a8c80ece4fe30e17764d216805d685f7930078dcd69205fc"
+    },
+    {
+      "path": "docs/12/.adversarial-budget.json",
+      "sha256": "bc35b106611dd068847d7dd69d6b725712be443cec0d0598691b45f3665196e4"
+    },
+    {
+      "path": ".nightshift/12-citations.jsonl",
+      "sha256": "cda16aae89e630cabd016dcaa76552a1fa0c325337f286f2fe45839ee67950aa"
+    },
+    {
+      "path": ".nightshift/12-citations-trim.jsonl",
+      "sha256": "0e442a7cf6d59f8029aa8f5b4ffa2ed65a9dbd51eac941c147cccaebbcb7ea0c"
+    },
+    {
+      "path": "docs/12/adversarial-checks-6.json",
+      "sha256": "5612fc52ffa041ba7022ccc2cdc1321f4368b86295fb8c338e70187286495b12"
+    },
+    {
+      "path": "docs/12/adversarial-checks-7.json",
+      "sha256": "db6898d170267b2bebf524f380df4058e3a1e790bb258e0f6b7de3f5a6eac571"
+    }
+  ]
+}

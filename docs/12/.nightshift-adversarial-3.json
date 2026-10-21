@@ -1,0 +1,118 @@
+{
+  "version": 1,
+  "task": "12",
+  "stage": "adversarial",
+  "status": "fail",
+  "findings": [
+    {
+      "id": "CLAIM_36_EVIDENCE_MISSING",
+      "target": "docs/12/SPEC.md",
+      "problem": "36. React Profiler onRender can observe committed DOM before passive effects; an effect-only reset can be hidden by a post-act assertion. Evidence insufficient: retained specification states this mechanism, but inspected repository and retained evidence contain no React implementation citation or executed commit-level observation establishing it."
+    },
+    {
+      "id": "CLAIM_39_EVIDENCE_MISSING",
+      "target": "docs/12/SPEC.md",
+      "problem": "39. The registry version @playwright/test 1.64.1 was resolved during authoring, and its playwright binary is cli.js. Evidence insufficient: specification lines 16 and 91 assert these facts, but no retained registry response or installed package metadata supporting this version and binary was found in the inspected evidence."
+    }
+  ],
+  "checks": [
+    {
+      "command": "python3 docs/12/adversarial-gate-check-3.py",
+      "exit_code": 1
+    },
+    {
+      "command": "python3 /Users/drew.schillinger/shuttlebay/doctorews-laboratory/nightshift-community/.nightshift/release-0.4.0/scripts/nightshift-behavior-proof.py validate --project . --task 12 --scenarios docs/12/behavior-scenarios.json",
+      "exit_code": 0
+    },
+    {
+      "command": "git diff --check",
+      "exit_code": 0
+    },
+    {
+      "command": "npm view @playwright/test@1.64.1 version bin --json",
+      "exit_code": 0
+    },
+    {
+      "command": "NIGHTSHIFT_HOME=/Users/drew.schillinger/shuttlebay/doctorews-laboratory/nightshift-community/.nightshift/release-0.4.0 bash /Users/drew.schillinger/shuttlebay/doctorews-laboratory/nightshift-community/.nightshift/release-0.4.0/scripts/nightshift-dispatch-bounded.sh nightshift-code-fact-extractor --gear auto --auth subscription --risk standard --attempt 3 --adversarial --author-provider claude --in docs/12/adversarial-sources-2.in.md --out docs/12/adversarial-sources-3.out.json",
+      "exit_code": 0
+    },
+    {
+      "command": "NIGHTSHIFT_HOME=/Users/drew.schillinger/shuttlebay/doctorews-laboratory/nightshift-community/.nightshift/release-0.4.0 bash /Users/drew.schillinger/shuttlebay/doctorews-laboratory/nightshift-community/.nightshift/release-0.4.0/scripts/nightshift-dispatch-bounded.sh nightshift-code-fact-extractor --gear auto --auth subscription --risk standard --attempt 3 --adversarial --author-provider claude --in docs/12/adversarial-claims-3.in.md --out docs/12/adversarial-claims-3.out.json",
+      "exit_code": 0
+    }
+  ],
+  "evidence": [
+    {
+      "path": ".nightshift/12-citations.jsonl",
+      "sha256": "f0160ae043d0073c8a66049da73455ef3254758d01719d71a9762cf0b4b84a3d"
+    },
+    {
+      "path": "docs/12/.adversarial-budget.json",
+      "sha256": "d9f5cfbb6679d9e72737e5484988982b723225432fe12d068656490245622b0e"
+    },
+    {
+      "path": "docs/12/SPEC.md",
+      "sha256": "bb9673f140ea9063f350ffd959218dc05e3803cb114124ba8d81709366362d97"
+    },
+    {
+      "path": "docs/12/adversarial-checks-3.json",
+      "sha256": "5274de4d3d781936f1c561fc61e2905f4d048aff28ecee33299ad22409b71050"
+    },
+    {
+      "path": "docs/12/adversarial-claims-3.in.md",
+      "sha256": "8c80c693d244619cc4240c49188e63656f99fc6342e026e1bbeeaad59f00ced9"
+    },
+    {
+      "path": "docs/12/adversarial-claims-3.out.json",
+      "sha256": "b10f4d2c302648bce939edafffae4af40ac692c2ad18e55faefd00be575298ac"
+    },
+    {
+      "path": "docs/12/adversarial-claims-3.out.json.retry.json",
+      "sha256": "83264c89592758db8139d8e06201995f052a08075b98227b1e4b75809af7a6b6"
+    },
+    {
+      "path": "docs/12/adversarial-gate-check-3.py",
+      "sha256": "0b8f76dc8b207f3055eeabe443139cb340e5f4ac69ccb9cdb4f578a1fb47e192"
+    },
+    {
+      "path": "docs/12/adversarial-sources-2.in.md",
+      "sha256": "7dd163d15421571d68a6774f91397ab3c699676b4b7c5b100edaafcec32ad4aa"
+    },
+    {
+      "path": "docs/12/adversarial-sources-3.out.json",
+      "sha256": "43947c933c3b1d2a5f119f613c9a83d4a1f8f798a4de0e8e6e63fd488c16255a"
+    },
+    {
+      "path": "docs/12/adversarial-sources-3.out.json.retry.json",
+      "sha256": "e5a403ef8ed847555cddbbd846eea91ef56b1a8aca90067ab5ae83174f7ca268"
+    },
+    {
+      "path": "docs/12/claim-gate-3.json",
+      "sha256": "47b2f66eeac5c4c70de50a8f04d03c63d6eaea42bdecff8bfb062a11bde9f275"
+    },
+    {
+      "path": "docs/12/claim-partition-3.json",
+      "sha256": "2f14769fb75455d7eea6490a11c726d80bb77b48bde6cc8590fc5cd09cb1ed9c"
+    },
+    {
+      "path": "docs/12/classification-review-3.json",
+      "sha256": "cddeba4f66585a8502e9f4689e7d87351c38b9663eb8ed15018e08e8ce6fa7bb"
+    },
+    {
+      "path": "docs/12/classification-review-4.out.json",
+      "sha256": "6565b1c9ec8f750dd289a5cee43b06d3653aa10c352516ce5ce127cf317cbb86"
+    },
+    {
+      "path": "docs/12/package-registry-check-3.json",
+      "sha256": "ef94f9c0e07ad022c8047d4dc572e8ac010b720fc1271b7b89a64ae1a3d9c257"
+    },
+    {
+      "path": "docs/12/repair-admission.json",
+      "sha256": "8b7783ee4014ae4136a0f875e40f239a9e0899b6905c075f56b31829028daf9b"
+    },
+    {
+      "path": "docs/12/source-gate-3.json",
+      "sha256": "ce7ac489c9e5039d923bc45f8bef6e332b6359a9ba958fb217feff54c024bb51"
+    }
+  ]
+}

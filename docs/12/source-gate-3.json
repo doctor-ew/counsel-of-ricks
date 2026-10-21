@@ -1,0 +1,6 @@
+{
+  "status": "pass",
+  "entries": 23,
+  "mapping": "VERIFIED -> FOUND_MATCH",
+  "report": "docs/12/adversarial-sources-3.out.json"
+}

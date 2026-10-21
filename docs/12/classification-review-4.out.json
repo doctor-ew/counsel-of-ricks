@@ -1,0 +1,35 @@
+{
+  "status": "SUCCESS",
+  "reason": "Completed public design review. All required behavior has observable coverage; revised C05 and C07 resolve the retained findings. No execution is claimed.",
+  "attempts": 3,
+  "artifacts": {
+    "branch": "",
+    "diff": "",
+    "provider": "codex",
+    "model": "gpt-6.1-sol"
+  },
+  "rules_fired": [
+    "PUBLIC_DESIGN_ONLY",
+    "OBSERVABLE_BEHAVIOR_COVERAGE",
+    "NEGATIVE_AND_BOUNDARY_COVERAGE",
+    "RUNTIME_AND_SCOPE_REVIEW",
+    "DESIGN_REVIEW_NOT_EXECUTION",
+    "route_gear:3"
+  ],
+  "results": {
+    "decision": "approve",
+    "scenario_ids": [
+      "C01",
+      "C02",
+      "C03",
+      "C04",
+      "C05",
+      "C06",
+      "C07",
+      "C08",
+      "C09"
+    ],
+    "findings": [],
+    "reviewed_input_sha256": "d1996262772f930e0153b31f0bf9f5afefeaa98093290d1726191a8537a5ded6"
+  }
+}

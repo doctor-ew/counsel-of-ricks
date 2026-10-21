@@ -1,0 +1,33 @@
+{
+  "findings": [
+    {
+      "artifact": "docs/12/behavior-scenarios.json",
+      "artifact_content_sha256": "500d8a494dfa89488e3adf347b34c3463c0f92f270dc63376e3076e8cb985ec0",
+      "artifact_sha256": "a6bc7f5bae00f3d802621912d8a56f71401b7e04204f862a3afe625b696ded1a",
+      "current_passed": true,
+      "id": "MISSING_REFERENCE_CARDINALITY_BOUNDARY",
+      "original_failed": true,
+      "passed": true,
+      "pointer": "/cases/0",
+      "prior_artifact": "docs/12/behavior-scenarios.pre-repair-2.json",
+      "prior_sha256": "49aa72af733ae220fa309a98a4c1e0aa48b573678c133375ab102be640ea6b94"
+    },
+    {
+      "artifact": "docs/12/behavior-scenarios.json",
+      "artifact_content_sha256": "500d8a494dfa89488e3adf347b34c3463c0f92f270dc63376e3076e8cb985ec0",
+      "artifact_sha256": "a6bc7f5bae00f3d802621912d8a56f71401b7e04204f862a3afe625b696ded1a",
+      "current_passed": true,
+      "id": "TRANSIENT_SESSION_FILTER_NOT_OBSERVED",
+      "original_failed": true,
+      "passed": true,
+      "pointer": "/cases/4",
+      "prior_artifact": "docs/12/behavior-scenarios.pre-repair-2.json",
+      "prior_sha256": "49aa72af733ae220fa309a98a4c1e0aa48b573678c133375ab102be640ea6b94"
+    }
+  ],
+  "gate_approval": false,
+  "manifest": "docs/12/repair-checks.json",
+  "manifest_sha256": "9d6b97f4445af30dc2b25e642d30487f9e69dfbb9cfd23df8577e7825352ecc0",
+  "schema_version": 1,
+  "status": "passed"
+}

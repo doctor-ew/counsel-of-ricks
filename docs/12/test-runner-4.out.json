@@ -1,0 +1,24 @@
+{
+  "status": "FAIL",
+  "reason": "Selected command: npm --prefix frontend test && npm --prefix frontend run build; source: .nightshift.toml:33; scope: frontend. Both convention files are silent; no legacy fallback needed. Retry after sandbox EPERM succeeded: 14 tests passed, 0 failed, 0 skipped; build exited 0. Retained browser blocker: docs/12/implement-4-browser-2.log:16 reports \"Error: expect(locator).toBeFocused() failed\"; button 'All 6' expected focused, received inactive, timeout 5000ms at frontend/e2e/session-ledger-filters.spec.ts:55:83. Browser suite was not rerun; manual acceptance remains pending.",
+  "attempts": 1,
+  "artifacts": {
+    "branch": "nightshift/12",
+    "diff": "No source or test edits. Build modified tracked frontend/tsconfig.tsbuildinfo; pre-existing frontend/src/pages/SessionPage.tsx changes preserved. No stage receipt written.",
+    "provider": "codex",
+    "model": "gpt-6.1-sol"
+  },
+  "rules_fired": [
+    "convention_review_completed",
+    "exact_configured_command",
+    "no_e2e_execution",
+    "locked_tests_preserved",
+    "retained_browser_failure_blocks_acceptance",
+    "manual_acceptance_pending",
+    "route_gear:1"
+  ],
+  "results": {
+    "passed": 14,
+    "failed": 0
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "command": "npm view @playwright/test@1.64.1 version bin --json",
+  "executed_at_utc": "2026-10-17T16:08:42Z",
+  "stage": "product-7",
+  "exit_code": 0,
+  "response": {
+    "version": "1.64.1",
+    "bin": {
+      "playwright": "cli.js"
+    }
+  }
+}

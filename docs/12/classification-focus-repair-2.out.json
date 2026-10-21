@@ -1,0 +1,45 @@
+{
+  "artifacts": {
+    "branch": "",
+    "diff": "",
+    "model": "sonnet",
+    "provider": "claude"
+  },
+  "attempts": 1,
+  "reason": "Design review only. C04's order requirement and C05's calibration requirement are now observable, and the supplied calibration harness matches the stated outcomes. Two obligations remain unresolved: C06 does not check the request endpoint, and C08 requires component-level keyboard tests that the supplied test file does not contain. No execution is claimed.",
+  "results": {
+    "decision": "repair",
+    "scenario_ids": [
+      "C01",
+      "C02",
+      "C03",
+      "C04",
+      "C05",
+      "C06",
+      "C07",
+      "C08",
+      "C09"
+    ],
+    "findings": [
+      {
+        "scenario_id": "C06",
+        "code": "poll_request_target_not_asserted",
+        "reason": "The amended C06 requires that, after one polling interval, exactly one request goes to /sessions/<same-id>/ledger. The supplied test's fetch stub only increments a counter and never records the URL or method. `expect(requests).toBe(1)` therefore passes for any single request, such as a request to the wrong session or a different endpoint, and cannot show the ledger poll for the same session ran. Record the request URL in the observer. Assert that the zero-request window has no entries and that the single post-advance entry targets the same session's ledger endpoint, using the same default method as the existing client."
+      },
+      {
+        "scenario_id": "C08",
+        "code": "component_keyboard_red_group_unmapped",
+        "reason": "C08 requires RED assertion failures for each AC6 behavior group, including 'component-level keyboard and selected tests'. The supplied Vitest file covers selected state, since it checks `aria-pressed` and `type=button`. It has no component-level keyboard or focus test: all activation uses `fireEvent.click`, and nothing checks focus retention or the activated node. Either add a prepared-tooling test for focusability, activation and same-node `document.activeElement` retention, or amend C08 to state that keyboard RED/GREEN evidence comes only from the Chromium C07 run. The RED-to-test mapping must then name that run explicitly, so the keyboard group is not left without a failing-before-implementation assertion."
+      }
+    ],
+    "reviewed_input_sha256": "c226db9fc358b120a47ba58ab1676aa60f22240b17426d8d808c2ee74f01b3cf"
+  },
+  "rules_fired": [
+    "required_negative_coverage",
+    "observable_expectation",
+    "assertion_distinguishes_wrong_result",
+    "scenario_test_consistency",
+    "route_gear:1"
+  ],
+  "status": "SUCCESS"
+}

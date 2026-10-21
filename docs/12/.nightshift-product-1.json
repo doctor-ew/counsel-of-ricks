@@ -1,0 +1,66 @@
+{
+  "version": 1,
+  "task": "12",
+  "stage": "product",
+  "status": "fail",
+  "findings": [
+    {
+      "id": "PRODUCT-EXTRACTOR-INCOMPLETE",
+      "target": "docs/12/product-extractor.out.json",
+      "problem": "Mandatory extractor returned FAIL with one NOT_FOUND summary claim, empty inspected_files and no file/line evidence; it did not provide complete verification for submitted identifiers. Canonical product Step 6 prohibits sending the writer brief before successful complete extraction."
+    },
+    {
+      "id": "PRODUCT-EVIDENCE-MISSING",
+      "target": "docs/12",
+      "problem": "Required specification, behavior scenarios and independent classification review evidence are absent. Initial authoring could not proceed past the mandatory extraction gate; no approval or manual acceptance is claimed."
+    }
+  ],
+  "checks": [
+    {
+      "command": "nightshift-ticket-source.sh gh:doctor-ew/counsel-of-ricks#12",
+      "exit_code": 0
+    },
+    {
+      "command": "nightshift-behavior-proof.py capabilities --project .",
+      "exit_code": 0
+    },
+    {
+      "command": "nightshift-dispatch-bounded.sh nightshift-code-fact-extractor --auth subscription --risk low --in docs/12/product-extractor.in.md --out docs/12/product-extractor.out.json",
+      "exit_code": 1
+    },
+    {
+      "command": "nightshift-behavior-proof.py validate --project . --task 12 --scenarios docs/12/behavior-scenarios.json",
+      "exit_code": 1
+    }
+  ],
+  "evidence": [
+    {
+      "path": "docs/12/extractor-start.txt",
+      "sha256": "953d206f0fbf5ba6537ef1f900c76b436c43e77acc0e11a1fef21aeb367df912"
+    },
+    {
+      "path": "docs/12/product-extractor.in.md",
+      "sha256": "8806791cfa7470f3703dccb42aeeeb4d441cb7e6d179a6344c47298c46cfa8bc"
+    },
+    {
+      "path": "docs/12/product-extractor.out.json",
+      "sha256": "8f2d0067550d35192effb5c98d0655ad2ca4b99f77f697e51705e2cebbbf1fbc"
+    },
+    {
+      "path": "docs/12/product-extractor.out.json.attempts.json",
+      "sha256": "b37983dc9bb642ade918607184fcd55f05bda2f37778fe19991078ef23387dd0"
+    },
+    {
+      "path": "docs/12/proof-capabilities.json",
+      "sha256": "5b134e306b5d7f73c3a0f64f2077cf1a0ba93b541afddb94d06079c5e0c94c76"
+    },
+    {
+      "path": "docs/12/scenario-validation.json",
+      "sha256": "53c3f15b638f5dc76865025402c3718bf1ca8a17750a24dadaec53fb3160e422"
+    },
+    {
+      "path": "docs/12/source-ticket.json",
+      "sha256": "70dd0755e817fcbad0b0042198d909ca4d37a2d67c0cb3cf2b199484926851e3"
+    }
+  ]
+}

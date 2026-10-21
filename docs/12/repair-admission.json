@@ -1,0 +1,1 @@
+{"ticket": "12", "gate": "repair-admission", "status": "skipped", "reason": "Registered repair inputs admitted for source evaluation; no gate approval.", "gate_approval": false, "input_sha256": "350f48a77c5966d54ef187b6ec30642da86526b1dd5c1919e72fb5b2f8632473", "prior_attempts": []}

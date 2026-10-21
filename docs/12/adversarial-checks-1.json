@@ -1,0 +1,44 @@
+{
+  "task": "12",
+  "stage": "adversarial",
+  "source_entries": 23,
+  "claims_prepared": 45,
+  "claims_executed": false,
+  "manual_acceptance": "pending",
+  "checks": [
+    {
+      "command": "python3 /Users/drew.schillinger/shuttlebay/doctorews-laboratory/nightshift-community/.nightshift/release-0.4.0/scripts/nightshift-behavior-proof.py validate --project /Users/drew.schillinger/shuttlebay/doctorews-laboratory/nightshift-community/.nightshift/counsel-live-demo-worktrees/12 --task 12 --scenarios docs/12/behavior-scenarios.json",
+      "exit_code": 0
+    },
+    {
+      "command": "independent retained classification review: current semantic digest and all nine case IDs",
+      "exit_code": 0
+    },
+    {
+      "command": "git diff --check",
+      "exit_code": 0
+    },
+    {
+      "command": "bounded independent source extraction (adversarial-sources.in.md); report completeness: 23 entries; substantive findings retained",
+      "exit_code": 0
+    },
+    {
+      "command": "nightshift-retry-budget.py finalize source attempt 8ab2f0f9f290411d94f73beb881d1870 --category substantive",
+      "exit_code": 0
+    },
+    {
+      "command": "bounded independent source recheck (adversarial-sources-2.in.md): retry admission refused unchanged registered repair",
+      "exit_code": 1
+    }
+  ],
+  "source_findings_repaired_but_not_reverified": [
+    "current HEAD citations",
+    "CLAUDE.md install/test examples description",
+    "CSS declarations versus future runtime measurements",
+    "existing ledger request versus future interception",
+    "explicit planned ignored output path"
+  ],
+  "blocked_by": "repair-admission.json: registered scenario repair signature unchanged after substantive source failure; no new provider call admitted",
+  "prior_evidence_preserved": true,
+  "implementation_started": false
+}

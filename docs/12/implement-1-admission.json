@@ -1,0 +1,38 @@
+{
+  "version": 1,
+  "task": "12",
+  "stage": "implement",
+  "ownership": "verified",
+  "handoff_artifacts": [
+    {
+      "path": "docs/12/SPEC.md",
+      "sha256": "55180bed26e9b4ff32f1950220aaab9db80d9af94b781fac4fb3283e31201f0a"
+    },
+    {
+      "path": "docs/12/behavior-scenarios.json",
+      "sha256": "dd58b2d13ec5b9617a066fee547a33f07f7652a36453544c9f14ef2fccb1f818"
+    }
+  ],
+  "commands": [
+    {
+      "command": "python3 /Users/drew.schillinger/shuttlebay/doctorews-laboratory/nightshift-community/.nightshift/tuesday-recovery/scripts/nightshift-behavior-proof.py validate --project /Users/drew.schillinger/shuttlebay/doctorews-laboratory/nightshift-community/.nightshift/counsel-live-demo-worktrees/12 --task 12 --scenarios docs/12/behavior-scenarios.json",
+      "exit_code": 0,
+      "stdout": "{\"outcome\": \"pass\", \"reviewed_input_sha256\": \"d1996262772f930e0153b31f0bf9f5afefeaa98093290d1726191a8537a5ded6\", \"status\": \"valid\", \"task\": \"12\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": "python3 /Users/drew.schillinger/shuttlebay/doctorews-laboratory/nightshift-community/.nightshift/tuesday-recovery/scripts/nightshift-behavior-proof.py seal --project /Users/drew.schillinger/shuttlebay/doctorews-laboratory/nightshift-community/.nightshift/counsel-live-demo-worktrees/12 --task 12 --scenarios docs/12/behavior-scenarios.json",
+      "exit_code": 1,
+      "stdout": "{\"next_action\": \"inspect_evidence\", \"outcome\": \"unknown\", \"reason\": \"classification_unreviewed\", \"status\": \"blocked\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": "python3 /Users/drew.schillinger/shuttlebay/doctorews-laboratory/nightshift-community/.nightshift/tuesday-recovery/scripts/nightshift-behavior-proof.py gate --project /Users/drew.schillinger/shuttlebay/doctorews-laboratory/nightshift-community/.nightshift/counsel-live-demo-worktrees/12 --task 12 --gate development",
+      "exit_code": 1,
+      "stdout": "{\"next_action\": \"inspect_evidence\", \"outcome\": \"unknown\", \"reason\": \"proof_state_unavailable\", \"status\": \"blocked\"}\n",
+      "stderr": ""
+    }
+  ],
+  "manual_acceptance": "pending",
+  "implementation_started": false
+}

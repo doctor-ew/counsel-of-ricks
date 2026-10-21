@@ -1,0 +1,181 @@
+{
+  "status": "fail",
+  "verified": 37,
+  "net_new": 6,
+  "blocked_count": 2,
+  "findings": [
+    {
+      "id": "CLAIM_36_EVIDENCE_MISSING",
+      "target": "docs/12/SPEC.md",
+      "problem": "36. React Profiler onRender can observe committed DOM before passive effects; an effect-only reset can be hidden by a post-act assertion. Evidence insufficient: retained specification states this mechanism, but inspected repository and retained evidence contain no React implementation citation or executed commit-level observation establishing it."
+    },
+    {
+      "id": "CLAIM_39_EVIDENCE_MISSING",
+      "target": "docs/12/SPEC.md",
+      "problem": "39. The registry version @playwright/test 1.64.1 was resolved during authoring, and its playwright binary is cli.js. Evidence insufficient: specification lines 16 and 91 assert these facts, but no retained registry response or installed package metadata supporting this version and binary was found in the inspected evidence."
+    }
+  ],
+  "cache_notes": [
+    {
+      "claim": 3,
+      "note": "Inspected dependencies exceed Files to Change; shared cache entry invalidated."
+    },
+    {
+      "claim": 4,
+      "note": "Inspected dependencies exceed Files to Change; shared cache entry invalidated."
+    },
+    {
+      "claim": 5,
+      "note": "Inspected dependencies exceed Files to Change; shared cache entry invalidated."
+    },
+    {
+      "claim": 7,
+      "note": "Inspected dependencies exceed Files to Change; shared cache entry invalidated."
+    },
+    {
+      "claim": 8,
+      "note": "Inspected dependencies exceed Files to Change; shared cache entry invalidated."
+    },
+    {
+      "claim": 10,
+      "note": "Inspected dependencies exceed Files to Change; shared cache entry invalidated."
+    },
+    {
+      "claim": 11,
+      "note": "Inspected dependencies exceed Files to Change; shared cache entry invalidated."
+    },
+    {
+      "claim": 12,
+      "note": "Inspected dependencies exceed Files to Change; shared cache entry invalidated."
+    },
+    {
+      "claim": 13,
+      "note": "Inspected dependencies exceed Files to Change; shared cache entry invalidated."
+    },
+    {
+      "claim": 14,
+      "note": "Inspected dependencies exceed Files to Change; shared cache entry invalidated."
+    },
+    {
+      "claim": 15,
+      "note": "Inspected dependencies exceed Files to Change; shared cache entry invalidated."
+    },
+    {
+      "claim": 16,
+      "note": "Inspected dependencies exceed Files to Change; shared cache entry invalidated."
+    },
+    {
+      "claim": 17,
+      "note": "Inspected dependencies exceed Files to Change; shared cache entry invalidated."
+    },
+    {
+      "claim": 18,
+      "note": "Inspected dependencies exceed Files to Change; shared cache entry invalidated."
+    },
+    {
+      "claim": 19,
+      "note": "Inspected dependencies exceed Files to Change; shared cache entry invalidated."
+    },
+    {
+      "claim": 20,
+      "note": "Inspected dependencies exceed Files to Change; shared cache entry invalidated."
+    },
+    {
+      "claim": 21,
+      "note": "Inspected dependencies exceed Files to Change; shared cache entry invalidated."
+    },
+    {
+      "claim": 22,
+      "note": "Inspected dependencies exceed Files to Change; shared cache entry invalidated."
+    },
+    {
+      "claim": 23,
+      "note": "Inspected dependencies exceed Files to Change; shared cache entry invalidated."
+    },
+    {
+      "claim": 24,
+      "note": "Inspected dependencies exceed Files to Change; shared cache entry invalidated."
+    },
+    {
+      "claim": 25,
+      "note": "Inspected dependencies exceed Files to Change; shared cache entry invalidated."
+    },
+    {
+      "claim": 26,
+      "note": "Inspected dependencies exceed Files to Change; shared cache entry invalidated."
+    },
+    {
+      "claim": 27,
+      "note": "Inspected dependencies exceed Files to Change; shared cache entry invalidated."
+    },
+    {
+      "claim": 28,
+      "note": "Inspected dependencies exceed Files to Change; shared cache entry invalidated."
+    },
+    {
+      "claim": 30,
+      "note": "Inspected dependencies exceed Files to Change; shared cache entry invalidated."
+    },
+    {
+      "claim": 31,
+      "note": "Inspected dependencies exceed Files to Change; shared cache entry invalidated."
+    },
+    {
+      "claim": 32,
+      "note": "Inspected dependencies exceed Files to Change; shared cache entry invalidated."
+    },
+    {
+      "claim": 33,
+      "note": "Inspected dependencies exceed Files to Change; shared cache entry invalidated."
+    },
+    {
+      "claim": 34,
+      "note": "Inspected dependencies exceed Files to Change; shared cache entry invalidated."
+    },
+    {
+      "claim": 35,
+      "note": "Inspected dependencies exceed Files to Change; shared cache entry invalidated."
+    },
+    {
+      "claim": 36,
+      "note": "Inspected dependencies exceed Files to Change; shared cache entry invalidated."
+    },
+    {
+      "claim": 37,
+      "note": "Inspected dependencies exceed Files to Change; shared cache entry invalidated."
+    },
+    {
+      "claim": 38,
+      "note": "Inspected dependencies exceed Files to Change; shared cache entry invalidated."
+    },
+    {
+      "claim": 39,
+      "note": "Inspected dependencies exceed Files to Change; shared cache entry invalidated."
+    },
+    {
+      "claim": 40,
+      "note": "Inspected dependencies exceed Files to Change; shared cache entry invalidated."
+    },
+    {
+      "claim": 41,
+      "note": "Inspected dependencies exceed Files to Change; shared cache entry invalidated."
+    },
+    {
+      "claim": 42,
+      "note": "Inspected dependencies exceed Files to Change; shared cache entry invalidated."
+    },
+    {
+      "claim": 43,
+      "note": "Inspected dependencies exceed Files to Change; shared cache entry invalidated."
+    },
+    {
+      "claim": 44,
+      "note": "Inspected dependencies exceed Files to Change; shared cache entry invalidated."
+    },
+    {
+      "claim": 45,
+      "note": "Inspected dependencies exceed Files to Change; shared cache entry invalidated."
+    }
+  ],
+  "manual_acceptance": "pending"
+}

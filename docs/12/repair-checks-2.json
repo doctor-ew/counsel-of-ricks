@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "findings": [
+    {
+      "id": "MISSING_REFERENCE_CARDINALITY_BOUNDARY",
+      "artifact": "docs/12/behavior-scenarios.json",
+      "pointer": "/cases/0",
+      "expected": {
+        "id": "C01",
+        "ac_ids": [
+          "AC1",
+          "AC2"
+        ],
+        "required": true,
+        "applicability": {
+          "kind": "deterministic",
+          "rationale": "Ordinary deterministic application evidence for C01; independent classification review remains pending.",
+          "risks": [
+            "deterministic_logic"
+          ],
+          "review": null
+        },
+        "given": "The unchanged public six-fact fixture is loaded. Also exercise separate in-memory data with one fact containing multiple contradiction references and another fact with none.",
+        "when": "Open the session and select each filter, then All.",
+        "then": "All is initially selected with count 6; Contradictions has count 2 and only fixture positions 2,4; Unsupported has count 3 and only positions 3,4,5; All restores positions 1 through 6. In the separate multiple-reference boundary, the contradiction count is exactly 1 and exactly one card renders, regardless of reference count.",
+        "forbidden": "Disjoint categorization, pair counting, sorted results or hardcoded production counts.",
+        "input": null,
+        "expected": [],
+        "prohibited": [],
+        "counterexamples": [
+          "A fact in both categories must appear once in each corresponding view."
+        ],
+        "visibility": "public"
+      },
+      "prior_artifact": "docs/12/behavior-scenarios.pre-repair-2.json",
+      "prior_sha256": "49aa72af733ae220fa309a98a4c1e0aa48b573678c133375ab102be640ea6b94"
+    },
+    {
+      "id": "TRANSIENT_SESSION_FILTER_NOT_OBSERVED",
+      "artifact": "docs/12/behavior-scenarios.json",
+      "pointer": "/cases/4",
+      "expected": {
+        "id": "C05",
+        "ac_ids": [
+          "AC4"
+        ],
+        "required": true,
+        "applicability": {
+          "kind": "deterministic",
+          "rationale": "Ordinary deterministic application evidence for C05; independent classification review remains pending.",
+          "risks": [
+            "deterministic_logic"
+          ],
+          "review": null
+        },
+        "given": "A filtered session is displayed.",
+        "when": "Navigate to another session while the page remains mounted and destination query data is cached, observe the first destination render, then return to the first session.",
+        "then": "The first destination render already selects All and shows every destination fact in order with accurate counts; no frame applies the previous filter. Every subsequent session change also starts at All.",
+        "forbidden": "A previous session filter leaking into another session.",
+        "input": null,
+        "expected": [],
+        "prohibited": [],
+        "counterexamples": [
+          "Rendering a cached destination session as Unsupported fails."
+        ],
+        "visibility": "public"
+      },
+      "prior_artifact": "docs/12/behavior-scenarios.pre-repair-2.json",
+      "prior_sha256": "49aa72af733ae220fa309a98a4c1e0aa48b573678c133375ab102be640ea6b94"
+    }
+  ]
+}

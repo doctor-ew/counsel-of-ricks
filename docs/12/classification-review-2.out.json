@@ -1,0 +1,43 @@
+{
+  "status": "SUCCESS",
+  "reason": "Design review completed; required boundary coverage needs repair.",
+  "attempts": 2,
+  "artifacts": {
+    "branch": "",
+    "diff": "",
+    "provider": "codex",
+    "model": "gpt-6.1-sol"
+  },
+  "rules_fired": [
+    "observable_assertions_required",
+    "boundary_and_counterexample_coverage_required",
+    "route_gear:2"
+  ],
+  "results": {
+    "decision": "repair",
+    "scenario_ids": [
+      "C01",
+      "C02",
+      "C03",
+      "C04",
+      "C05",
+      "C06",
+      "C07",
+      "C08",
+      "C09"
+    ],
+    "findings": [
+      {
+        "scenario_id": "C01",
+        "code": "MISSING_REFERENCE_CARDINALITY_BOUNDARY",
+        "reason": "Pair counting is forbidden, but no supplied case explicitly requires a fact with multiple contradiction references. Add such input and assert that it contributes exactly one to the contradiction count and renders exactly one card; otherwise reference counting can match the stated fixture expectations."
+      },
+      {
+        "scenario_id": "C05",
+        "code": "TRANSIENT_SESSION_FILTER_NOT_OBSERVED",
+        "reason": "Checking that navigation eventually starts at All can miss a destination render using the previous filter before a reset effect runs. Require navigation with the page still mounted and destination data cached, and observe that the first destination render already selects All and shows every destination fact."
+      }
+    ],
+    "reviewed_input_sha256": "a92012da4cdf53154b85759bcf1d18db6d21f1523bfe5a93e53ddc99de191a67"
+  }
+}

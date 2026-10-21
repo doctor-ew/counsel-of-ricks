@@ -1,0 +1,23 @@
+{
+  "manual_acceptance": "pending",
+  "checks": [
+    {
+      "command": "python3 docs/12/adversarial-gate-check-5.py",
+      "stdout": "{\"sources\": 23, \"verified\": 39, \"net_new\": 6, \"unresolved\": 0, \"manual_acceptance\": \"pending\", \"independent_provider\": \"codex\"}\n",
+      "stderr": "",
+      "exit_code": 0
+    },
+    {
+      "command": "python3 /Users/drew.schillinger/shuttlebay/doctorews-laboratory/nightshift-community/.nightshift/tuesday-recovery/scripts/nightshift-behavior-proof.py validate --project . --task 12 --scenarios docs/12/behavior-scenarios.json",
+      "stdout": "{\"outcome\": \"pass\", \"reviewed_input_sha256\": \"d1996262772f930e0153b31f0bf9f5afefeaa98093290d1726191a8537a5ded6\", \"status\": \"valid\", \"task\": \"12\"}\n",
+      "stderr": "",
+      "exit_code": 0
+    },
+    {
+      "command": "git diff --check",
+      "stdout": "",
+      "stderr": "",
+      "exit_code": 0
+    }
+  ]
+}

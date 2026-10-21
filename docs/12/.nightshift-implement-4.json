@@ -1,0 +1,117 @@
+{
+  "version": 1,
+  "task": "12",
+  "stage": "implement",
+  "status": "fail",
+  "findings": [
+    {
+      "id": "implement-browser-proof",
+      "target": "frontend/e2e/session-ledger-filters.spec.ts:51-55",
+      "problem": "Locked browser test fails at initial Tab-order assertion: All 6 remains inactive. Setup selects the previous visible element without excluding disabled controls; the preceding send button is disabled for empty input. Required C07/C09 measurements, screenshots, and successful final proof are incomplete. Controller must authorize repair of locked test setup and resealing/rebinding proof before continuation; no test lock was changed."
+    }
+  ],
+  "checks": [
+    {
+      "command": "development behavioral-proof gate (retained RED revalidation)",
+      "exit_code": 0
+    },
+    {
+      "command": "npm --prefix frontend ci",
+      "exit_code": 0
+    },
+    {
+      "command": "npm --prefix frontend test (final local execution, 14 passed)",
+      "exit_code": 0
+    },
+    {
+      "command": "npm --prefix frontend run build",
+      "exit_code": 0
+    },
+    {
+      "command": "npm --prefix frontend run test:e2e (second execution)",
+      "exit_code": 1
+    }
+  ],
+  "evidence": [
+    {
+      "path": "frontend/src/pages/SessionPage.tsx",
+      "sha256": "f8bae933889dda94c9d8f1348b4d3ac3bbf363cf336a78715313c7a6e0d86b9f"
+    },
+    {
+      "path": "frontend/test/session-ledger-filters.test.tsx",
+      "sha256": "93a1be29477a463b3d61794bb408dde76b3c7b2bae85652b297d27c24866e1ca"
+    },
+    {
+      "path": "frontend/e2e/session-ledger-filters.spec.ts",
+      "sha256": "d68a5d785d296a6d6fe8abdd03f13d06f63128dfcd97242d3afac4af2a7d303b"
+    },
+    {
+      "path": "docs/12/proof-red.json",
+      "sha256": "6f7ecee7011eb611f665fbc022342afeca45e98aabd1a54e1dca1de8b430dc53"
+    },
+    {
+      "path": "docs/12/implement-3-red-combined.log",
+      "sha256": "3c0760e1c606b9c8593439ebc78b5dfdee6233ca8915b46930780fb721ca706a"
+    },
+    {
+      "path": "docs/12/implement-4-development-gate.json",
+      "sha256": "bdd2fefcba6d731c6bae1f272c542fd0db72b6b126bf1e6e546ef9778c8a4e16"
+    },
+    {
+      "path": "docs/12/implementation-4.out.json",
+      "sha256": "8c3477acb61b3bf1b6e8a2f00d9b9f0e28744824891d19d6f5a027adfd0c2897"
+    },
+    {
+      "path": "docs/12/implementation-author-provider.txt",
+      "sha256": "243b0dc9b847e66c440dca985e10fe0ce9e29c379b018ddd5747ba8948f84cc8"
+    },
+    {
+      "path": "docs/12/implement-4-install.log",
+      "sha256": "62e2b2cc2e01a9b1d71580b3fe9df7aaa8f9ce5799ef45f30c97cc994b5e0fc2"
+    },
+    {
+      "path": "docs/12/implement-4-tests.log",
+      "sha256": "614e1964e1ade9bf2440275d1fddc9fb1c902e63af51b09b847afa9dd3c17611"
+    },
+    {
+      "path": "docs/12/implement-4-tests-2.log",
+      "sha256": "bf84d2bb9c23dfa21b69eee395ce64d203ab04133ba5026dd601059c2ef18a90"
+    },
+    {
+      "path": "docs/12/implement-4-tests-3.log",
+      "sha256": "7dd889aed77948773450bada13733a6bcf5d05e4cc6509e18224b4c57b64d4bc"
+    },
+    {
+      "path": "docs/12/implement-4-build.log",
+      "sha256": "c4640a03000249c3f7f4a7fea25118a09c04faa6c9cc0e9a8312e5327be3deb5"
+    },
+    {
+      "path": "docs/12/implement-4-browser.log",
+      "sha256": "20820acb213679beadff724525e2b7f08cd04f91b5b5df05503ac5171f890620"
+    },
+    {
+      "path": "docs/12/implement-4-browser-2.log",
+      "sha256": "b0e19a3f0cb09816e7f3c0e2bd55c784ebc5aeccc94a27b593e8c007526a8848"
+    },
+    {
+      "path": "docs/12/browser-evidence/implement-4-report.json",
+      "sha256": "e272d5e4e5f425f765baf1d02fcabec587225dd061753894a11bc476f66ffdb9"
+    },
+    {
+      "path": "docs/12/browser-evidence/implement-4-error-context.md",
+      "sha256": "68d01c350995fcd7e35e42b84c09f738bf35d904fe26d7ca02576cd45705c782"
+    },
+    {
+      "path": "docs/12/browser-evidence/baseline.json",
+      "sha256": "a7004426afca17c8cd657cdeaa64ffbd9e7b4f1e768a49ab1c73888dd5a67900"
+    },
+    {
+      "path": "docs/12/browser-evidence/baseline.png",
+      "sha256": "5e3b48f402ed45b9c2333bbbd0cfa56fb8bbefd0fa5ea80e0f3ad5ac5e12c766"
+    },
+    {
+      "path": "docs/12/test-runner-4.out.json",
+      "sha256": "b93344d0f73db687f5f04ddb286515d884404df63a1c21cc8e37091b6b2d7164"
+    }
+  ]
+}

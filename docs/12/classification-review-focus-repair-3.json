@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "task": "12",
+  "decision": "approve",
+  "reviewed_input_sha256": "8f0b7245c2ab421603ffec9fa77d11c03374fdf807a71cb997835a6f86f08d44",
+  "case_ids": [
+    "C01",
+    "C02",
+    "C03",
+    "C04",
+    "C05",
+    "C06",
+    "C07",
+    "C08",
+    "C09"
+  ]
+}

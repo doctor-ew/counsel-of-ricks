@@ -1,0 +1,106 @@
+{
+  "version": 1,
+  "task": "12",
+  "stage": "adversarial",
+  "status": "fail",
+  "findings": [
+    {
+      "id": "SOURCE_RECHECK_ADMISSION_BLOCKED",
+      "target": "docs/12/repair-admission.json",
+      "problem": "Source descriptions and current-HEAD references were repaired after the independent 23-entry review, but bounded retry admission refused re-verification because the registered scenario repair signature is unchanged. No source gate approval; retained counters are unchanged after refusal. Controller must resolve admission ownership before recheck."
+    },
+    {
+      "id": "CLAIM_BATCH_NOT_VERIFIED",
+      "target": "docs/12/adversarial-claims.in.md",
+      "problem": "Prepared 45 technical assertions (39 existing, 6 new); the mandatory claim batch, citations and downstream digest were not executed because the source gate remains unresolved. No claim verification or stage pass is asserted."
+    }
+  ],
+  "checks": [
+    {
+      "command": "python3 /Users/drew.schillinger/shuttlebay/doctorews-laboratory/nightshift-community/.nightshift/release-0.4.0/scripts/nightshift-behavior-proof.py validate --project /Users/drew.schillinger/shuttlebay/doctorews-laboratory/nightshift-community/.nightshift/counsel-live-demo-worktrees/12 --task 12 --scenarios docs/12/behavior-scenarios.json",
+      "exit_code": 0
+    },
+    {
+      "command": "independent retained classification review: current semantic digest and all nine case IDs",
+      "exit_code": 0
+    },
+    {
+      "command": "git diff --check",
+      "exit_code": 0
+    },
+    {
+      "command": "bounded independent source extraction (adversarial-sources.in.md); report completeness: 23 entries; substantive findings retained",
+      "exit_code": 0
+    },
+    {
+      "command": "nightshift-retry-budget.py finalize source attempt 8ab2f0f9f290411d94f73beb881d1870 --category substantive",
+      "exit_code": 0
+    },
+    {
+      "command": "bounded independent source recheck (adversarial-sources-2.in.md): retry admission refused unchanged registered repair",
+      "exit_code": 1
+    }
+  ],
+  "evidence": [
+    {
+      "path": "docs/12/SPEC.md",
+      "sha256": "67ca9862502b56a0209ab7411daec2d18ac4989b259b5697dd2cb280a010538c"
+    },
+    {
+      "path": "docs/12/SPEC.pre-adversarial-1.md",
+      "sha256": "2dfa5d8e027df4e4fdf6b094fba592dea8b500da8a15086e53105c1a284a1ef1"
+    },
+    {
+      "path": "docs/12/adversarial-sources.in.md",
+      "sha256": "4641e1e971bf05d9243633e19a39042bf9b18b948e2512ba77ffe1cc77cf7e00"
+    },
+    {
+      "path": "docs/12/adversarial-sources.out.json",
+      "sha256": "844b85e26a8d16dfc93705fbb040ac9859fba77bf6a5abbc4ea3b6492e19f889"
+    },
+    {
+      "path": "docs/12/adversarial-sources.out.json.retry.json",
+      "sha256": "4cb7d1912daf8ac799ee89cc39a0c3716002fc11bb679065d2a511abb4dd794a"
+    },
+    {
+      "path": "docs/12/adversarial-sources-2.in.md",
+      "sha256": "7dd163d15421571d68a6774f91397ab3c699676b4b7c5b100edaafcec32ad4aa"
+    },
+    {
+      "path": "docs/12/adversarial-claims.in.md",
+      "sha256": "3c1ff6b31210566b3cb50571dda3ac91acc5cb0753d27cfe3551fb6774ac39fe"
+    },
+    {
+      "path": "docs/12/adversarial-claim-manifest.json",
+      "sha256": "1f2518eed996fe2d6f1b072d14f771e49a96b5a58b0063000d6de09c55339e20"
+    },
+    {
+      "path": "docs/12/adversarial-scenario-validation-1.json",
+      "sha256": "0a35e60ddde6401b49a65fac7964e0a001e41b9eacd651de0b88c0c44ac0312a"
+    },
+    {
+      "path": "docs/12/classification-review-4.out.json",
+      "sha256": "6565b1c9ec8f750dd289a5cee43b06d3653aa10c352516ce5ce127cf317cbb86"
+    },
+    {
+      "path": "docs/12/adversarial-checks-1.json",
+      "sha256": "34f808e92ac6337f522aa412ddd4e7eec6c548349360ec786d0eb0f826609ed3"
+    },
+    {
+      "path": "docs/12/repair-admission.json",
+      "sha256": "4ad1ae15d08bcca62e83de74dac7313a363aa759036abfccc7a19b3ea7a93695"
+    },
+    {
+      "path": "docs/12/.adversarial-budget.json",
+      "sha256": "f3ae243a7568bd1c8a147d7ffaf4d91578277531b573b5bee507b8db59e06fc2"
+    },
+    {
+      "path": "docs/12/adversarial-8ab2f0f9f290411d94f73beb881d1870.json.auth-5b32244333d34ddfa31b365a19fab815.json",
+      "sha256": "fc38e2d7191c7a1cef0a6cf661376e035f1f829b52e5b636d1453ea86299de29"
+    },
+    {
+      "path": "docs/12/adversarial-8ab2f0f9f290411d94f73beb881d1870.json",
+      "sha256": "bcb6d21539e55a8326caee2735d45400b9905863653046f7020f213186750865"
+    }
+  ]
+}

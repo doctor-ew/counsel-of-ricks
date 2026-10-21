@@ -1,0 +1,28 @@
+{
+  "status": "FAIL",
+  "reason": "Verification failed due to missing files and identifiers.",
+  "attempts": 1,
+  "artifacts": {
+    "branch": "demo-preparation",
+    "diff": "",
+    "provider": "local",
+    "model": "qwen2.5-coder:14b"
+  },
+  "rules_fired": [
+    "Exhaustive before reporting NOT FOUND",
+    "Never guess",
+    "Never infer",
+    "route_gear:0"
+  ],
+  "results": {
+    "claims": [
+      {
+        "claim": "Filter contradictions and unsupported claims in the Fact Ledger",
+        "status": "NOT_FOUND",
+        "file": "",
+        "line": 0,
+        "inspected_files": []
+      }
+    ]
+  }
+}

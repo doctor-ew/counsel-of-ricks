@@ -1,0 +1,9 @@
+{
+  "scope": {
+    "frontend/src/pages/SessionPage.tsx": "Modify existing sidebar with local selection, derived counts/cards, empty states, session reset and accessible controls.",
+    "frontend/test/session-ledger-filters.test.tsx": "Planned new file: component/query-boundary tests using prepared tooling and public synthetic data; write before implementation."
+  },
+  "tests": [
+    "frontend/test/session-ledger-filters.test.tsx"
+  ]
+}

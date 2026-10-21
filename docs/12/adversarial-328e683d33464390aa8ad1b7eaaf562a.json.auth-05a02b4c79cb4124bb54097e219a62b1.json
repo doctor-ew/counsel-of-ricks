@@ -1,0 +1,1 @@
+{"auth_mode": "subscription", "authenticated": true, "category": "subscription_confirmed", "elapsed_seconds": 0.01640512499943725, "exit_code": 0, "output_complete": true, "provider": "codex", "provider_dispatched": false, "raw_output_retained": false, "scope": "authentication_observation_only", "stderr_bytes": 24, "stdout_bytes": 0, "version": 1}

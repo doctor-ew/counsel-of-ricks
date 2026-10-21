@@ -1,0 +1,12 @@
+{
+  "command": "npm view @playwright/test@1.64.1 version bin --json",
+  "exit_code": 0,
+  "response": {
+    "version": "1.64.1",
+    "bin": {
+      "playwright": "cli.js"
+    }
+  },
+  "stderr": "npm warn Unknown user config \"always-auth\" (//pkgs.dev.azure.com/YoungConsulting/Framework/_packaging/YCDevFeed2023/npm/registry/:always-auth). This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.\n",
+  "executed_at_utc": "2026-10-17T16:11:35.440838+00:00"
+}

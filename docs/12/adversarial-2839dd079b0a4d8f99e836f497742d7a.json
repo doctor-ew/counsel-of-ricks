@@ -1,0 +1,229 @@
+{
+  "status": "SUCCESS",
+  "reason": "All 23 source entries match HEAD and their cited line ranges. Extracted at 2026-10-17T16:04:12Z; HEAD is 10b798fc9d84bce5712daeeaf10d73fa671747f5 on nightshift/12. Review only; no implementation, tests, builds, browser interception, or runtime measurements performed.",
+  "attempts": 3,
+  "artifacts": {
+    "branch": "nightshift/12",
+    "diff": "d2fafd7..10b798f changes only routing.json; cited application sources are unchanged. No review changes made.",
+    "provider": "codex",
+    "model": "gpt-6.1-sol"
+  },
+  "rules_fired": [
+    "Verified sources directly against HEAD",
+    "Preserved all 23 entries in supplied order",
+    "Inspected complete .gitignore",
+    "Distinguished source declarations and planned checks from execution",
+    "route_gear:3"
+  ],
+  "results": {
+    "claims": [
+      {
+        "claim": "Lines 22-38 establish route session identity, useLedger(sessionId!), and existing local state.",
+        "status": "VERIFIED",
+        "file": "frontend/src/pages/SessionPage.tsx",
+        "line": 22,
+        "inspected_files": [
+          "frontend/src/pages/SessionPage.tsx"
+        ]
+      },
+      {
+        "claim": "Lines 273-305 define sidebar styling, total facts, and conditionally rendered positive contradiction and unsupported counts.",
+        "status": "VERIFIED",
+        "file": "frontend/src/pages/SessionPage.tsx",
+        "line": 273,
+        "inspected_files": [
+          "frontend/src/pages/SessionPage.tsx"
+        ]
+      },
+      {
+        "claim": "Lines 307-316 directly map ledger facts to FactCard and display 'Facts will appear here as you testify' when ledger is absent or empty.",
+        "status": "VERIFIED",
+        "file": "frontend/src/pages/SessionPage.tsx",
+        "line": 307,
+        "inspected_files": [
+          "frontend/src/pages/SessionPage.tsx"
+        ]
+      },
+      {
+        "claim": "Lines 575-625 define a FactEntry-typed card with independent contradiction and support predicates, contradiction-first border coloring, confidence display, fact text, first citation, and unsupported copy. Confidence mappings cover certain, uncertain, estimate, and dont_recall.",
+        "status": "VERIFIED",
+        "file": "frontend/src/pages/SessionPage.tsx",
+        "line": 575,
+        "inspected_files": [
+          "frontend/src/pages/SessionPage.tsx"
+        ]
+      },
+      {
+        "claim": "Lines 72-85 declare FactEntry fields and LedgerResponse facts and numeric counts. Confidence values are certain, uncertain, estimate, dont_recall; source_type values are witness, document, inference.",
+        "status": "VERIFIED",
+        "file": "frontend/src/types/index.ts",
+        "line": 72,
+        "inspected_files": [
+          "frontend/src/types/index.ts"
+        ]
+      },
+      {
+        "claim": "Lines 4-10 use ['ledger', sessionId], call api.getLedger(sessionId), enable querying for a truthy sessionId, and configure 5000 ms polling.",
+        "status": "VERIFIED",
+        "file": "frontend/src/hooks/useLedger.ts",
+        "line": 4,
+        "inspected_files": [
+          "frontend/src/hooks/useLedger.ts"
+        ]
+      },
+      {
+        "claim": "Lines 41-48 dynamically count facts with contradictions and facts without citations, then populate LedgerResponse.",
+        "status": "VERIFIED",
+        "file": "app/services/ledger.py",
+        "line": 41,
+        "inspected_files": [
+          "app/services/ledger.py"
+        ]
+      },
+      {
+        "claim": "Lines 40-123 contain six ordered synthetic facts. Cited facts occupy positions 1, 2, 6; contradictory facts 2, 4; unsupported facts 3, 4, 5. Position 4 overlaps contradiction and unsupported categories. Summary counts are 2 and 3.",
+        "status": "VERIFIED",
+        "file": "postman/mocks/counsel-api/fixture.json",
+        "line": 40,
+        "inspected_files": [
+          "postman/mocks/counsel-api/fixture.json"
+        ]
+      },
+      {
+        "claim": "Lines 6-12 declare dev, build, lint, preview, demo, and test scripts. Build is 'tsc -b && vite build'; test is 'vitest run'. Script presence does not establish successful execution.",
+        "status": "VERIFIED",
+        "file": "frontend/package.json",
+        "line": 6,
+        "inspected_files": [
+          "frontend/package.json"
+        ]
+      },
+      {
+        "claim": "Lines 22-40 declare frontend development dependencies including vitest 3.2.7, jsdom 26.1.0, @testing-library/react 16.3.3, and @testing-library/dom 10.4.1.",
+        "status": "VERIFIED",
+        "file": "frontend/package.json",
+        "line": 22,
+        "inspected_files": [
+          "frontend/package.json"
+        ]
+      },
+      {
+        "claim": "Lines 1-3 configure jsdom, discovery through test/**/*.test.{ts,tsx}, React integration, and restoreMocks.",
+        "status": "VERIFIED",
+        "file": "frontend/vitest.config.ts",
+        "line": 1,
+        "inspected_files": [
+          "frontend/vitest.config.ts"
+        ]
+      },
+      {
+        "claim": "Lines 10-22 assert synthetic labels, valid contradiction references, six facts, category counts, and overlapping categories. These are fixture assertions; no browser behavior or test execution is established.",
+        "status": "VERIFIED",
+        "file": "frontend/test/demo-fixture.test.ts",
+        "line": 10,
+        "inspected_files": [
+          "frontend/test/demo-fixture.test.ts"
+        ]
+      },
+      {
+        "claim": "Lines 60-68 contain simulation and frontend startup calls, readiness checks, construction of the demo session URL, and synthetic readiness metadata. These are source instructions, not observed startup.",
+        "status": "VERIFIED",
+        "file": "scripts/demo-local.py",
+        "line": 60,
+        "inspected_files": [
+          "scripts/demo-local.py"
+        ]
+      },
+      {
+        "claim": "Lines 10-20 contain a DEV/demo-mode guard, a synthetic demo label, and a session route rendering SessionPage.",
+        "status": "VERIFIED",
+        "file": "frontend/demo/main.tsx",
+        "line": 10,
+        "inspected_files": [
+          "frontend/demo/main.tsx"
+        ]
+      },
+      {
+        "claim": "Lines 32-33 configure the test/build command as 'npm --prefix frontend test && npm --prefix frontend run build'.",
+        "status": "VERIFIED",
+        "file": ".nightshift.toml",
+        "line": 32,
+        "inspected_files": [
+          ".nightshift.toml"
+        ]
+      },
+      {
+        "claim": "Lines 57-65 contain commented npm install and npm test examples under Build & Test. No build command is supplied in that section.",
+        "status": "VERIFIED",
+        "file": "CLAUDE.md",
+        "line": 57,
+        "inspected_files": [
+          "CLAUDE.md"
+        ]
+      },
+      {
+        "claim": "Line 24 includes only src in the TypeScript project. Browser specs outside src are outside this configured discovery scope.",
+        "status": "VERIFIED",
+        "file": "frontend/tsconfig.json",
+        "line": 24,
+        "inspected_files": [
+          "frontend/tsconfig.json"
+        ]
+      },
+      {
+        "claim": "Lines 32-42 declare --cit-bg-1, --cit-bg-2, --cit-portal, --cit-portal-dim, --cit-plasma, --cit-scan-cyan, --cit-flare, --cit-alarm, --cit-text, --cit-text-dim, and --cit-hairline. These declarations support future preservation checks; no runtime preservation measurement is established.",
+        "status": "VERIFIED",
+        "file": "frontend/src/styles/citadel.css",
+        "line": 32,
+        "inspected_files": [
+          "frontend/src/styles/citadel.css"
+        ]
+      },
+      {
+        "claim": "Lines 105-107 define getLedger(sessionId) using fetchAPI<LedgerResponse> with a session-derived ledger path. This existing request is selected by task context for future interception; these lines implement no interception.",
+        "status": "VERIFIED",
+        "file": "frontend/src/api/client.ts",
+        "line": 105,
+        "inspected_files": [
+          "frontend/src/api/client.ts"
+        ]
+      },
+      {
+        "claim": "Lines 20-22 declare frontend port default 5173, API port default 8001, and --no-open as a store_true flag.",
+        "status": "VERIFIED",
+        "file": "scripts/demo-local.py",
+        "line": 20,
+        "inspected_files": [
+          "scripts/demo-local.py"
+        ]
+      },
+      {
+        "claim": "Line 60 begins the launcher's postman simulation run invocation. No CLI execution is claimed.",
+        "status": "VERIFIED",
+        "file": "scripts/demo-local.py",
+        "line": 60,
+        "inspected_files": [
+          "scripts/demo-local.py"
+        ]
+      },
+      {
+        "claim": "Line 65 constructs the demo URL from the selected frontend port and SESSION, using /demo/index.html#/session/.",
+        "status": "VERIFIED",
+        "file": "scripts/demo-local.py",
+        "line": 65,
+        "inspected_files": [
+          "scripts/demo-local.py"
+        ]
+      },
+      {
+        "claim": "Lines 24-25 ignore node_modules/ and frontend/node_modules/. Inspection of all 54 lines confirms no entry for the planned frontend/e2e-results/ output directory; adding that ignore remains planned work.",
+        "status": "VERIFIED",
+        "file": ".gitignore",
+        "line": 24,
+        "inspected_files": [
+          ".gitignore"
+        ]
+      }
+    ]
+  }
+}

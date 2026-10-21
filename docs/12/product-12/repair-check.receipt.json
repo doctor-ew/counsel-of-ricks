@@ -1,0 +1,21 @@
+{
+  "findings": [
+    {
+      "artifact": "docs/12/behavior-scenarios.json",
+      "artifact_content_sha256": "b7d64519183e7af584d4411a3d9349262c0fd3321605e9e6e35411031fb0de6e",
+      "artifact_sha256": "00d4b58c41884343efac51e934de486012ef1df0453c871bc895fbb0c906155a",
+      "current_passed": true,
+      "id": "INCOMPLETE_STYLE_PRESERVATION_COVERAGE",
+      "original_failed": true,
+      "passed": true,
+      "pointer": "/cases/6/then",
+      "prior_artifact": "docs/12/product-12/scenarios-reviewed-11.json",
+      "prior_sha256": "73470014409f92db146098e91c02c96b4bf249c8865459361cd34b756b2616df"
+    }
+  ],
+  "gate_approval": false,
+  "manifest": "docs/12/product-12/repair-checks.json",
+  "manifest_sha256": "8886cbff1b4abb1d1946185c913e5fc7221f5790d25a17b5a3a06369ae001f91",
+  "schema_version": 1,
+  "status": "passed"
+}
