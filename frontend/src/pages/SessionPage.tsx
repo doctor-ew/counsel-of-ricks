@@ -320,7 +320,7 @@ export default function SessionPage() {
                     type="button"
                     aria-pressed={ledgerFilter === value}
                     onClick={() => setLedgerSelection({ sessionId, filter: value })}
-                    className="rounded px-2 py-1 text-xs focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#7df1ff]"
+                    className="rounded px-2 py-1 text-xs focus:outline focus:outline-2 focus:outline-offset-2 focus:outline-[#7df1ff]"
                     style={{
                       background: ledgerFilter === value ? 'var(--cit-bg-2)' : 'var(--cit-bg-1)',
                       color: ledgerFilter === value ? 'var(--cit-portal)' : 'var(--cit-text)',
