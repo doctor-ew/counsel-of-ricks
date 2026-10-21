@@ -103,8 +103,11 @@ describe('ledger filter behavior', () => {
     const before=JSON.stringify(frozen)
     for (const label of ['Unsupported','Contradictions','All','Unsupported']) choose(label)
     expect(requests).toBe(0); expect(JSON.stringify(frozen)).toBe(before)
+    current={...ledger,facts:[...ledger.facts].reverse()}
     await act(async()=>{ await vi.advanceTimersByTimeAsync(5000) })
     expect(requests).toBe(1)
+    expectView(current,'Unsupported')
+    expect(JSON.stringify(frozen)).toBe(before)
   })
 })
 // Calibrate the commit recorder against a deliberately wrong effect reset and a render-derived reset.
