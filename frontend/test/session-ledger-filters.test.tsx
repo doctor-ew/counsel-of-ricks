@@ -13,6 +13,7 @@ vi.mock('../src/hooks/useQuestions', () => ({ useGenerateQuestions: () => ({}), 
 const ledger = fixture.ledger as LedgerResponse
 let current = ledger
 let requests = 0
+let observedRequests: {url:string;method:string}[] = []
 let navigate: ReturnType<typeof useNavigate>
 let route = ''
 let client: QueryClient
@@ -38,8 +39,8 @@ function expectView(value: LedgerResponse, label = 'All') {
   expect(cards()).toEqual(groups[labels.indexOf(label)].map(f => f.fact_text))
 }
 beforeEach(() => {
-  snapshots = []; current = structuredClone(ledger); requests = 0
-  vi.stubGlobal('fetch', vi.fn(async () => { requests++; return { ok: true, json: async () => current } }))
+  snapshots = []; current = structuredClone(ledger); requests = 0; observedRequests=[]
+  vi.stubGlobal('fetch', vi.fn(async (url: RequestInfo | URL, options?: RequestInit) => { requests++; observedRequests.push({url:String(url),method:options?.method ?? 'GET'}); return { ok: true, json: async () => current } }))
   Element.prototype.scrollIntoView = vi.fn()
 })
 afterEach(() => { cleanup(); client?.clear(); vi.unstubAllGlobals(); vi.useRealTimers() })
@@ -102,10 +103,11 @@ describe('ledger filter behavior', () => {
     freeze(frozen); mount(frozen)
     const before=JSON.stringify(frozen)
     for (const label of ['Unsupported','Contradictions','All','Unsupported']) choose(label)
-    expect(requests).toBe(0); expect(JSON.stringify(frozen)).toBe(before)
+    expect(requests).toBe(0); expect(observedRequests).toEqual([]); expect(JSON.stringify(frozen)).toBe(before)
     current={...ledger,facts:[...ledger.facts].reverse()}
     await act(async()=>{ await vi.advanceTimersByTimeAsync(5000) })
     expect(requests).toBe(1)
+    expect(observedRequests).toEqual([{url:'/api/v1/sessions/A/ledger',method:'GET'}])
     expectView(current,'Unsupported')
     expect(JSON.stringify(frozen)).toBe(before)
   })
